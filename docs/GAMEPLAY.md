@@ -10,6 +10,7 @@ Este documento recoge las reglas de combate confirmadas para la primera versión
 - Una carta también puede ser únicamente de tipo **Normal**.
 - Cada carta prepara **2 movimientos activos**.
 - Cada mazo puede llevar **hasta 3 objetos** elegidos antes de la partida.
+- Se permiten como máximo **2 unidades del mismo objeto**, salvo objetos especiales que indiquen un límite inferior.
 
 ## 2. Movimientos
 
@@ -75,25 +76,49 @@ En una partida normal, ambos jugadores seleccionan en secreto su primera carta a
 
 Para la primera partida guiada del tutorial, la selección exacta de la carta inicial puede quedar predeterminada por el propio tutorial.
 
-## 7. Objetos
+## 7. Objetos — primera prueba
 
-Base confirmada de objetos considerados para el sistema:
+El catálogo y los valores provisionales completos están documentados en [`OBJECTS_FIRST_TEST.md`](OBJECTS_FIRST_TEST.md).
 
-- Vendaje.
-- Botiquín.
-- Protector.
-- Impulso.
+Reglas generales:
 
-También se propuso **Kit de recuperación**, pero sus valores y su incorporación definitiva deben cerrarse antes de implementarlo.
-
-Reglas confirmadas:
-
-- usar un objeto consume el turno;
-- se pueden llevar hasta 3 objetos por partida;
-- un objeto no puede revivir una carta eliminada;
+- se pueden llevar hasta **3 objetos** por partida;
+- máximo **2 unidades del mismo objeto**, salvo límites especiales;
+- usar un objeto consume la acción del turno;
+- un objeto no puede revivir una carta derrotada;
 - cualquier curación respeta la Vida máxima.
 
-Los valores numéricos exactos de curación, reducción de daño o aumento de ataque de los objetos deben cerrarse en balance antes de programarlos.
+### 🩹 Vendaje
+
+- Cura **3 Vida** a la carta activa.
+
+### 🧰 Botiquín
+
+- Cura **5 Vida** a cualquier carta viva del equipo.
+
+### 🚑 Kit de Emergencias
+
+- Cura **4 Vida** a cualquier carta viva del equipo.
+- Elimina **1 efecto negativo** activo de esa carta, como Quemadura o Parálisis.
+- Límite especial: **1 por partida**.
+
+### 🛡️ Protector
+
+- Se aplica a la carta activa.
+- Reduce en **3 puntos** el próximo daño que reciba.
+
+### ⚡ Impulso
+
+- Se aplica a la carta activa.
+- Añade **+2 al daño base** del próximo movimiento ofensivo.
+- El +2 se aplica **antes** de calcular ventajas o desventajas de tipo.
+
+### 🔄 Cambio rápido
+
+- Retira la carta activa y permite sacar inmediatamente otra carta viva.
+- La nueva carta queda activa, pero no puede atacar durante esa misma acción porque el uso del objeto ya consumió el turno.
+
+Todos estos valores son **provisionales para la primera prueba** y podrán ajustarse mediante commits `Balance:` después de probar el combate.
 
 ## 8. Estados confirmados
 

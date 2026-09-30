@@ -14,12 +14,13 @@ Toda decisión de código, interfaz y arquitectura debe tomar como referencia pr
 
 - controles táctiles;
 - pantallas pequeñas;
+- orientación vertical (portrait);
 - menús adaptados a móvil;
 - rendimiento en celulares modestos;
 - partidas online relativamente cortas;
 - cuenta y progreso persistente.
 
-La orientación definitiva de pantalla —vertical u horizontal— queda pendiente de decisión de UI. Una versión para PC está fuera del alcance inicial y podrá evaluarse en el futuro.
+Una versión para PC está fuera del alcance inicial y podrá evaluarse en el futuro.
 
 La dirección completa está documentada en `PLATFORM_ANDROID.md`.
 
@@ -51,7 +52,7 @@ La dirección completa está documentada en `PLATFORM_ANDROID.md`.
 15. Tienda y regalos.
 16. Tutorial y navegación principal.
 17. Temporizador, desconexiones, rendición y antifarmeo.
-18. Interfaz táctil y navegación mobile-first.
+18. Interfaz táctil vertical y navegación mobile-first.
 19. Persistencia de cuenta, colección y progreso.
 20. Rendimiento adecuado para dispositivos Android modestos.
 
@@ -69,35 +70,47 @@ La dirección completa está documentada en `PLATFORM_ANDROID.md`.
 
 Las reglas esenciales deben estar documentadas sin contradicciones.
 
-### Gate 2 — Datos de balance
+### Gate 2 — Datos de balance para la primera prueba
 
-Antes de codificar valores duros, deben quedar preparados:
+Antes de codificar valores de la primera prueba deben quedar preparados:
 
 - tabla de tipos v0.2 completa;
 - mazo inicial fijo;
 - valores de Vida y movimientos del mazo inicial;
 - costes de Energía y usos;
 - estados confirmados;
-- objetos que entren en la primera implementación y sus valores definitivos.
+- catálogo de objetos de primera prueba con sus valores provisionales.
 
 La tabla completa de tipos ya está transcrita y auditada en `TYPES.md`.
 
+Los objetos de la primera prueba ya están documentados en `OBJECTS_FIRST_TEST.md`. Sus valores son provisionales y podrán ajustarse posteriormente mediante balance.
+
 ### Gate 3 — Dirección móvil
 
-Antes de construir la interfaz definitiva deben quedar definidos:
+La dirección base ya está cerrada:
 
-- orientación principal: vertical u horizontal;
-- estructura táctil de combate y menús;
+- plataforma principal: Android;
+- orientación principal: vertical (portrait);
+- interacción completamente táctil;
+- estructura de combate y menús pensada para pantallas pequeñas.
+
+Todavía deben definirse durante el diseño de UI:
+
 - tamaños cómodos de interacción para cartas y botones;
+- distribución exacta de la interfaz vertical;
 - objetivos medibles de rendimiento para celulares modestos.
-
-No es necesario cerrar estos valores para diseñar las entidades puras del modelo de combate, pero toda arquitectura de cliente debe asumir Android como plataforma principal.
 
 ### Gate 4 — Modelo técnico
 
-Después se diseñarán las entidades y estructuras principales: Carta, Movimiento, Tipo, Objeto, Mazo, Jugador, Partida, Estado y sistemas de progresión.
+El siguiente paso es diseñar las entidades y estructuras principales: Carta, Movimiento, Tipo, Objeto, Mazo, Jugador, Partida y Estado.
 
-El modelo debe evitar dependencias innecesarias de escritorio y contemplar desde el principio que la aplicación tendrá cuenta y progreso persistente.
+El modelo debe:
+
+- separar datos de contenido de lógica de combate;
+- evitar dependencias innecesarias de escritorio;
+- asumir Android vertical y entrada táctil para el cliente;
+- contemplar desde el principio que la aplicación tendrá cuenta y progreso persistente;
+- permitir probar tipos, daño, Energía, objetos, estados, mazos y condición de victoria de forma aislada.
 
 ## Monetización
 
@@ -116,6 +129,6 @@ Solo después deberá evaluarse una estrategia de ingresos que no perjudique eso
 
 ## Estado actual
 
-**Fase:** documentación previa a programación.
+**Fase:** listo para comenzar el diseño técnico del núcleo de combate.
 
-La tabla de tipos y el mazo inicial ya permiten avanzar hacia el diseño técnico. Los siguientes cierres inmediatos son los objetos de la primera prueba y la dirección de UI móvil, mientras el modelo de combate se diseña con Android como referencia principal.
+Ya están documentados la tabla de tipos, el mazo inicial, los estados principales, la dirección Android vertical y los objetos de la primera prueba. El siguiente objetivo formal es diseñar el modelo técnico de `Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida` antes del primer `Feat:` de código.

@@ -5,7 +5,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 ## Versión activa: Guatemala 1.0
 
 **Rama:** `guatemala-1.0`  
-**Estado:** documentación y planificación previa al desarrollo.  
+**Estado:** documentación y diseño técnico previo al desarrollo.  
 **País piloto:** Guatemala.  
 **Plataforma objetivo inicial:** Android.  
 **Orientación principal:** vertical (portrait).  
@@ -18,6 +18,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - [`docs/GUATEMALA_1_0.md`](docs/GUATEMALA_1_0.md) — alcance y estado de la versión.
 - [`docs/PLATFORM_ANDROID.md`](docs/PLATFORM_ANDROID.md) — dirección mobile-first, orientación vertical, controles táctiles, rendimiento y publicación Android.
 - [`docs/GAMEPLAY.md`](docs/GAMEPLAY.md) — reglas de partida, turnos, movimientos, Energía, objetos, estados y desconexiones.
+- [`docs/OBJECTS_FIRST_TEST.md`](docs/OBJECTS_FIRST_TEST.md) — catálogo y valores provisionales de objetos para la primera prueba.
 - [`docs/TYPES.md`](docs/TYPES.md) — tabla final auditada de 18 tipos, multiplicadores y reglas de doble tipo.
 - [`docs/STARTER_DECK.md`](docs/STARTER_DECK.md) — mazo inicial fijo del tutorial de Guatemala 1.0.
 - [`docs/PROGRESSION_ECONOMY.md`](docs/PROGRESSION_ECONOMY.md) — rarezas, sobres, Oro, Camino de Estrellas, maestría, misiones, Pase y tienda.
@@ -46,6 +47,9 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Interacción principal completamente táctil.
 - Estructura general de combate por rondas y turnos.
 - Mazo de 6 cartas sin copias exactas repetidas y hasta 3 objetos.
+- Máximo 2 unidades del mismo objeto, salvo límites especiales.
+- Catálogo de primera prueba: Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido.
+- Valores provisionales de objetos cerrados para la primera prueba.
 - Dos movimientos activos por carta y reglas de movimientos propios/equipables.
 - Energía inicial 3, +2 por ronda y máximo 10.
 - Tabla final auditada de 18 tipos, multiplicadores y combinaciones para cartas de doble tipo.
@@ -61,14 +65,15 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Reputación/antifarmeo a nivel de reglas, con fórmula detallada pendiente.
 - Convenciones de ramas y commits.
 
-### Pendiente antes de implementar balance completo
+### Pendiente antes del primer `Feat:` del núcleo
 
+- Diseñar el modelo técnico de `Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`.
+- Convertir la tabla final de tipos en una única fuente técnica de datos y añadir validaciones automáticas.
+- Definir pruebas del modelo para daño, Energía, objetos, estados, rondas, mazos y condición de victoria.
 - Definir objetivos técnicos medibles para rendimiento en celulares modestos.
 - Diseñar la distribución concreta de la interfaz vertical de combate y menús.
-- Convertir la tabla final de tipos en una única fuente técnica de datos y añadir validaciones automáticas durante el diseño del modelo.
 - Definir el catálogo adicional de cartas de Guatemala 1.0 más allá del mazo inicial.
-- Definir más movimientos equipables y los objetos que entrarán en la primera implementación con sus valores definitivos.
-- Decidir si existirá un límite de copias del mismo objeto dentro de los hasta 3 espacios.
+- Definir más movimientos equipables.
 - Cerrar la fórmula numérica de reputación/antifarmeo.
 - Cerrar el objetivo final e hitos exactos del desbloqueo de Maestría.
 - Elegir posteriormente la arquitectura concreta para cuenta, backend y progreso persistente.
@@ -90,5 +95,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Definido Android como plataforma principal de desarrollo y Google Play Store como primera publicación objetivo.
 - Establecido el enfoque mobile-first: controles táctiles, UI para pantallas pequeñas, rendimiento en teléfonos modestos, partidas online relativamente cortas y progreso persistente.
 - Definida la orientación vertical como formato principal de toda la experiencia móvil.
+- Cerrado el catálogo de objetos de la primera prueba con valores provisionales y límites de copias.
+- Añadidos Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido como objetos iniciales.
 - PC queda como posibilidad futura, fuera del alcance inicial.
-- Próximo objetivo: cerrar los objetos de la primera prueba y diseñar el modelo técnico y los primeros prototipos de interfaz vertical.
+- Próximo objetivo: diseñar el modelo técnico del combate (`Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`).

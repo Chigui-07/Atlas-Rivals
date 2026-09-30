@@ -8,7 +8,7 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] 2 movimientos activos por carta.
 - [x] Al menos 1 movimiento ilimitado por carta.
 - [x] Hasta 3 objetos por partida.
-- [ ] Decidir si habrá límite de copias del mismo objeto dentro de esos espacios.
+- [x] Máximo 2 unidades del mismo objeto, salvo límites especiales.
 - [x] Energía: 3 inicial, +2 al inicio de cada ronda, máximo 10.
 - [x] Dado al inicio de cada ronda para decidir quién actúa primero.
 - [x] Una acción por turno.
@@ -72,14 +72,23 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 - [x] Parálisis: 15% cuando la aplica el movimiento correspondiente.
 - [x] Parálisis hace perder la próxima acción y luego desaparece.
 
-## 7. Objetos
+## 7. Objetos — cerrados para la primera prueba
 
 - [x] Sistema de hasta 3 objetos por partida.
+- [x] Máximo 2 unidades del mismo objeto, salvo límites especiales.
 - [x] Uso de objeto consume turno.
-- [x] Base de objetos considerada: Vendaje, Botiquín, Protector e Impulso.
-- [ ] Decidir si Kit de recuperación entra en la primera implementación.
-- [ ] Definir valores finales de curación/mitigación/bonificación de los objetos.
-- [ ] Decidir límite de copias del mismo objeto, si existe.
+- [x] Objetos no reviven cartas derrotadas.
+- [x] Curaciones no superan la Vida máxima.
+- [x] Vendaje: +3 Vida a la carta activa.
+- [x] Botiquín: +5 Vida a cualquier carta viva.
+- [x] Kit de Emergencias: +4 Vida a cualquier carta viva y elimina 1 efecto negativo.
+- [x] Kit de Emergencias limitado a 1 por partida.
+- [x] Protector: reduce en 3 el próximo daño recibido por la carta activa.
+- [x] Impulso: +2 al daño base del próximo movimiento ofensivo antes de aplicar tipos.
+- [x] Cambio rápido: cambia la carta activa por otra viva consumiendo la acción del turno.
+- [x] Documentar el catálogo en `OBJECTS_FIRST_TEST.md`.
+
+**Estado:** valores provisionales aceptados para la primera prueba. Cualquier cambio posterior debe tratarse como balance.
 
 ## 8. Progresión y economía
 
@@ -141,9 +150,9 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 
 La dirección completa está documentada en `PLATFORM_ANDROID.md`.
 
-## 12. Modelo técnico — último paso antes del primer código del núcleo
+## 12. Modelo técnico — siguiente objetivo
 
-Una vez cerrados los objetos de la primera prueba:
+Con tipos, mazo inicial, estados y objetos de primera prueba ya documentados, el siguiente paso es diseñar el modelo técnico del combate:
 
 - [ ] Diseñar entidad `Carta`.
 - [ ] Diseñar entidad `Movimiento`.
@@ -158,14 +167,14 @@ Una vez cerrados los objetos de la primera prueba:
 - [ ] Evitar dependencias de escritorio en la arquitectura del cliente.
 - [ ] Diseñar el cliente suponiendo entrada táctil, orientación vertical y restricciones de teléfono Android.
 - [ ] Contemplar persistencia de cuenta y progreso en las fronteras del modelo/servicios.
-- [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, mazos y condición de victoria.
+- [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, objetos, estados, mazos y condición de victoria.
 
 ## Orden recomendado de cierre
 
 1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
-2. Cerrar objetos de la primera prueba.
+2. ~~Cerrar objetos de la primera prueba.~~ ✅ Completado.
 3. ~~Decidir orientación móvil principal.~~ ✅ Vertical.
-4. Diseñar modelo técnico del combate con Android vertical como referencia.
+4. **Diseñar modelo técnico del combate con Android vertical como referencia.** ← siguiente paso.
 5. Crear pruebas del modelo y de las reglas numéricas.
 6. Comenzar el primer `Feat:` del núcleo.
 
