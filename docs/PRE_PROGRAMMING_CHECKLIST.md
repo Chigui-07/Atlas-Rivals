@@ -120,7 +120,26 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 - [x] UI de temporizador y reconexión.
 - [ ] Diseñar visualmente las pantallas durante la fase de UI.
 
-## 11. Modelo técnico — último paso antes del primer código del núcleo
+## 11. Plataforma Android — dirección confirmada
+
+- [x] Plataforma inicial: teléfonos Android.
+- [x] Primera publicación objetivo: Google Play Store.
+- [x] Enfoque mobile-first para Guatemala 1.0.
+- [x] Controles principales completamente táctiles.
+- [x] Menús y combate diseñados para pantallas pequeñas.
+- [x] Rendimiento en celulares modestos como prioridad técnica.
+- [x] Cuenta y progreso persistente como requisito del producto.
+- [x] PC fuera del alcance inicial.
+- [x] Monetización subordinada a jugabilidad, balance y estabilidad.
+- [ ] Decidir orientación principal: vertical u horizontal.
+- [ ] Definir tamaños/criterios mínimos de zonas táctiles durante el diseño de UI.
+- [ ] Definir objetivos medibles de rendimiento para dispositivos modestos.
+- [ ] Definir posteriormente tecnología de autenticación, backend y almacenamiento persistente.
+- [ ] Medir la duración real de partidas y fijar un objetivo de sesión móvil después de las primeras pruebas.
+
+La dirección completa está documentada en `PLATFORM_ANDROID.md`.
+
+## 12. Modelo técnico — último paso antes del primer código del núcleo
 
 Una vez cerrados los objetos de la primera prueba:
 
@@ -134,14 +153,18 @@ Una vez cerrados los objetos de la primera prueba:
 - [ ] Diseñar estado y flujo de `Partida`.
 - [ ] Separar datos de contenido de la lógica de combate.
 - [ ] Crear la fuente técnica única de tipos compartida por combate y AYUDA/TABLA.
+- [ ] Evitar dependencias de escritorio en la arquitectura del cliente.
+- [ ] Diseñar el cliente suponiendo entrada táctil y restricciones de teléfono Android.
+- [ ] Contemplar persistencia de cuenta y progreso en las fronteras del modelo/servicios.
 - [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, mazos y condición de victoria.
 
 ## Orden recomendado de cierre
 
 1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
 2. Cerrar objetos de la primera prueba.
-3. Diseñar modelo técnico del combate.
-4. Crear pruebas del modelo y de las reglas numéricas.
-5. Comenzar el primer `Feat:` del núcleo.
+3. Decidir orientación móvil principal.
+4. Diseñar modelo técnico del combate con Android como referencia.
+5. Crear pruebas del modelo y de las reglas numéricas.
+6. Comenzar el primer `Feat:` del núcleo.
 
 Los sistemas de progresión, tienda, Pase y Maestría pueden implementarse después del núcleo de combate, respetando siempre su documentación antes de codificar cada sistema.
