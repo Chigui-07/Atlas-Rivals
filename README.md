@@ -18,6 +18,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - [`docs/PROGRESSION_ECONOMY.md`](docs/PROGRESSION_ECONOMY.md) — rarezas, sobres, Oro, Camino de Estrellas, maestría, misiones, Pase y tienda.
 - [`docs/INTERFACE.md`](docs/INTERFACE.md) — tutorial, menú e interfaz de partida.
 - [`docs/GITHUB_WORKFLOW.md`](docs/GITHUB_WORKFLOW.md) — ramas, commits y mantenimiento del repositorio.
+- [`docs/PRE_PROGRAMMING_CHECKLIST.md`](docs/PRE_PROGRAMMING_CHECKLIST.md) — decisiones pendientes y puertas que deben cerrarse antes de programar el núcleo.
 
 ## Principios de Guatemala 1.0
 
@@ -33,6 +34,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 
 - Estructura general de combate.
 - Mazo de 6 cartas distintas y 3 objetos.
+- Máximo de 2 copias del mismo objeto dentro de los 3 espacios.
 - Vida, daño, movimientos y Energía.
 - 18 tipos y multiplicadores de efectividad.
 - Rarezas, sobres y economía básica.
@@ -50,6 +52,8 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Reglas numéricas definitivas de reputación/antifarmeo.
 - Valores finales del sistema de Maestría, actualmente base conceptual/provisional.
 
+La lista de control detallada está en [`docs/PRE_PROGRAMMING_CHECKLIST.md`](docs/PRE_PROGRAMMING_CHECKLIST.md).
+
 ## Bitácora — Guatemala 1.0
 
 ### 2026-09-30
@@ -58,4 +62,6 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Organizada la documentación base antes de comenzar a programar.
 - Migradas las reglas confirmadas del diseño previo.
 - Detectada una inconsistencia en la tabla v0.2 de tipos; queda bloqueada para implementación hasta auditarla.
-- Próximo objetivo: cerrar datos de balance y diseñar el modelo de datos del combate.
+- Recuperada y documentada la regla de objetos: máximo 2 copias del mismo objeto dentro de los 3 espacios.
+- Añadida una checklist formal de decisiones pendientes antes de iniciar el núcleo del juego.
+- Próximo objetivo: cerrar la tabla de tipos y definir el roster inicial de Guatemala.

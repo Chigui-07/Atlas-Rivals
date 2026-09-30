@@ -77,10 +77,9 @@ Reglas generales:
 
 - se llevan 3 objetos por partida;
 - se eligen antes de iniciar;
+- se permiten como máximo **2 copias del mismo objeto** dentro de los 3 espacios;
 - no reviven cartas eliminadas;
 - una curación no supera la Vida máxima.
-
-**Pendiente:** fijar oficialmente el límite de copias del mismo objeto dentro de los 3 espacios.
 
 ## 7. Estados
 
