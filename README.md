@@ -14,7 +14,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 
 - [`docs/GUATEMALA_1_0.md`](docs/GUATEMALA_1_0.md) — alcance y estado de la versión.
 - [`docs/GAMEPLAY.md`](docs/GAMEPLAY.md) — reglas de partida, turnos, movimientos, Energía, objetos, estados y desconexiones.
-- [`docs/TYPES.md`](docs/TYPES.md) — sistema de 18 tipos, multiplicadores y estado de transcripción de la tabla v0.2.
+- [`docs/TYPES.md`](docs/TYPES.md) — tabla final auditada de 18 tipos, multiplicadores y reglas de doble tipo.
 - [`docs/STARTER_DECK.md`](docs/STARTER_DECK.md) — mazo inicial fijo del tutorial de Guatemala 1.0.
 - [`docs/PROGRESSION_ECONOMY.md`](docs/PROGRESSION_ECONOMY.md) — rarezas, sobres, Oro, Camino de Estrellas, maestría, misiones, Pase y tienda.
 - [`docs/INTERFACE.md`](docs/INTERFACE.md) — tutorial, menú e interfaz de partida.
@@ -37,7 +37,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Mazo de 6 cartas sin copias exactas repetidas y hasta 3 objetos.
 - Dos movimientos activos por carta y reglas de movimientos propios/equipables.
 - Energía inicial 3, +2 por ronda y máximo 10.
-- 18 tipos y multiplicadores de efectividad.
+- Tabla final auditada de 18 tipos, multiplicadores y combinaciones para cartas de doble tipo.
 - Estados Quemadura y Parálisis.
 - Mazo inicial fijo del tutorial.
 - Rarezas, repetidas y sobres.
@@ -52,7 +52,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 
 ### Pendiente antes de implementar balance completo
 
-- Transcribir al repositorio la matriz completa final v0.2 de tipos y validarla automáticamente.
+- Convertir la tabla final de tipos en una única fuente técnica de datos y añadir validaciones automáticas durante el diseño del modelo.
 - Definir el catálogo adicional de cartas de Guatemala 1.0 más allá del mazo inicial.
 - Definir más movimientos equipables y los objetos que entrarán en la primera implementación con sus valores definitivos.
 - Decidir si existirá un límite de copias del mismo objeto dentro de los hasta 3 espacios.
@@ -69,5 +69,8 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Añadida una checklist formal previa a programación.
 - Documentado el mazo inicial fijo del tutorial.
 - Corregidos detalles de rondas, estados, misiones, tipos y objetos después de contrastarlos con el diseño anterior.
-- La tabla v0.2 ya fue aceptada en el diseño; queda pendiente su transcripción completa y prueba de consistencia en el repositorio.
-- Próximo objetivo: terminar la tabla v0.2 en datos y diseñar el modelo técnico del combate.
+- Transcrita íntegramente la tabla final v0.2 de los 18 tipos en `TYPES.md`.
+- Verificada la simetría y consistencia de todas las relaciones entre tipos distintos.
+- Documentados los casos especiales de Eclipse, Mente, Espectro, Enjambre y Dragón contra sí mismos.
+- Cerradas las combinaciones de multiplicadores para cartas objetivo de dos tipos, incluida la regla especial de doble neutral.
+- Próximo objetivo: cerrar los objetos de la primera prueba y diseñar el modelo técnico del combate.

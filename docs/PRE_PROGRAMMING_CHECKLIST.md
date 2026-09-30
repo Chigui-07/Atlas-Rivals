@@ -19,18 +19,21 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Rendición, abandono o desconexión no recuperada = derrota.
 - [x] Sin empates.
 
-## 2. Sistema de tipos — bloqueante
+## 2. Sistema de tipos — cerrado a nivel de diseño
 
 - [x] Definir los 18 tipos oficiales.
 - [x] Definir multiplicadores de efectividad.
 - [x] Definir redondeo del daño.
 - [x] Cerrar la tabla v0.2 en el diseño previo.
 - [x] Definir la regla especial de mismo tipo para Eclipse, Mente, Espectro, Enjambre y Dragón.
-- [ ] Transcribir íntegramente la matriz v0.2 al repositorio.
-- [ ] Validar automáticamente simetría y consistencia.
-- [ ] Preparar la matriz como única fuente de verdad para combate y AYUDA/TABLA.
+- [x] Transcribir íntegramente la matriz v0.2 al repositorio.
+- [x] Verificar simetría y consistencia de la tabla transcrita.
+- [ ] Convertir la tabla en una única fuente técnica de datos para combate y AYUDA/TABLA.
+- [ ] Añadir validaciones automáticas de simetría, excepciones y combinaciones de doble tipo.
 
-**Criterio de cierre:** la matriz completa debe existir como datos versionados y no depender del recuerdo del chat.
+**Criterio de diseño cumplido:** la matriz completa ya existe versionada en `TYPES.md` y no depende del recuerdo del chat.
+
+**Pendiente técnico:** al diseñar el modelo, la tabla deberá convertirse en datos consumidos por el motor y la interfaz sin duplicar lógica.
 
 ## 3. Mazo inicial de Guatemala
 
@@ -119,7 +122,7 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 
 ## 11. Modelo técnico — último paso antes del primer código del núcleo
 
-Una vez transcrita la matriz de tipos y cerrados los objetos de la primera prueba:
+Una vez cerrados los objetos de la primera prueba:
 
 - [ ] Diseñar entidad `Carta`.
 - [ ] Diseñar entidad `Movimiento`.
@@ -130,11 +133,12 @@ Una vez transcrita la matriz de tipos y cerrados los objetos de la primera prueb
 - [ ] Diseñar estado de `Jugador` dentro de partida.
 - [ ] Diseñar estado y flujo de `Partida`.
 - [ ] Separar datos de contenido de la lógica de combate.
+- [ ] Crear la fuente técnica única de tipos compartida por combate y AYUDA/TABLA.
 - [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, mazos y condición de victoria.
 
 ## Orden recomendado de cierre
 
-1. Transcribir tabla v0.2.
+1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
 2. Cerrar objetos de la primera prueba.
 3. Diseñar modelo técnico del combate.
 4. Crear pruebas del modelo y de las reglas numéricas.
