@@ -118,7 +118,9 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 - [x] Información mínima de la interfaz de combate.
 - [x] Pestaña AYUDA/TABLA.
 - [x] UI de temporizador y reconexión.
+- [x] Orientación principal de interfaz: vertical (portrait).
 - [ ] Diseñar visualmente las pantallas durante la fase de UI.
+- [ ] Diseñar la distribución concreta del combate en formato vertical.
 
 ## 11. Plataforma Android — dirección confirmada
 
@@ -127,11 +129,11 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 - [x] Enfoque mobile-first para Guatemala 1.0.
 - [x] Controles principales completamente táctiles.
 - [x] Menús y combate diseñados para pantallas pequeñas.
+- [x] Orientación principal: vertical (portrait).
 - [x] Rendimiento en celulares modestos como prioridad técnica.
 - [x] Cuenta y progreso persistente como requisito del producto.
 - [x] PC fuera del alcance inicial.
 - [x] Monetización subordinada a jugabilidad, balance y estabilidad.
-- [ ] Decidir orientación principal: vertical u horizontal.
 - [ ] Definir tamaños/criterios mínimos de zonas táctiles durante el diseño de UI.
 - [ ] Definir objetivos medibles de rendimiento para dispositivos modestos.
 - [ ] Definir posteriormente tecnología de autenticación, backend y almacenamiento persistente.
@@ -154,7 +156,7 @@ Una vez cerrados los objetos de la primera prueba:
 - [ ] Separar datos de contenido de la lógica de combate.
 - [ ] Crear la fuente técnica única de tipos compartida por combate y AYUDA/TABLA.
 - [ ] Evitar dependencias de escritorio en la arquitectura del cliente.
-- [ ] Diseñar el cliente suponiendo entrada táctil y restricciones de teléfono Android.
+- [ ] Diseñar el cliente suponiendo entrada táctil, orientación vertical y restricciones de teléfono Android.
 - [ ] Contemplar persistencia de cuenta y progreso en las fronteras del modelo/servicios.
 - [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, mazos y condición de victoria.
 
@@ -162,8 +164,8 @@ Una vez cerrados los objetos de la primera prueba:
 
 1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
 2. Cerrar objetos de la primera prueba.
-3. Decidir orientación móvil principal.
-4. Diseñar modelo técnico del combate con Android como referencia.
+3. ~~Decidir orientación móvil principal.~~ ✅ Vertical.
+4. Diseñar modelo técnico del combate con Android vertical como referencia.
 5. Crear pruebas del modelo y de las reglas numéricas.
 6. Comenzar el primer `Feat:` del núcleo.
 

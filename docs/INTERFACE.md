@@ -2,7 +2,7 @@
 
 ## 0. Principio mobile-first
 
-La interfaz de Guatemala 1.0 se diseña primero para **teléfonos Android** y debe funcionar completamente mediante controles táctiles.
+La interfaz de Guatemala 1.0 se diseña primero para **teléfonos Android en orientación vertical** y debe funcionar completamente mediante controles táctiles.
 
 Principios obligatorios:
 
@@ -11,9 +11,10 @@ Principios obligatorios:
 - separación suficiente entre zonas táctiles para evitar pulsaciones accidentales;
 - navegación sin depender de cursor, teclado o ratón;
 - menús que no requieran mostrar demasiada información simultáneamente;
-- animaciones y efectos que no comprometan el rendimiento en celulares modestos.
+- animaciones y efectos que no comprometan el rendimiento en celulares modestos;
+- estructura visual pensada para aprovechar el espacio vertical del teléfono.
 
-La orientación principal —vertical u horizontal— todavía debe decidirse mediante prototipos de UI. Hasta entonces, los diseños deben evitar depender innecesariamente de una orientación específica.
+La orientación principal queda definida como **vertical (portrait)**. Los prototipos de UI, el combate y los menús deben diseñarse tomando esta orientación como referencia.
 
 ## 1. Primera experiencia
 
@@ -64,7 +65,7 @@ Después del tutorial se habilitan las secciones:
 
 En la zona superior del menú deben quedar accesibles la identidad básica del jugador y su Oro.
 
-La navegación debe priorizar pocas acciones claras por pantalla frente a menús demasiado densos para móvil.
+La navegación debe priorizar pocas acciones claras por pantalla frente a menús demasiado densos para móvil. Las listas y secciones extensas pueden utilizar desplazamiento vertical.
 
 ## 4. Jugar
 
@@ -91,7 +92,7 @@ Debe permitir consultar:
 - movimientos propios y equipables;
 - progreso de Maestría cuando corresponda.
 
-La colección debe permitir revisar contenido sin exigir texto excesivamente pequeño. Si una carta necesita mucho detalle, la información puede dividirse entre vista resumida y vista detallada.
+La colección debe permitir revisar contenido sin exigir texto excesivamente pequeño. Si una carta necesita mucho detalle, la información puede dividirse entre vista resumida y vista detallada. La lista de cartas puede aprovechar desplazamiento vertical.
 
 ## 6. Mazos
 
@@ -147,7 +148,7 @@ El regalo y la sección de personalización rotan diariamente.
 
 Los sobres se abren al obtener/comprar; no se necesita una sección de inventario de sobres cerrados.
 
-La tienda debe conservar una jerarquía clara en pantallas pequeñas y evitar interfaces que dependan de pasar el cursor sobre elementos.
+La tienda debe conservar una jerarquía clara en pantallas pequeñas y evitar interfaces que dependan de pasar el cursor sobre elementos. Su recorrido principal puede organizarse verticalmente.
 
 ## 11. Perfil
 
@@ -178,6 +179,8 @@ Debe mostrar de forma clara, como mínimo:
 El Poder de Maestría debe mostrarse solo cuando esté desbloqueado/disponible según sus reglas.
 
 La partida debe permitir seleccionar movimientos, cartas y objetos con pulsaciones claras. Ninguna acción frecuente debe depender de precisión similar a la de un ratón.
+
+La composición del combate debe resolverse específicamente para formato vertical, distribuyendo la información en zonas apiladas sin reducir demasiado las cartas ni los controles.
 
 ## 14. AYUDA / TABLA
 

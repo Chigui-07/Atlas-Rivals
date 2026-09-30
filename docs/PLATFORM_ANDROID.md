@@ -23,16 +23,19 @@ La duración objetivo exacta de una partida y los presupuestos técnicos de rend
 
 ## Orientación de pantalla
 
-La orientación definitiva todavía no está cerrada.
+La orientación principal de Atlas Rivals será **vertical (portrait)**.
 
-Opciones a evaluar:
+Guatemala 1.0 debe diseñar su combate, menús, colección, mazos, tienda, progresión y tutorial pensando primero en teléfonos sostenidos verticalmente.
 
-- vertical;
-- horizontal.
+Esta decisión implica:
 
-La decisión debe tomarse según cuál permita representar mejor el combate, las cartas, los movimientos y los menús sin sacrificar comodidad táctil ni legibilidad.
+- aprovechar el desplazamiento vertical para listas, colección, misiones, tienda y progresión;
+- organizar el combate en zonas apiladas de forma clara;
+- evitar interfaces que dependan de gran anchura horizontal;
+- mantener cartas, botones y textos legibles sin reducirlos en exceso;
+- usar paneles, pestañas, ventanas o vistas desplazables cuando una pantalla no pueda mostrar toda la información a la vez.
 
-Hasta cerrar esta decisión, no debe diseñarse una interfaz cuya estructura dependa innecesariamente de una sola orientación.
+La orientación horizontal no será la referencia principal de Guatemala 1.0. Podrá evaluarse en el futuro únicamente si existe una necesidad concreta, sin comprometer el diseño vertical base.
 
 ## Interacción
 
@@ -104,6 +107,6 @@ No se debe forzar una decisión de monetización que perjudique el balance o la 
 
 Toda decisión de arquitectura, interfaz, rendimiento o flujo del jugador debe responder primero a esta pregunta:
 
-> ¿Funciona bien como experiencia táctil en un teléfono Android?
+> ¿Funciona bien como experiencia táctil vertical en un teléfono Android?
 
-Si una solución funciona bien en PC pero resulta incómoda o demasiado pesada en móvil, no es la solución principal para Guatemala 1.0.
+Si una solución funciona bien en PC o requiere una interfaz horizontal amplia, pero resulta incómoda o demasiado pesada en móvil vertical, no es la solución principal para Guatemala 1.0.
