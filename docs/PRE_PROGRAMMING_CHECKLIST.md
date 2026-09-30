@@ -1,15 +1,17 @@
 # Checklist previa a programación — Guatemala 1.0
 
-Esta lista convierte las decisiones abiertas de la documentación en tareas concretas. No reemplaza los documentos de diseño: sirve para saber cuándo Guatemala 1.0 está suficientemente definida para comenzar a implementar el núcleo sin inventar reglas en el código.
+Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza los documentos de diseño: indica qué falta cerrar antes de implementar el núcleo sin inventar reglas en el código.
 
 ## 1. Reglas base
 
-- [x] Mazo de 6 cartas distintas.
+- [x] Mazo de 6 cartas sin copias exactas repetidas.
 - [x] 2 movimientos activos por carta.
 - [x] Al menos 1 movimiento ilimitado por carta.
-- [x] 3 objetos por mazo.
-- [x] Máximo 2 copias del mismo objeto.
-- [x] Energía: 3 inicial, +2 por ronda, máximo 10.
+- [x] Hasta 3 objetos por partida.
+- [ ] Decidir si habrá límite de copias del mismo objeto dentro de esos espacios.
+- [x] Energía: 3 inicial, +2 al inicio de cada ronda, máximo 10.
+- [x] Dado al inicio de cada ronda para decidir quién actúa primero.
+- [x] Una acción por turno.
 - [x] Cambio de carta consume turno.
 - [x] Uso de objeto consume turno.
 - [x] Temporizador de 20 segundos.
@@ -22,83 +24,92 @@ Esta lista convierte las decisiones abiertas de la documentación en tareas conc
 - [x] Definir los 18 tipos oficiales.
 - [x] Definir multiplicadores de efectividad.
 - [x] Definir redondeo del daño.
-- [ ] Auditar completamente la matriz v0.2.
-- [ ] Resolver las interacciones especiales del mismo tipo señaladas en `TYPES.md`.
-- [ ] Confirmar que cada relación final sea inequívoca y consistente.
+- [x] Cerrar la tabla v0.2 en el diseño previo.
+- [x] Definir la regla especial de mismo tipo para Eclipse, Mente, Espectro, Enjambre y Dragón.
+- [ ] Transcribir íntegramente la matriz v0.2 al repositorio.
+- [ ] Validar automáticamente simetría y consistencia.
 - [ ] Preparar la matriz como única fuente de verdad para combate y AYUDA/TABLA.
 
-**Criterio de cierre:** ninguna relación puede quedar contradictoria o depender de recuerdos del chat.
+**Criterio de cierre:** la matriz completa debe existir como datos versionados y no depender del recuerdo del chat.
 
-## 3. Cartas de Guatemala — bloqueante
+## 3. Mazo inicial de Guatemala
 
-- [ ] Definir el tamaño del roster inicial.
-- [ ] Elegir las cartas que formarán Guatemala 1.0.
-- [ ] Asignar nombre y categoría temática a cada carta.
-- [ ] Asignar rareza.
-- [ ] Asignar 1 o 2 tipos.
-- [ ] Asignar Vida dentro de la escala acordada.
-- [ ] Definir los movimientos propios/originales de cada carta.
+- [x] Definir las 6 cartas del mazo inicial fijo.
+- [x] Asignar rareza.
+- [x] Asignar 1 o 2 tipos.
+- [x] Asignar Vida.
+- [x] Definir los 2 movimientos propios de cada carta.
+- [x] Definir daño/curación, Energía, usos y efectos del mazo inicial.
+- [x] Confirmar al menos 1 movimiento ilimitado por carta.
+- [x] Documentar el mazo en `STARTER_DECK.md`.
 
-**Criterio de cierre:** debe existir un conjunto inicial completo que permita construir al menos un mazo válido de 6 cartas distintas y probar el combate.
+## 4. Catálogo adicional de Guatemala
 
-## 4. Movimientos — bloqueante
+- [ ] Decidir cuántas cartas adicionales entrarán en Guatemala 1.0.
+- [ ] Definir sus categorías temáticas.
+- [ ] Asignar rareza, tipos, Vida y movimientos.
+- [ ] Crear más movimientos equipables para probar personalización de mazos.
 
-- [ ] Definir catálogo inicial de movimientos.
-- [ ] Definir tipo de cada movimiento.
-- [ ] Definir daño base cuando corresponda.
-- [ ] Definir coste de Energía.
-- [ ] Definir usos limitados o ilimitados.
-- [ ] Definir compatibilidades para movimientos equipables.
-- [ ] Verificar que cada carta pueda equipar 2 movimientos y conservar al menos 1 ilimitado.
+El mazo inicial ya permite probar el núcleo; este catálogo adicional puede crecer durante la rama.
 
-## 5. Estados y efectos
+## 5. Movimientos y compatibilidad
 
-- [x] Quemadura dura 2 turnos.
-- [ ] Definir daño periódico de Quemadura.
-- [ ] Definir qué ocurre al reaplicar Quemadura.
-- [x] Parálisis debe tener probabilidad baja.
-- [ ] Definir porcentaje exacto de Parálisis.
-- [ ] Definir efecto exacto de Parálisis sobre la acción afectada.
+- [x] Movimientos propios no transferibles y sí desequipables.
+- [x] Movimientos equipables intercambiables entre cartas compatibles.
+- [x] Movimientos ofensivos equipables requieren compartir tipo.
+- [x] Curativos son Normal y solo para cartas compatibles con curación.
+- [ ] Definir catálogo inicial de movimientos equipables más allá del mazo inicial.
+- [ ] Registrar explícitamente el tipo de cada movimiento en los datos.
 
-## 6. Objetos
+## 6. Estados y efectos
 
-- [x] Vendaje: +2 Vida.
-- [x] Botiquín: +4 Vida.
-- [x] Kit de recuperación: +6 Vida.
-- [x] Protector: reduce en 2 el próximo daño recibido.
-- [x] Impulso: +2 al próximo ataque.
-- [x] Máximo 2 copias del mismo objeto dentro de los 3 espacios.
+- [x] Quemadura: 2 turnos.
+- [x] Quemadura: 1 daño al final de cada uno de los próximos 2 turnos.
+- [x] Quemadura no se acumula; reaplicarla reinicia duración.
+- [x] Parálisis: 15% cuando la aplica el movimiento correspondiente.
+- [x] Parálisis hace perder la próxima acción y luego desaparece.
 
-## 7. Progresión y economía
+## 7. Objetos
+
+- [x] Sistema de hasta 3 objetos por partida.
+- [x] Uso de objeto consume turno.
+- [x] Base de objetos considerada: Vendaje, Botiquín, Protector e Impulso.
+- [ ] Decidir si Kit de recuperación entra en la primera implementación.
+- [ ] Definir valores finales de curación/mitigación/bonificación de los objetos.
+- [ ] Decidir límite de copias del mismo objeto, si existe.
+
+## 8. Progresión y economía
 
 - [x] Rarezas y principio de que rareza no equivale a poder.
-- [x] Progresión cosmética por repetidas.
+- [x] Progresión cosmética por repetidas 5/7/10.
 - [x] Oro por victoria.
-- [x] Sobre Atlas y probabilidades base.
-- [x] Sobres diarios por victoria.
-- [x] Sobre de Movimientos y probabilidades base.
+- [x] Sobre Atlas y probabilidades.
+- [x] Hasta 5 Sobres Atlas diarios por victoria.
+- [x] Sobre de Movimientos y probabilidades.
 - [x] Camino de Estrellas base.
-- [x] Misiones diarias y semanales base.
+- [x] Reglas de contenido Estelar.
+- [x] Misiones diarias y semanales.
 - [x] Pase de Batalla base.
-- [x] Estructura general de tienda.
+- [x] Estructura de tienda.
 - [ ] Definir función de copias posteriores a 10, si entra en Guatemala 1.0.
-- [ ] Cerrar los valores provisionales de Maestría antes de implementarla.
+- [ ] Cerrar los valores provisionales del desbloqueo de Maestría.
 - [ ] Definir el modificador de Movimiento Estelar usado por Carta Estelar.
 
-## 8. Reputación y antifarmeo
+## 9. Reputación y antifarmeo
 
-- [x] Detectar patrones repetidos de abandono/desconexión.
-- [x] Considerar patrones de al menos 2 seguidos o una frecuencia de cada 3 partidas.
-- [x] Permitir reducción o bloqueo temporal de recompensas ante abuso.
+- [x] Detectar patrones beneficiados por abandono/desconexión.
+- [x] Vigilar patrones de 2 seguidos o frecuencia aproximada de cada 3 partidas.
+- [x] Permitir reducción o bloqueo temporal de recompensas.
+- [x] Centrar la protección especialmente en el jugador que se beneficia repetidamente del patrón.
 - [ ] Definir fórmula de reputación.
 - [ ] Definir ventana de análisis.
 - [ ] Definir duración de sanciones.
 - [ ] Definir recuperación de reputación.
-- [ ] Definir reducción exacta de Oro, sobres y progreso de misiones.
+- [ ] Definir reducción exacta de Oro, estrellas, sobres, misiones y fichas.
 
-## 9. Interfaz y tutorial
+## 10. Interfaz y tutorial
 
-- [x] Flujo inicial del tutorial.
+- [x] Tutorial → nombre de usuario → mazo inicial fijo → partida guiada → menú completo.
 - [x] Secciones del menú principal.
 - [x] Validaciones mínimas antes de entrar a partida.
 - [x] Información mínima de la interfaz de combate.
@@ -106,27 +117,27 @@ Esta lista convierte las decisiones abiertas de la documentación en tareas conc
 - [x] UI de temporizador y reconexión.
 - [ ] Diseñar visualmente las pantallas durante la fase de UI.
 
-## 10. Modelo técnico — último paso antes del primer código del núcleo
+## 11. Modelo técnico — último paso antes del primer código del núcleo
 
-Una vez cerrados tipos, roster y movimientos:
+Una vez transcrita la matriz de tipos y cerrados los objetos de la primera prueba:
 
 - [ ] Diseñar entidad `Carta`.
 - [ ] Diseñar entidad `Movimiento`.
 - [ ] Diseñar entidad `Tipo` y matriz de efectividad.
 - [ ] Diseñar entidad `Objeto`.
+- [ ] Diseñar entidad `Estado`.
 - [ ] Diseñar entidad `Mazo` y sus validaciones.
 - [ ] Diseñar estado de `Jugador` dentro de partida.
 - [ ] Diseñar estado y flujo de `Partida`.
 - [ ] Separar datos de contenido de la lógica de combate.
-- [ ] Definir pruebas mínimas para tipos, daño, Energía, mazos y condición de victoria.
+- [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, mazos y condición de victoria.
 
 ## Orden recomendado de cierre
 
-1. Tabla de tipos.
-2. Roster inicial de Guatemala.
-3. Movimientos y compatibilidades.
-4. Estados pendientes.
-5. Modelo técnico del combate.
-6. Primer código del núcleo.
+1. Transcribir tabla v0.2.
+2. Cerrar objetos de la primera prueba.
+3. Diseñar modelo técnico del combate.
+4. Crear pruebas del modelo y de las reglas numéricas.
+5. Comenzar el primer `Feat:` del núcleo.
 
-Los sistemas de progresión, tienda, Pase y Maestría pueden implementarse después del núcleo de combate, respetando siempre sus documentos antes de codificar cada sistema.
+Los sistemas de progresión, tienda, Pase y Maestría pueden implementarse después del núcleo de combate, respetando siempre su documentación antes de codificar cada sistema.

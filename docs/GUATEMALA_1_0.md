@@ -10,33 +10,35 @@ Guatemala 1.0 es la primera versión formal de Atlas Rivals y funciona como set 
 - Las cartas pueden representar lugares, animales, cultura, gastronomía y otros elementos vinculados con Guatemala.
 - No es necesario representar todo Guatemala en esta versión.
 - Futuras actualizaciones podrán añadir más cartas de Guatemala y, al mismo tiempo, comenzar a incorporar otros países.
-- El roster concreto de cartas se definirá dentro de esta rama.
+- Existe un mazo inicial fijo de seis cartas para el tutorial, documentado en `STARTER_DECK.md`.
+- El catálogo adicional de Guatemala 1.0 se definirá durante esta rama.
 
 ## Sistemas que Guatemala 1.0 debe validar
 
 1. Construcción de mazos.
-2. Combate por turnos.
+2. Combate por rondas y turnos.
 3. Vida, daño y Energía.
 4. Movimientos limitados e ilimitados.
-5. Sistema de uno o dos tipos por carta.
-6. Objetos de partida.
-7. Estados y efectos especiales.
-8. Apertura de sobres y colección.
-9. Rarezas y progresión cosmética por repetidas.
-10. Camino de Estrellas.
-11. Maestría de cartas.
-12. Misiones diarias y semanales.
-13. Pase de Batalla.
-14. Tienda y regalos.
-15. Tutorial y navegación principal.
-16. Temporizador, desconexiones, rendición y antifarmeo.
+5. Movimientos propios y equipables.
+6. Sistema de uno o dos tipos por carta.
+7. Objetos de partida.
+8. Estados y efectos especiales.
+9. Apertura de sobres y colección.
+10. Rarezas y progresión cosmética por repetidas.
+11. Camino de Estrellas.
+12. Maestría de cartas.
+13. Misiones diarias y semanales.
+14. Pase de Batalla.
+15. Tienda y regalos.
+16. Tutorial y navegación principal.
+17. Temporizador, desconexiones, rendición y antifarmeo.
 
 ## Fuera de alcance por ahora
 
 - Desarrollar varios países al mismo tiempo.
 - Dar por terminada toda la colección de Guatemala.
-- Programar una tabla de tipos que todavía tenga relaciones contradictorias.
-- Fijar cartas, movimientos o Poderes de Maestría concretos sin documentarlos primero.
+- Programar la matriz de tipos antes de transcribir y validar la tabla v0.2 completa.
+- Fijar nuevos valores de cartas, movimientos u objetos sin documentarlos primero.
 
 ## Puertas antes de empezar a programar
 
@@ -44,23 +46,23 @@ Guatemala 1.0 es la primera versión formal de Atlas Rivals y funciona como set 
 
 Las reglas esenciales deben estar documentadas sin contradicciones.
 
-### Gate 2 — Balance de datos
+### Gate 2 — Datos de balance
 
-Antes de codificar valores duros, deben quedar definidos:
+Antes de codificar valores duros, deben quedar preparados:
 
-- tabla de tipos final;
-- cartas iniciales;
-- Vida y movimientos de cada carta;
+- tabla de tipos v0.2 completa;
+- mazo inicial fijo;
+- valores de Vida y movimientos del mazo inicial;
 - costes de Energía y usos;
-- objetos disponibles;
-- efectos y probabilidades definitivas.
+- estados confirmados;
+- objetos que entren en la primera implementación y sus valores definitivos.
 
 ### Gate 3 — Modelo técnico
 
-Después del balance se diseñarán las entidades y estructuras del juego: Carta, Movimiento, Tipo, Objeto, Mazo, Jugador, Partida y progresión.
+Después se diseñarán las entidades y estructuras principales: Carta, Movimiento, Tipo, Objeto, Mazo, Jugador, Partida, Estado y sistemas de progresión.
 
 ## Estado actual
 
 **Fase:** documentación previa a programación.
 
-La prioridad no es escribir código todavía, sino convertir las decisiones del diseño en una especificación que podamos implementar y probar sin depender de recuerdos del chat.
+Ya existe suficiente especificación para comenzar el diseño técnico, pero la matriz completa de tipos y los valores definitivos de objetos deben quedar versionados antes de implementar balance de combate.

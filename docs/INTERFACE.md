@@ -6,14 +6,15 @@ Flujo general acordado:
 
 1. Introducción/tutorial de las reglas básicas.
 2. Elección del nombre de usuario.
-3. Partida guiada.
-4. Desbloqueo del menú principal completo al terminar el tutorial.
+3. Entrega del mazo inicial fijo de Guatemala 1.0.
+4. Partida guiada.
+5. Desbloqueo del menú principal completo al terminar el tutorial.
 
-El tutorial debe enseñar de forma gradual y sin saturar al jugador.
+El mazo inicial se conserva después de completar la partida guiada.
 
 ## 2. Contenido mínimo del tutorial
 
-La versión final del tutorial debe cubrir las mecánicas vigentes del juego:
+El tutorial debe cubrir las mecánicas vigentes del juego:
 
 - qué es una carta;
 - Vida;
@@ -22,11 +23,13 @@ La versión final del tutorial debe cubrir las mecánicas vigentes del juego:
 - movimientos;
 - Energía;
 - usos limitados e ilimitados;
+- rondas y lanzamiento de dado;
 - cambio de carta;
 - objetos;
+- estados básicos cuando aparezcan;
 - condición de victoria.
 
-No deben reintroducirse mecánicas descartadas de versiones antiguas del diseño, como captura de cartas, pozo o resolución por empate.
+No deben reintroducirse mecánicas descartadas de versiones anteriores del diseño, como captura de cartas, pozo o resolución por empate.
 
 ## 3. Menú principal
 
@@ -42,31 +45,30 @@ Después del tutorial se habilitan las secciones:
 - **Perfil**
 - **Ajustes**
 
-## 4. Jugar
+En la zona superior del menú deben quedar accesibles la identidad básica del jugador y su Oro.
 
-Debe servir como entrada al modo de partida.
+## 4. Jugar
 
 Antes de iniciar una partida, el sistema necesita validar como mínimo:
 
-- mazo de 6 cartas distintas;
+- mazo de 6 cartas sin copias exactas repetidas;
 - 2 movimientos activos por carta;
 - al menos 1 movimiento ilimitado por carta;
-- 3 objetos elegidos;
+- hasta 3 objetos;
 - compatibilidad de movimientos equipados.
 
 ## 5. Colección
 
-Debe permitir consultar el contenido que el jugador posee:
+Debe permitir consultar:
 
 - cartas;
 - rareza;
 - país;
 - tipo o tipos;
+- Vida y datos de carta;
 - progreso de repetidas/cosméticos;
-- movimientos disponibles;
+- movimientos propios y equipables;
 - progreso de Maestría cuando corresponda.
-
-La estructura visual exacta se diseñará durante la fase de UI.
 
 ## 6. Mazos
 
@@ -74,7 +76,7 @@ Debe permitir:
 
 - crear/editar la selección de 6 cartas;
 - configurar los 2 movimientos activos de cada carta;
-- elegir los 3 objetos de la partida;
+- elegir hasta 3 objetos de la partida;
 - detectar configuraciones inválidas antes de entrar a combate.
 
 ## 7. Misiones
@@ -109,14 +111,14 @@ Debe mostrar:
 
 ## 10. Tienda
 
-Orden principal acordado:
+Orden acordado:
 
 1. regalo gratis;
 2. 3 ofertas diarias;
 3. sobres;
 4. personalización con al menos 4 artículos rotativos.
 
-En la zona superior de la interfaz de tienda/economía, el recurso principal visible es el **Oro**.
+El regalo y la sección de personalización rotan diariamente.
 
 Los sobres se abren al obtener/comprar; no se necesita una sección de inventario de sobres cerrados.
 
@@ -124,24 +126,25 @@ Los sobres se abren al obtener/comprar; no se necesita una sección de inventari
 
 Debe alojar información de identidad y progresión del jugador. Los campos finales se definirán durante el diseño de datos/UI.
 
-La reputación, cuando se implemente, debe poder representarse aquí o en un espacio accesible relacionado con juego competitivo.
+La reputación debe poder consultarse aquí o desde un espacio accesible relacionado con juego competitivo cuando ese sistema sea implementado.
 
 ## 12. Ajustes
 
-Se reserva para opciones generales del juego. La lista concreta de ajustes se definirá durante la implementación de cliente.
+Se reserva para opciones generales del juego. La lista concreta se definirá durante la implementación de cliente.
 
 ## 13. Interfaz de partida
 
-La partida debe mostrar de forma clara, como mínimo:
+Debe mostrar de forma clara, como mínimo:
 
-- carta activa;
+- carta activa propia;
 - Vida;
 - Energía;
 - movimientos activos y sus costes/usos;
 - acceso a objetos;
 - temporizador de 20 segundos;
-- estado de la carta rival;
-- estados activos cuando existan.
+- carta activa rival y su estado visible;
+- estados activos cuando existan;
+- indicador de ronda/orden cuando sea necesario.
 
 El Poder de Maestría debe mostrarse solo cuando esté desbloqueado/disponible según sus reglas.
 
@@ -165,6 +168,7 @@ La interfaz debe leer la misma fuente de datos que utilice el motor de combate. 
 
 - El turno muestra una cuenta de 20 segundos.
 - Al agotarse, la acción se omite.
-- Ante desconexión, la partida debe indicar claramente que está pausada.
+- Ante desconexión, la partida indica claramente que está pausada.
 - Debe mostrarse el periodo de reconexión de hasta 2 minutos.
-- Al superar ese límite, se comunica la derrota automática correspondiente.
+- Si el jugador vuelve, el turno afectado se reanuda/reinicia según la lógica definida.
+- Si no vuelve dentro del límite, se comunica la derrota automática correspondiente.

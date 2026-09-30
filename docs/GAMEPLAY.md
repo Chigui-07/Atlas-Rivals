@@ -4,151 +4,157 @@ Este documento recoge las reglas de combate confirmadas para la primera versión
 
 ## 1. Mazo
 
-- Cada jugador entra a la partida con **6 cartas distintas**.
+- Cada jugador entra a la partida con **6 cartas**.
+- No se permiten **copias exactas repetidas** de una misma carta dentro del mazo.
 - Cada carta puede tener **1 o 2 tipos**.
 - Una carta también puede ser únicamente de tipo **Normal**.
 - Cada carta prepara **2 movimientos activos**.
-- Cada mazo lleva **3 objetos** elegidos antes de la partida.
+- Cada mazo puede llevar **hasta 3 objetos** elegidos antes de la partida.
 
-### Movimientos
+## 2. Movimientos
 
 - Cada carta dispone de 2 espacios de movimientos activos.
 - Debe existir **al menos 1 movimiento ilimitado** entre los movimientos activos de la carta.
-- Los movimientos pueden tener:
-  - coste de Energía;
-  - usos limitados o ilimitados;
-  - daño y/o efectos.
-- Los movimientos propios/originales de una carta pueden desequiparse, pero **no se transfieren a otras cartas**.
-- Los movimientos obtenidos como equipables pueden intercambiarse entre cartas compatibles y ocupan uno de los 2 espacios activos.
+- Los movimientos pueden tener coste de Energía, usos limitados o ilimitados, daño y/o efectos.
+- Los movimientos propios/originales de una carta se pueden desequipar, pero **no se transfieren a otras cartas**.
+- Los movimientos equipables pueden intercambiarse entre cartas compatibles.
+- Los movimientos ofensivos equipables requieren compatibilidad de tipo con la carta.
+- Los movimientos curativos son de tipo Normal y solo pueden equiparse en cartas compatibles con curación.
+- En cartas de un solo tipo, normalmente ambos movimientos ofensivos pertenecen a ese tipo.
+- En cartas de dos tipos, normalmente se distribuyen entre ambos tipos, salvo habilidades especiales como curación.
 
-## 2. Estadísticas base
+## 3. Estadísticas base
 
-- **Vida:** escala base de 12 a 20.
-- **Daño base de movimientos:** escala aproximada de 3 a 10 antes de modificadores.
-- Una carta que llega a **0 Vida** queda fuera de la partida.
-- Una carta eliminada no puede curarse ni revivir.
-- La curación nunca puede superar la Vida máxima de la carta.
+La escala aceptada como base de balance para probar es:
 
-Los valores concretos de cada carta y movimiento se definirán en los datos de Guatemala 1.0.
+- Vida habitual aproximada: **12–20**.
+- Daño base aproximado de movimientos: **3–10**.
 
-## 3. Energía
+Estos rangos no son una obligación rígida para todas las cartas; sirven como punto de partida de balance.
 
-Cada jugador administra Energía durante la partida.
+Reglas:
 
-- Energía inicial: **3**.
-- Recuperación: **+2 por ronda**.
+- una carta que llega a **0 Vida** queda fuera de la partida;
+- una carta eliminada no puede curarse ni revivir;
+- el daño recibido persiste mientras la carta siga viva;
+- la curación nunca puede superar la Vida máxima de la carta.
+
+## 4. Energía
+
+- Energía inicial por jugador: **3**.
+- Al inicio de cada ronda: **+2 Energía**.
 - Máximo: **10**.
-- Cada movimiento puede requerir una cantidad concreta de Energía.
-- No se puede utilizar un movimiento si no se dispone de la Energía necesaria.
+- Un movimiento no puede utilizarse si el jugador no tiene la Energía necesaria.
 
-## 4. Inicio de partida
+## 5. Rondas y turnos
 
-1. Cada jugador llega con su mazo preparado.
-2. Cada jugador elige su carta inicial en secreto.
-3. Se lanza un dado para decidir quién realiza la primera acción.
-4. Comienza el combate por turnos.
+Una ronda funciona así:
 
-## 5. Acciones de turno
+1. Ambos jugadores reciben la recuperación de Energía correspondiente, sin superar 10.
+2. Ambos jugadores lanzan un dado.
+3. El resultado más alto obtiene el primer turno de esa ronda.
+4. Si hay empate en el dado, se vuelve a lanzar.
+5. Cada jugador realiza una sola acción en su turno.
+6. Tras las acciones de ambos jugadores, comienza una nueva ronda y se vuelve a lanzar el dado.
 
-En su turno, el jugador realiza una acción principal. Las acciones contempladas son:
+### Acciones disponibles
 
-- usar un movimiento/ataque;
+En un turno se puede realizar una acción principal:
+
+- usar un movimiento;
 - cambiar la carta activa;
 - usar un objeto;
 - usar el Poder de Maestría, si está desbloqueado y disponible.
 
-### Cambio de carta
-
-Cambiar la carta activa **consume el turno**.
-
-### Objetos
-
+Cambiar de carta **consume el turno**.  
 Usar un objeto **consume el turno**.
 
-## 6. Objetos base confirmados
+## 6. Carta activa inicial
 
-- **Vendaje:** cura 2 de Vida.
-- **Botiquín:** cura 4 de Vida.
-- **Kit de recuperación:** cura 6 de Vida.
-- **Protector:** reduce en 2 el próximo daño recibido.
-- **Impulso:** suma +2 de ataque al próximo ataque.
+En una partida normal, ambos jugadores seleccionan en secreto su primera carta activa y la revelan simultáneamente antes de comenzar el combate.
 
-Reglas generales:
+Para la primera partida guiada del tutorial, la selección exacta de la carta inicial puede quedar predeterminada por el propio tutorial.
 
-- se llevan 3 objetos por partida;
-- se eligen antes de iniciar;
-- se permiten como máximo **2 copias del mismo objeto** dentro de los 3 espacios;
-- no reviven cartas eliminadas;
-- una curación no supera la Vida máxima.
+## 7. Objetos
 
-## 7. Estados
+Base confirmada de objetos considerados para el sistema:
+
+- Vendaje.
+- Botiquín.
+- Protector.
+- Impulso.
+
+También se propuso **Kit de recuperación**, pero sus valores y su incorporación definitiva deben cerrarse antes de implementarlo.
+
+Reglas confirmadas:
+
+- usar un objeto consume el turno;
+- se pueden llevar hasta 3 objetos por partida;
+- un objeto no puede revivir una carta eliminada;
+- cualquier curación respeta la Vida máxima.
+
+Los valores numéricos exactos de curación, reducción de daño o aumento de ataque de los objetos deben cerrarse en balance antes de programarlos.
+
+## 8. Estados confirmados
 
 ### Quemadura
 
-Confirmado:
-
-- dura **2 turnos**.
-
-Base de diseño previamente propuesta, aún por fijar como valor técnico definitivo:
-
-- daño periódico exacto;
-- comportamiento al reaplicar el estado.
+- Dura **2 turnos**.
+- Inflige **1 de daño adicional al final de cada uno de los próximos 2 turnos**.
+- No se acumula consigo misma.
+- Si se reaplica antes de terminar, reinicia su duración.
 
 ### Parálisis
 
-Confirmado:
+- Tiene **15% de probabilidad** cuando la aplica el movimiento correspondiente.
+- La carta afectada pierde su **próxima acción**.
+- Después de provocar esa pérdida de acción, el estado desaparece.
 
-- tiene una **probabilidad baja** de activarse.
-
-Pendiente antes de programar:
-
-- porcentaje exacto;
-- efecto exacto sobre la siguiente acción.
-
-## 8. Tipos y daño
+## 9. Tipos y daño
 
 La efectividad de tipos modifica el daño de los movimientos. Los multiplicadores y reglas están en [`TYPES.md`](TYPES.md).
 
-La matriz completa de relaciones no se implementará hasta terminar su auditoría.
+### Redondeo
 
-## 9. Temporizador
+Después de aplicar multiplicadores, todo resultado decimal se redondea al entero más cercano. Los resultados terminados en `.5` se redondean hacia arriba.
 
-- Cada turno dispone de **20 segundos** para ejecutar una acción.
-- Si el tiempo termina, la acción del turno se anula/omite.
-- El temporizador evita que una ronda quede bloqueada indefinidamente por inactividad.
+## 10. Temporizador
 
-## 10. Desconexiones
+- Cada turno dispone de **20 segundos**.
+- Si el tiempo termina sin ejecutar una acción válida, la acción del turno se anula/omite.
+
+## 11. Desconexiones
 
 - Si un jugador se desconecta, la partida se pausa.
 - Se conceden hasta **2 minutos** para reconectarse.
-- Si no vuelve dentro del tiempo, recibe **derrota automática**.
+- Si vuelve, la partida puede reanudarse y el turno afectado se reinicia según la lógica de reconexión.
+- Si no regresa dentro del tiempo, recibe **derrota automática**.
 
-## 11. Rendición, abandono y empates
+## 12. Rendición, abandono y empates
 
 - Rendirse equivale a derrota.
 - Abandonar equivale a derrota.
 - Una desconexión no recuperada equivale a derrota.
 - **No existen empates.**
 
-## 12. Condición de victoria
+## 13. Condición de victoria
 
-Gana el jugador que consigue eliminar todas las cartas del rival.
+Gana el jugador que consigue dejar al rival sin cartas vivas disponibles.
 
-## 13. Reputación y antifarmeo
+## 14. Reputación y antifarmeo
 
-Base confirmada:
+Reglas confirmadas:
 
-- abandonos/desconexiones repetidos deben activar controles automáticos de recompensas;
-- el patrón señalado para vigilancia es al menos **2 seguidos** o una frecuencia de **cada 3 partidas**;
-- la reputación debe detectar victorias sospechosas obtenidas repetidamente por abandonos o desconexiones del rival;
-- una reputación baja puede reducir o retirar temporalmente recompensas, especialmente al jugador que se está beneficiando del patrón.
+- un patrón de victorias beneficiadas por abandonos/desconexiones debe vigilarse si ocurre **2 veces seguidas** o con una frecuencia aproximada de **cada 3 partidas**;
+- la reputación disminuye cuando existen demasiadas incidencias sospechosas;
+- las recompensas pueden reducirse o desaparecer temporalmente;
+- la penalización de recompensas se centra principalmente en el jugador que se está beneficiando repetidamente del patrón, no únicamente en quien abandona/desconecta;
+- el resultado de la partida puede seguir registrándose como victoria aunque sus recompensas se bloqueen.
 
-Pendiente:
+Pendiente antes de implementar:
 
 - fórmula exacta de reputación;
-- ventanas de análisis;
+- ventana temporal/de partidas usada para el análisis;
 - duración de bloqueos;
 - recuperación de reputación;
-- reducción exacta de Oro, sobres y progreso de misiones.
-
-Estas cifras deben cerrarse antes de implementar el sistema competitivo/recompensas.
+- reducción exacta de Oro, estrellas, sobres, misiones y fichas.

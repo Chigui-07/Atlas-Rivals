@@ -34,50 +34,47 @@ La relación entre el tipo de un movimiento y los tipos de la carta objetivo mod
 - Neutral: **×1**.
 - Desventaja: **×0.75**.
 - Doble desventaja: **×0.5**.
-- Doble neutral: el ataque **falla** según la regla acordada para el sistema de dos tipos.
+- Doble neutral: el ataque **falla automáticamente**.
 
 ### Redondeo
 
-El daño final se expresa como entero. Los valores terminados en `.5` se redondean hacia arriba.
+El daño final se redondea al entero más cercano. Los valores terminados en `.5` se redondean hacia arriba.
 
-## 3. Relaciones simétricas
+## 3. Tabla v0.2
 
-La tabla v0.2 fue diseñada con relaciones simétricas: si A tiene ventaja sobre B, B debe reflejar la desventaja correspondiente frente a A.
+La tabla v0.2 completa fue cerrada y aceptada durante el diseño previo. Antes de programar el sistema de tipos, debe transcribirse íntegramente al repositorio y usarse como única fuente de verdad.
 
-Esta condición se utilizará como prueba automática cuando la matriz sea implementada.
+Reglas estructurales confirmadas:
 
-## 4. Auditoría obligatoria de la tabla v0.2
+- las relaciones deben mantenerse simétricas;
+- Eclipse, Mente, Espectro, Enjambre y Dragón son fuertes y débiles contra su mismo tipo;
+- en esos enfrentamientos contra el mismo tipo, el ataque se considera ventaja y aplica **×1.5**; la carta de ese tipo también es vulnerable a ataques de su mismo tipo bajo esa misma regla.
 
-La migración desde el diseño previo reveló contradicciones entre algunas filas recuperadas y cambios que habían sido confirmados posteriormente. Por ese motivo, **la matriz completa no debe codificarse todavía**.
+Correcciones finales que deben respetarse al transcribir la matriz:
 
-Los siguientes cambios quedaron confirmados y deben respetarse en la versión final de la tabla:
+- Escarcha es débil frente a **Marea**.
+- **Duna vence a Raíz**.
+- Dragón es neutral con **Raíz, Vendaval, Impacto y Espectro**.
+- Chispa es neutral con **Enjambre**.
+- Chispa es débil frente a **Espectro**.
+- Metal es neutral con **Escarcha**.
+- **Aura vence a Escarcha**.
+- **Metal vence a Roca**.
+- **Roca vence a Vendaval**.
+- Impacto es neutral con **Espectro y Dragón**.
+- Enjambre es débil frente a **Impacto**.
+- Enjambre es neutral con **Espectro**.
+- Espectro es neutral con **Enjambre y Dragón**.
 
-- Escarcha es débil contra Marea.
-- Duna es fuerte contra Raíz.
-- Dragón es neutral con Raíz, Vendaval, Impacto y Espectro.
-- Chispa es neutral con Enjambre.
-- Chispa es débil contra Espectro.
-- Metal es neutral con Escarcha.
-- Aura es débil contra Escarcha.
-- Metal es fuerte contra Roca.
-- Roca es débil contra Vendaval.
-- Roca es débil contra Metal.
-- Impacto es neutral con Espectro.
-- Enjambre es débil contra Impacto.
-- Enjambre es neutral con Espectro.
-- Las relaciones deben mantenerse simétricas.
+## 4. Requisito antes de programar
 
-También se había definido una interacción especial para Eclipse, Mente, Espectro, Enjambre y Dragón frente a su mismo tipo. Esa regla debe revisarse durante la auditoría para representarla sin ambigüedad en el motor de combate.
-
-## 5. Requisito antes de programar
-
-La tabla final deberá:
+La matriz transcrita deberá:
 
 1. contener los 18 tipos;
 2. clasificar cada enfrentamiento de forma inequívoca;
-3. ser simétrica cuando corresponda;
-4. no contener una pareja simultáneamente como ventaja y desventaja salvo que exista una regla especial documentada;
+3. conservar la simetría acordada;
+4. representar explícitamente las excepciones de mismo tipo;
 5. pasar una validación automática de consistencia;
-6. servir como única fuente de verdad para la pestaña **AYUDA/TABLA** de la partida.
+6. servir como única fuente de verdad para el motor de combate y la pestaña **AYUDA/TABLA**.
 
-Hasta completar esta auditoría, `TYPES.md` define la mecánica y los cambios confirmados, pero no una matriz lista para código.
+Hasta completar esa transcripción, este documento define las reglas y correcciones confirmadas, pero la matriz todavía no debe codificarse a mano desde memoria.

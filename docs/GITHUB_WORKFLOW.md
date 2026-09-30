@@ -16,7 +16,7 @@ Primera versión:
 
 - `guatemala-1.0`
 
-Las futuras versiones deben seguir la misma idea de mantener su trabajo separado de `main` y de otras versiones.
+Las futuras versiones deben mantener su trabajo separado de `main` y de otras versiones.
 
 ## 2. Commits
 
@@ -79,22 +79,23 @@ Los cambios que alteren valores jugables deben utilizar `Balance:` cuando el obj
 - costes/usos de movimientos;
 - relaciones de tipos;
 - objetos;
+- estados;
 - recompensas;
 - economía;
 - probabilidades.
 
 El documento afectado debe actualizarse en el mismo cambio o antes de implementar el nuevo balance.
 
-## 6. Reglas para Guatemala 1.0
+## 6. Prioridades de Guatemala 1.0
 
-Antes de comenzar con funcionalidades grandes:
+Antes de implementar el balance completo:
 
-- terminar la auditoría de tipos;
-- definir el roster inicial de Guatemala;
-- definir movimientos y valores concretos;
+- transcribir la tabla v0.2 final de tipos y validarla;
+- usar `STARTER_DECK.md` como referencia del mazo inicial fijo;
+- cerrar valores definitivos de los objetos que entren en la primera implementación;
 - diseñar el modelo de datos.
 
-Hasta entonces, los commits de la rama serán principalmente `Docs:`, `Balance:` y `Chore:`.
+Los primeros commits de la rama serán principalmente `Docs:`, `Balance:` y `Chore:`. Cuando empiece la implementación del núcleo aparecerán los primeros `Feat:` y `Test:`.
 
 ## 7. Criterio para llevar Guatemala 1.0 a `main`
 
