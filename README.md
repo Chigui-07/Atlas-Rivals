@@ -53,7 +53,8 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Dos movimientos activos por carta y reglas de movimientos propios/equipables.
 - Energía inicial 3, +2 por ronda y máximo 10.
 - Tabla final auditada de 18 tipos, multiplicadores y combinaciones para cartas de doble tipo.
-- Estados Quemadura y Parálisis.
+- Estados base Quemadura y Parálisis.
+- Probabilidad, duración e intensidad de un estado pueden variar según el movimiento que lo aplique.
 - Mazo inicial fijo del tutorial.
 - Rarezas, repetidas y sobres.
 - Oro y recompensas principales.
@@ -68,6 +69,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 ### Pendiente antes del primer `Feat:` del núcleo
 
 - Diseñar el modelo técnico de `Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`.
+- Definir cómo representarán `Movimiento` y `Estado` los parámetros variables de los efectos.
 - Convertir la tabla final de tipos en una única fuente técnica de datos y añadir validaciones automáticas.
 - Definir pruebas del modelo para daño, Energía, objetos, estados, rondas, mazos y condición de victoria.
 - Definir objetivos técnicos medibles para rendimiento en celulares modestos.
@@ -97,5 +99,6 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Definida la orientación vertical como formato principal de toda la experiencia móvil.
 - Cerrado el catálogo de objetos de la primera prueba con valores provisionales y límites de copias.
 - Añadidos Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido como objetos iniciales.
+- Definido que los parámetros de los estados pertenecen al movimiento que los aplica y pueden variar entre movimientos.
 - PC queda como posibilidad futura, fuera del alcance inicial.
 - Próximo objetivo: diseñar el modelo técnico del combate (`Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`).
