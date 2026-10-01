@@ -120,20 +120,31 @@ Reglas generales:
 
 Todos estos valores son **provisionales para la primera prueba** y podrán ajustarse mediante commits `Balance:` después de probar el combate.
 
-## 8. Estados confirmados
+## 8. Estados y efectos
 
-### Quemadura
+Los estados base confirmados para la primera prueba incluyen **Quemadura** y **Parálisis**.
 
-- Dura **2 turnos**.
-- Inflige **1 de daño adicional al final de cada uno de los próximos 2 turnos**.
-- No se acumula consigo misma.
-- Si se reaplica antes de terminar, reinicia su duración.
+El tipo de estado define su comportamiento general, pero **los parámetros concretos del efecto pertenecen al movimiento que lo aplica**. Por lo tanto, dos movimientos que provoquen el mismo estado no están obligados a tener la misma probabilidad, duración o intensidad.
 
-### Parálisis
+Cuando un movimiento pueda aplicar un estado, sus datos deberán indicar según corresponda:
 
-- Tiene **15% de probabilidad** cuando la aplica el movimiento correspondiente.
-- La carta afectada pierde su **próxima acción**.
-- Después de provocar esa pérdida de acción, el estado desaparece.
+- estado aplicado;
+- probabilidad de aplicación;
+- duración;
+- intensidad o valor del efecto;
+- regla de reaplicación o acumulación cuando sea necesaria;
+- cualquier otro parámetro propio de ese efecto.
+
+Esto permite, por ejemplo, que una Quemadura de un movimiento dure más o menos que la de otro, o que dos movimientos tengan probabilidades distintas de provocar Parálisis.
+
+### Valores del mazo inicial
+
+Los valores ya definidos en `STARTER_DECK.md` pertenecen a esos movimientos concretos y **no son valores universales del estado**:
+
+- **Hervor Intenso** aplica Quemadura de 1 de daño al final de los próximos 2 turnos; no se acumula y reaplicarla reinicia su duración.
+- **Golpe Ceremonial** tiene 15% de probabilidad de aplicar Parálisis y hace perder la próxima acción cuando se activa.
+
+Los movimientos futuros podrán utilizar Quemadura, Parálisis u otros estados con parámetros diferentes si así se define en sus propios datos.
 
 ## 9. Tipos y daño
 
