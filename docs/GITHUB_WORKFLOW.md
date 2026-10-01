@@ -18,7 +18,29 @@ Primera versión:
 
 Las futuras versiones deben mantener su trabajo separado de `main` y de otras versiones.
 
-## 2. Commits
+## 2. Idioma del proyecto
+
+A partir de Guatemala 1.0, el idioma principal de trabajo de Atlas Rivals es **español**.
+
+Esto aplica a:
+
+- mensajes de commit;
+- documentación;
+- títulos, descripciones y bitácoras;
+- comentarios propios del proyecto;
+- nombres descriptivos de archivos nuevos cuando sea práctico;
+- nombres de conceptos del dominio creados por el proyecto, como `Carta`, `Movimiento`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`.
+
+Se mantienen en su forma original los términos que deban conservarse por convención o compatibilidad técnica, por ejemplo:
+
+- prefijos de commit como `Feat:`, `Docs:`, `Fix:` y `Balance:`;
+- nombres propios de APIs, librerías, frameworks y herramientas;
+- palabras reservadas y elementos obligatorios del lenguaje de programación;
+- nombres técnicos externos que no controle Atlas Rivals.
+
+No es necesario renombrar retroactivamente archivos ya existentes solo por esta regla. Todo contenido nuevo debe seguirla desde este punto.
+
+## 3. Mensajes de commit
 
 Los mensajes de commit utilizan uno de estos prefijos:
 
@@ -31,19 +53,21 @@ Los mensajes de commit utilizan uno de estos prefijos:
 - `Test:` — pruebas.
 - `Chore:` — mantenimiento, configuración o tareas auxiliares.
 
+Después del prefijo, la descripción del commit debe escribirse en **español**.
+
 ### Ejemplos
 
 ```text
-Docs: define reglas de combate de Guatemala 1.0
-Feat: add energy system
-Balance: adjust Brasa movement damage
-Fix: prevent duplicated cards in deck
-Refactor: separate battle and collection models
-Test: add type multiplier tests
-Chore: configure project structure
+Docs: definir reglas de combate de Guatemala 1.0
+Feat: añadir sistema de Energía
+Balance: ajustar daño de movimiento Brasa
+Fix: impedir cartas duplicadas en el mazo
+Refactor: separar modelos de combate y colección
+Test: añadir pruebas de multiplicadores de tipo
+Chore: configurar estructura inicial del proyecto
 ```
 
-## 3. README como bitácora
+## 4. README como bitácora
 
 Cada rama de versión debe mantener su propio `README.md` actualizado.
 
@@ -58,7 +82,7 @@ El README debe indicar como mínimo:
 
 Los documentos de `docs/` contienen el detalle. El README funciona como resumen y bitácora, no como reemplazo de toda la especificación.
 
-## 4. Regla de documentación
+## 5. Regla de documentación
 
 Cuando una decisión cambie una regla importante del juego:
 
@@ -69,7 +93,7 @@ Cuando una decisión cambie una regla importante del juego:
 
 Esto evita que el chat sea la única fuente de verdad del proyecto.
 
-## 5. Balance
+## 6. Balance
 
 Los cambios que alteren valores jugables deben utilizar `Balance:` cuando el objetivo principal sea ajustar:
 
@@ -86,18 +110,18 @@ Los cambios que alteren valores jugables deben utilizar `Balance:` cuando el obj
 
 El documento afectado debe actualizarse en el mismo cambio o antes de implementar el nuevo balance.
 
-## 6. Prioridades de Guatemala 1.0
+## 7. Prioridades de Guatemala 1.0
 
-Antes de implementar el balance completo:
+Antes de comenzar el primer `Feat:` del núcleo:
 
-- transcribir la tabla v0.2 final de tipos y validarla;
+- usar la tabla final de tipos ya documentada y validada;
 - usar `STARTER_DECK.md` como referencia del mazo inicial fijo;
-- cerrar valores definitivos de los objetos que entren en la primera implementación;
-- diseñar el modelo de datos.
+- usar `OBJECTS_FIRST_TEST.md` como referencia de los objetos de la primera prueba;
+- diseñar el modelo técnico del combate.
 
 Los primeros commits de la rama serán principalmente `Docs:`, `Balance:` y `Chore:`. Cuando empiece la implementación del núcleo aparecerán los primeros `Feat:` y `Test:`.
 
-## 7. Criterio para llevar Guatemala 1.0 a `main`
+## 8. Criterio para llevar Guatemala 1.0 a `main`
 
 `guatemala-1.0` no debe considerarse estable únicamente por compilar. Antes de integrarla a `main`, la versión debe tener:
 
