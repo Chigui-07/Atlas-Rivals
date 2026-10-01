@@ -66,11 +66,15 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 
 ## 6. Estados y efectos
 
-- [x] Quemadura: 2 turnos.
-- [x] Quemadura: 1 daño al final de cada uno de los próximos 2 turnos.
-- [x] Quemadura no se acumula; reaplicarla reinicia duración.
-- [x] Parálisis: 15% cuando la aplica el movimiento correspondiente.
-- [x] Parálisis hace perder la próxima acción y luego desaparece.
+- [x] Estados base confirmados: Quemadura y Parálisis.
+- [x] El comportamiento general pertenece al tipo de estado.
+- [x] La probabilidad, duración e intensidad pueden variar según el movimiento que aplique el estado.
+- [x] Cada movimiento con efecto de estado debe guardar sus parámetros concretos de aplicación.
+- [x] Hervor Intenso: Quemadura de 1 de daño al final de los próximos 2 turnos; no se acumula y reaplicarla reinicia la duración.
+- [x] Golpe Ceremonial: 15% de probabilidad de Parálisis; al activarse hace perder la próxima acción.
+- [ ] Diseñar técnicamente cómo representar los parámetros variables de cada efecto de estado dentro de `Movimiento` y `Estado`.
+
+**Regla importante:** los valores de Hervor Intenso y Golpe Ceremonial son propios de esos movimientos; no definen valores universales para todas las Quemaduras o Parálisis futuras.
 
 ## 7. Objetos — cerrados para la primera prueba
 
