@@ -11,7 +11,7 @@ Estos objetos forman el catálogo inicial de objetos de combate de Atlas Rivals 
 - Usar un objeto **consume la acción del turno**.
 - Los objetos no pueden revivir cartas derrotadas.
 - Una curación nunca puede superar la Vida máxima de la carta.
-- Los objetos y sus efectos deben poder utilizarse cómodamente desde la interfaz táctil vertical de Android.
+- Los objetos y sus efectos deben poder utilizarse cómodamente tanto mediante toque en móvil como mediante clic en computadora.
 
 ## Catálogo inicial
 
