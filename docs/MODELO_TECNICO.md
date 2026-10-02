@@ -95,7 +95,7 @@ Los movimientos también se separan entre su definición permanente y su estado 
 
 ### `Movimiento`
 
-Representa la definición permanente de un movimiento. Debe poder describir movimientos ofensivos, curativos, de la tercera categoría cuyo nombre definitivo sigue pendiente y Poderes de Maestría.
+Representa la definición permanente de un movimiento. Debe poder describir las tres categorías oficiales —Ofensivo, Curativo e Instantáneo— además de los Poderes de Maestría.
 
 Debe contener conceptualmente:
 
@@ -114,7 +114,17 @@ Debe contener conceptualmente:
 - reglas de compatibilidad/equipamiento cuando corresponda;
 - procedencia del movimiento: propio de una carta, equipable o Poder de Maestría.
 
-No todos los campos se aplican a todos los movimientos. Por ejemplo, un movimiento curativo puede no tener daño y un movimiento ofensivo puede no tener curación.
+No todos los campos se aplican a todos los movimientos.
+
+### Categorías oficiales
+
+La categoría puede representarse mediante un identificador fijo, por ejemplo `OFENSIVO`, `CURATIVO` o `INSTANTANEO`.
+
+- **Ofensivo:** su función principal es atacar y causar daño.
+- **Curativo:** puede combinar ataque y recuperación de Vida. El movimiento concreto define cuánto daño y/o curación realiza.
+- **Instantáneo:** movimiento especial pensado principalmente como hechizo u otro efecto inmediato. Puede diseñarse con 3 usos por partida.
+
+El nombre `INSTANTANEO` identifica la categoría y no debe interpretarse automáticamente como una acción gratuita. Mientras no exista una regla específica que diga lo contrario, utiliza el flujo normal de selección y resolución de movimientos.
 
 ### Tipo y contacto son conceptos distintos
 
