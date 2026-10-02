@@ -88,7 +88,67 @@ La habilidad pasiva pertenece a la definición permanente de `CartaBase`, mientr
 
 La creación y balance de habilidades concretas se realizará cuando se creen nuevas cartas; en esta fase solo se define que el modelo debe soportarlas.
 
-## 4. Regla de separación
+## 4. Mazo
+
+El mazo también se divide entre su configuración guardada y su estado dentro del combate.
+
+### `Mazo`
+
+Representa la configuración permanente preparada por el jugador antes de entrar a una partida.
+
+Debe contener conceptualmente:
+
+- nombre del mazo;
+- exactamente 6 `CartaBase`;
+- los 2 movimientos activos elegidos para cada carta;
+- hasta 3 objetos seleccionados.
+
+Antes de iniciar una partida debe validar las reglas ya definidas, entre ellas:
+
+- exactamente 6 cartas;
+- sin copias exactas repetidas de una misma carta;
+- 2 movimientos activos por carta;
+- al menos 1 movimiento ilimitado por carta;
+- compatibilidad de movimientos equipados;
+- máximo 3 objetos;
+- máximo 2 unidades del mismo objeto, salvo límites especiales inferiores.
+
+### `MazoEnPartida`
+
+Se crea al comenzar un combate a partir de un `Mazo` válido. Contiene el estado temporal del equipo durante esa partida.
+
+Incluye conceptualmente:
+
+- las 6 `CartaEnPartida`;
+- la carta activa;
+- las cartas vivas disponibles para cambio;
+- objetos restantes y sus cantidades durante el combate.
+
+El daño, los estados, el gasto de movimientos u objetos y cualquier otro cambio temporal no deben modificar el `Mazo` guardado del jugador.
+
+## 5. Jugador en partida
+
+### `JugadorEnPartida`
+
+Representa a uno de los participantes mientras una partida está en curso.
+
+Debe contener conceptualmente:
+
+- referencia al jugador o cuenta;
+- nombre de usuario visible durante el combate, para identificar al rival;
+- `MazoEnPartida`;
+- Energía actual;
+- información necesaria para saber si puede actuar en el turno actual;
+- estado de conexión;
+- si se rindió;
+- si fue derrotado;
+- efectos que afecten al jugador completo y no a una carta concreta, si llegan a existir.
+
+Datos permanentes del perfil como colección completa, Oro, progreso general o historial no pertenecen a `JugadorEnPartida`, salvo la referencia necesaria para identificar al jugador y mostrar su nombre de usuario.
+
+La carta activa y los objetos disponibles pertenecen al `MazoEnPartida`; `JugadorEnPartida` los controla a través de ese mazo en lugar de duplicarlos innecesariamente.
+
+## 6. Regla de separación
 
 Como principio general:
 
@@ -96,5 +156,8 @@ Como principio general:
 - `CartaEnPartida` = cómo se encuentra esa carta ahora mismo dentro del combate.
 - `Movimiento` o `HabilidadPasiva` = qué efectos puede intentar provocar.
 - estado activo en `CartaEnPartida` = qué efecto está sufriendo actualmente la carta.
+- `Mazo` = configuración preparada antes del combate.
+- `MazoEnPartida` = estado temporal del equipo durante el combate.
+- `JugadorEnPartida` = estado del participante dentro de la partida.
 
-Esta separación evita modificar accidentalmente la carta permanente con datos temporales de una batalla y permite reutilizar la misma carta en muchas partidas independientes.
+Esta separación evita modificar accidentalmente datos permanentes con información temporal de una batalla y permite reutilizar cartas y mazos en muchas partidas independientes.
