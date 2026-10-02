@@ -14,6 +14,14 @@ Este documento recoge las reglas de combate confirmadas para la primera versión
 
 ## 2. Movimientos
 
+Los movimientos se dividen en tres categorías oficiales:
+
+- **Ofensivo:** su función principal es causar daño a una carta rival.
+- **Curativo:** su función principal es recuperar Vida de una carta compatible.
+- **Apoyo:** modifica el combate sin tener como función principal causar daño directo ni curar, por ejemplo mediante estados, mejoras u otros efectos especiales.
+
+Reglas generales:
+
 - Cada carta dispone de 2 espacios de movimientos activos.
 - Debe existir **al menos 1 movimiento ilimitado** entre los movimientos activos de la carta.
 - Los movimientos pueden tener coste de Energía, usos limitados o ilimitados, daño y/o efectos.
@@ -23,6 +31,8 @@ Este documento recoge las reglas de combate confirmadas para la primera versión
 - Los movimientos curativos son de tipo Normal y solo pueden equiparse en cartas compatibles con curación.
 - En cartas de un solo tipo, normalmente ambos movimientos ofensivos pertenecen a ese tipo.
 - En cartas de dos tipos, normalmente se distribuyen entre ambos tipos, salvo habilidades especiales como curación.
+
+La creación de nuevas cartas y movimientos concretos se realizará después. En esta etapa solo se fija la estructura general necesaria para el modelo técnico.
 
 ## 3. Estadísticas base
 
