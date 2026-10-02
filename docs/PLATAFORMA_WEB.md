@@ -8,6 +8,22 @@ Guatemala 1.0 tendrá una única experiencia web capaz de adaptarse al tamaño y
 
 No se requiere una aplicación nativa de Android ni una publicación inicial en Google Play Store.
 
+## Tecnología inicial confirmada
+
+La base técnica para comenzar Guatemala 1.0 será:
+
+- **Node.js 24 LTS** como entorno de desarrollo;
+- **npm** como gestor de paquetes;
+- **TypeScript** como lenguaje principal;
+- **React** para la interfaz;
+- **Vite** para desarrollo y compilación;
+- **Vitest** para pruebas automáticas;
+- **CSS/CSS Modules** para estilos iniciales.
+
+El motor de combate se implementará como lógica TypeScript independiente de React. React consumirá el estado y las acciones del motor para representarlos visualmente, pero no será responsable de decidir las reglas de combate.
+
+La estructura completa está documentada en `ARQUITECTURA_TECNICA.md`.
+
 ## Principios de desarrollo web
 
 Todo código, interfaz y decisión técnica de Guatemala 1.0 debe considerar:
@@ -23,7 +39,7 @@ Todo código, interfaz y decisión técnica de Guatemala 1.0 debe considerar:
 - consumo de red controlado durante partidas online;
 - sistema de cuenta y progreso persistente.
 
-La tecnología concreta del cliente web, backend, alojamiento y dominio se decidirá durante el diseño técnico.
+Backend, alojamiento y dominio se decidirán en una etapa posterior, una vez que el núcleo local del combate esté funcionando y probado.
 
 ## Diseño adaptable por dispositivo
 
@@ -101,7 +117,7 @@ El diseño técnico deberá contemplar:
 - manejo de conexión, reconexión y abandono en combate;
 - acceso a la misma cuenta desde teléfono o computadora.
 
-La arquitectura concreta de autenticación, backend y almacenamiento todavía no está decidida.
+La arquitectura concreta de autenticación, backend y almacenamiento todavía no está decidida y no bloquea el comienzo del núcleo local.
 
 ## Instalación y PWA
 
