@@ -109,10 +109,13 @@ La integración exacta del Poder de Maestría dentro de este nuevo flujo queda p
 
 - Primero se resuelve la acción del jugador con la tirada mayor.
 - Después se actualiza el estado del combate.
-- Luego se resuelve la acción del jugador con la tirada menor si todavía es válida.
+- Si esa acción derrota la carta activa del jugador que iba segundo, la acción que ese jugador había seleccionado **se cancela y no se ejecuta**.
+- Si al jugador afectado no le quedan cartas vivas, la partida termina inmediatamente.
+- Si todavía tiene cartas vivas, la ronda termina y comienza una nueva ronda.
+- Al iniciar esa nueva ronda, el jugador afectado debe escoger una carta viva como nueva carta activa antes de seleccionar acciones.
+- Elegir esta nueva carta es un **reemplazo obligatorio por derrota** y no consume la acción de la nueva ronda.
+- Si la carta del segundo jugador sigue viva después de la primera acción, su acción se ejecuta normalmente usando el estado actualizado del combate.
 - Después se aplican los efectos de cierre que correspondan y se comprueba la victoria.
-
-Queda pendiente definir con precisión los casos en los que la primera acción pueda invalidar o modificar la segunda acción ya seleccionada, por ejemplo si la carta que debía atacar es derrotada antes de que llegue su momento de ejecución.
 
 ## 6. Carta activa inicial
 
