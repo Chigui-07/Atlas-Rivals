@@ -69,9 +69,10 @@ Antes de iniciar la ronda 1:
 
 1. ambos jugadores pueden ver la composición de cartas del mazo rival;
 2. **no se muestran los movimientos equipados del rival**;
-3. **no se muestran los objetos elegidos por el rival**;
-4. ambos jugadores seleccionan en secreto su carta activa inicial;
-5. las cartas iniciales se revelan simultáneamente.
+3. **no se muestra el Poder de Maestría del rival**, ya que también cuenta como un movimiento de la carta;
+4. **no se muestran los objetos elegidos por el rival**;
+5. ambos jugadores seleccionan en secreto su carta activa inicial;
+6. las cartas iniciales se revelan simultáneamente.
 
 ### Inicio de cada ronda
 
@@ -95,15 +96,25 @@ El dado determina el **orden en que se resuelven las acciones**, pero ambos juga
 
 Cada jugador selecciona una acción principal:
 
-- **Atacar:** utilizar uno de los movimientos disponibles de la carta activa.
+- **Atacar:** utilizar uno de los 2 movimientos activos disponibles de la carta activa.
+- **Usar Poder de Maestría:** utilizar el movimiento especial de Maestría de la carta activa, solo si está desbloqueado y todavía no fue usado por esa carta durante la partida.
 - **Usar objeto:** utilizar uno de los objetos disponibles.
 - **Cambiar carta:** sustituir la carta activa por otra carta viva válida.
 - **Abandonar:** terminar voluntariamente la partida y recibir la derrota correspondiente.
 
 Cambiar de carta consume la acción de la ronda.  
-Usar un objeto consume la acción de la ronda.
+Usar un objeto consume la acción de la ronda.  
+Usar el Poder de Maestría consume la acción de la ronda.
 
-La integración exacta del Poder de Maestría dentro de este nuevo flujo queda pendiente de definición antes de implementarlo.
+### Poder de Maestría durante el combate
+
+- Cada carta tiene un Poder de Maestría exclusivo cuando esté desbloqueado.
+- Funciona como un **tercer movimiento especial** de esa carta.
+- Cuesta **0 Energía**.
+- Tiene **1 uso por partida por carta**.
+- Si una carta usa su Poder de Maestría, solo esa carta pierde su uso; las demás cartas del mazo conservan el suyo si también lo tienen desbloqueado.
+- El Poder de Maestría del rival permanece oculto igual que sus otros movimientos y no se revela en la vista previa del mazo.
+- El efecto concreto puede ser ofensivo, curativo, defensivo, de estado u otro definido para esa carta.
 
 ### Resolución de acciones
 
