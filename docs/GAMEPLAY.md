@@ -14,11 +14,13 @@ Este documento recoge las reglas de combate confirmadas para la primera versión
 
 ## 2. Movimientos
 
-Los movimientos se dividen en tres categorías oficiales:
+Los movimientos se dividen en tres categorías iniciales de diseño:
 
 - **Ofensivo:** su función principal es causar daño a una carta rival.
 - **Curativo:** su función principal es recuperar Vida de una carta compatible.
 - **Apoyo:** modifica el combate sin tener como función principal causar daño directo ni curar, por ejemplo mediante estados, mejoras u otros efectos especiales.
+
+El nombre definitivo de la tercera categoría todavía puede ajustarse antes de implementación.
 
 Reglas generales:
 
@@ -57,32 +59,64 @@ Reglas:
 - Máximo: **10**.
 - Un movimiento no puede utilizarse si el jugador no tiene la Energía necesaria.
 
-## 5. Rondas y turnos
+## 5. Inicio de partida, rondas y resolución
+
+La partida comienza cuando **los dos jugadores han terminado de conectarse**.
+
+### Información previa al combate
+
+Antes de iniciar la ronda 1:
+
+1. ambos jugadores pueden ver la composición de cartas del mazo rival;
+2. **no se muestran los movimientos equipados del rival**;
+3. **no se muestran los objetos elegidos por el rival**;
+4. ambos jugadores seleccionan en secreto su carta activa inicial;
+5. las cartas iniciales se revelan simultáneamente.
+
+### Inicio de cada ronda
 
 Una ronda funciona así:
 
 1. Ambos jugadores reciben la recuperación de Energía correspondiente, sin superar 10.
-2. Ambos jugadores lanzan un dado.
-3. El resultado más alto obtiene el primer turno de esa ronda.
-4. Si hay empate en el dado, se vuelve a lanzar.
-5. Cada jugador realiza una sola acción en su turno.
-6. Tras las acciones de ambos jugadores, comienza una nueva ronda y se vuelve a lanzar el dado.
+2. Un jugador lanza el dado y su resultado se guarda.
+3. El otro jugador lanza el dado y su resultado se guarda.
+4. Se comparan ambos resultados.
+5. El resultado mayor obtiene el **primer lugar de ejecución** de esa ronda.
+6. El resultado menor obtiene el **segundo lugar de ejecución**.
+7. Si las tiradas son iguales, ambos vuelven a tirar hasta obtener resultados distintos.
+8. Ambos jugadores eligen su acción de la ronda.
+9. Cuando las dos acciones han sido elegidas, se ejecutan según el orden determinado por los dados.
+10. Se actualiza el estado del combate y se comprueba la condición de victoria.
+11. Si ambos jugadores todavía tienen cartas vivas, comienza una nueva ronda y se vuelve a determinar el orden mediante dados.
+
+El dado determina el **orden en que se resuelven las acciones**, pero ambos jugadores realizan su selección antes de que comience la resolución de la ronda.
 
 ### Acciones disponibles
 
-En un turno se puede realizar una acción principal:
+Cada jugador selecciona una acción principal:
 
-- usar un movimiento;
-- cambiar la carta activa;
-- usar un objeto;
-- usar el Poder de Maestría, si está desbloqueado y disponible.
+- **Atacar:** utilizar uno de los movimientos disponibles de la carta activa.
+- **Usar objeto:** utilizar uno de los objetos disponibles.
+- **Cambiar carta:** sustituir la carta activa por otra carta viva válida.
+- **Abandonar:** terminar voluntariamente la partida y recibir la derrota correspondiente.
 
-Cambiar de carta **consume el turno**.  
-Usar un objeto **consume el turno**.
+Cambiar de carta consume la acción de la ronda.  
+Usar un objeto consume la acción de la ronda.
+
+La integración exacta del Poder de Maestría dentro de este nuevo flujo queda pendiente de definición antes de implementarlo.
+
+### Resolución de acciones
+
+- Primero se resuelve la acción del jugador con la tirada mayor.
+- Después se actualiza el estado del combate.
+- Luego se resuelve la acción del jugador con la tirada menor si todavía es válida.
+- Después se aplican los efectos de cierre que correspondan y se comprueba la victoria.
+
+Queda pendiente definir con precisión los casos en los que la primera acción pueda invalidar o modificar la segunda acción ya seleccionada, por ejemplo si la carta que debía atacar es derrotada antes de que llegue su momento de ejecución.
 
 ## 6. Carta activa inicial
 
-En una partida normal, ambos jugadores seleccionan en secreto su primera carta activa y la revelan simultáneamente antes de comenzar el combate.
+En una partida normal, ambos jugadores seleccionan en secreto su primera carta activa y la revelan simultáneamente antes de comenzar la ronda 1.
 
 Para la primera partida guiada del tutorial, la selección exacta de la carta inicial puede quedar predeterminada por el propio tutorial.
 
@@ -94,7 +128,7 @@ Reglas generales:
 
 - se pueden llevar hasta **3 objetos** por partida;
 - máximo **2 unidades del mismo objeto**, salvo límites especiales;
-- usar un objeto consume la acción del turno;
+- usar un objeto consume la acción de la ronda;
 - un objeto no puede revivir una carta derrotada;
 - cualquier curación respeta la Vida máxima.
 
@@ -126,7 +160,7 @@ Reglas generales:
 ### 🔄 Cambio rápido
 
 - Retira la carta activa y permite sacar inmediatamente otra carta viva.
-- La nueva carta queda activa, pero no puede atacar durante esa misma acción porque el uso del objeto ya consumió el turno.
+- La nueva carta queda activa, pero no puede atacar durante esa misma acción porque el uso del objeto ya consumió la acción de la ronda.
 
 Todos estos valores son **provisionales para la primera prueba** y podrán ajustarse mediante commits `Balance:` después de probar el combate.
 
@@ -166,14 +200,15 @@ Después de aplicar multiplicadores, todo resultado decimal se redondea al enter
 
 ## 10. Temporizador
 
-- Cada turno dispone de **20 segundos**.
-- Si el tiempo termina sin ejecutar una acción válida, la acción del turno se anula/omite.
+- Cada jugador dispone de **20 segundos para seleccionar su acción de la ronda**.
+- Si el tiempo termina sin registrar una acción válida, la acción de ese jugador se anula/omite para esa ronda.
+- La resolución comienza cuando ambos jugadores ya eligieron o cuando ya no queda ninguna selección pendiente por temporizador.
 
 ## 11. Desconexiones
 
 - Si un jugador se desconecta, la partida se pausa.
 - Se conceden hasta **2 minutos** para reconectarse.
-- Si vuelve, la partida puede reanudarse y el turno afectado se reinicia según la lógica de reconexión.
+- Si vuelve, la partida puede reanudarse y la selección/ronda afectada se reinicia según la lógica de reconexión.
 - Si no regresa dentro del tiempo, recibe **derrota automática**.
 
 ## 12. Rendición, abandono y empates
@@ -186,6 +221,8 @@ Después de aplicar multiplicadores, todo resultado decimal se redondea al enter
 ## 13. Condición de victoria
 
 Gana el jugador que consigue dejar al rival sin cartas vivas disponibles.
+
+La condición se comprueba después de actualizar el estado del combate durante la resolución de las acciones. Si la partida ya terminó, no se inicia una nueva ronda.
 
 ## 14. Reputación y antifarmeo
 
