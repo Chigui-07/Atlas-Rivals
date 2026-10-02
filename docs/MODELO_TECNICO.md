@@ -31,9 +31,8 @@ Incluye conceptualmente:
 
 - referencia a `CartaBase`;
 - Vida actual;
-- los 2 movimientos activos con los que entró a la partida;
-- usos restantes de movimientos limitados;
-- si el Poder de Maestría de esa carta ya fue utilizado en la partida;
+- los 2 `MovimientoEnPartida` activos con los que entró a la partida;
+- representación temporal del Poder de Maestría, cuando esté desbloqueado;
 - estados negativos o positivos que actualmente estén afectando a la carta;
 - efectos temporales activos, como Protector o Impulso;
 - si la carta está activa actualmente;
@@ -90,7 +89,100 @@ La habilidad pasiva pertenece a la definición permanente de `CartaBase`, mientr
 
 La creación y balance de habilidades concretas se realizará cuando se creen nuevas cartas; en esta fase solo se define que el modelo debe soportarlas.
 
-## 4. Mazo
+## 4. Movimientos
+
+Los movimientos también se separan entre su definición permanente y su estado temporal durante una partida.
+
+### `Movimiento`
+
+Representa la definición permanente de un movimiento. Debe poder describir movimientos ofensivos, curativos, de la tercera categoría cuyo nombre definitivo sigue pendiente y Poderes de Maestría.
+
+Debe contener conceptualmente:
+
+- identificador;
+- nombre;
+- tipo del movimiento (`Normal`, `Brasa`, `Impacto`, etc.);
+- categoría del movimiento;
+- rareza cuando corresponda;
+- coste de Energía;
+- daño base, si causa daño;
+- cantidad de curación, si cura;
+- cantidad máxima de usos por partida o indicación de uso ilimitado;
+- objetivo permitido del movimiento;
+- si requiere contacto físico/directo con la carta rival;
+- uno o más efectos adicionales opcionales;
+- reglas de compatibilidad/equipamiento cuando corresponda;
+- procedencia del movimiento: propio de una carta, equipable o Poder de Maestría.
+
+No todos los campos se aplican a todos los movimientos. Por ejemplo, un movimiento curativo puede no tener daño y un movimiento ofensivo puede no tener curación.
+
+### Tipo y contacto son conceptos distintos
+
+El `Tipo` del movimiento determina su interacción con la tabla de efectividad. La condición de **contacto** describe cómo se realiza el movimiento y sirve para activar habilidades o efectos reactivos.
+
+Por lo tanto:
+
+- un movimiento de tipo `Impacto` puede ser de contacto;
+- también puede existir un movimiento de otro tipo que implique contacto;
+- no se debe asumir que todos los movimientos de `Impacto` hacen contacto;
+- no se debe asumir que únicamente `Impacto` puede hacer contacto.
+
+Ejemplo conceptual: una carta de tipo Brasa podría reaccionar específicamente al recibir un movimiento de contacto, independientemente del tipo elemental del movimiento que la golpeó.
+
+### Objetivo del movimiento
+
+Cada movimiento debe indicar qué objetivos admite. Entre los objetivos posibles que el modelo debe poder representar están:
+
+- carta activa rival;
+- la propia carta activa;
+- cualquier carta aliada viva compatible;
+- otro objetivo especial que una carta futura pueda requerir.
+
+Esto permite representar correctamente tanto ataques como curaciones y futuros movimientos especiales sin codificar reglas distintas dentro de cada carta.
+
+### Efectos provocados por el movimiento
+
+Un movimiento puede tener efectos adicionales además de daño o curación. Cada efecto debe poder guardar sus propios parámetros, por ejemplo:
+
+- `Estado` que intenta aplicar;
+- probabilidad de aplicación;
+- duración;
+- intensidad o valor;
+- regla de acumulación o reaplicación;
+- condición especial necesaria para activarse.
+
+Estos parámetros pertenecen al movimiento concreto, no al `Estado` universal.
+
+Un movimiento puede no aplicar ningún estado o puede tener más de un efecto si en el futuro el diseño de una carta lo requiere.
+
+### Procedencia y equipamiento
+
+Los movimientos pueden pertenecer a diferentes procedencias:
+
+- **Propio de carta:** forma parte del diseño original de una carta. Puede desequiparse, pero no transferirse a otra carta.
+- **Equipable:** puede asignarse a cartas compatibles según las reglas de tipo/categoría.
+- **Poder de Maestría:** tercer movimiento especial fijo de una carta; no se remueve ni intercambia, cuesta 0 Energía y tiene 1 uso por partida una vez desbloqueado.
+
+La rareza y procedencia no deben confundirse con el tipo ni con la categoría del movimiento.
+
+### `MovimientoEnPartida`
+
+Representa el estado temporal de un `Movimiento` durante un combate.
+
+Debe contener conceptualmente:
+
+- referencia al `Movimiento` permanente;
+- usos restantes, cuando el movimiento sea limitado;
+- si está disponible para ser usado en ese momento;
+- cualquier modificación temporal que altere específicamente ese movimiento durante la batalla, si una regla futura lo requiere.
+
+Para movimientos ilimitados no es necesario decrementar usos.
+
+El Poder de Maestría puede utilizar la misma representación temporal: comienza disponible cuando está desbloqueado y, después de utilizarse, queda sin usos para el resto de esa partida.
+
+De esta forma `CartaEnPartida` no necesita administrar manualmente contadores separados para cada movimiento; contiene sus `MovimientoEnPartida` y cada uno conserva su propio estado temporal.
+
+## 5. Mazo
 
 El mazo también se divide entre su configuración guardada y su estado dentro del combate.
 
@@ -128,7 +220,7 @@ Incluye conceptualmente:
 
 El daño, los estados, el gasto de movimientos u objetos y cualquier otro cambio temporal no deben modificar el `Mazo` guardado del jugador.
 
-## 5. Jugador en partida
+## 6. Jugador en partida
 
 ### `JugadorEnPartida`
 
@@ -151,7 +243,7 @@ Datos permanentes del perfil como colección completa, Oro, progreso general o h
 
 La carta activa y los objetos disponibles pertenecen al `MazoEnPartida`; `JugadorEnPartida` los controla a través de ese mazo en lugar de duplicarlos innecesariamente.
 
-## 6. Partida
+## 7. Partida
 
 ### `Partida`
 
@@ -222,7 +314,7 @@ El Poder de Maestría se modela como un movimiento especial propio de cada carta
 - debe estar desbloqueado para poder seleccionarse;
 - usarlo consume la acción de la ronda;
 - el rival no puede conocerlo desde la vista previa del mazo, porque se mantiene oculto igual que los demás movimientos;
-- `CartaEnPartida` debe registrar si ese uso ya fue consumido durante la partida.
+- su disponibilidad temporal se representa mediante el `MovimientoEnPartida` correspondiente.
 
 ### Resolución de la ronda
 
@@ -251,17 +343,20 @@ Al finalizar deben registrarse como mínimo:
 - motivo de finalización;
 - estado final necesario para recompensas, historial y sistemas posteriores.
 
-## 7. Regla de separación
+## 8. Regla de separación
 
 Como principio general:
 
 - `CartaBase` = qué es la carta.
 - `CartaEnPartida` = cómo se encuentra esa carta ahora mismo dentro del combate.
-- `Movimiento`, `Poder de Maestría` o `HabilidadPasiva` = qué efectos puede intentar provocar.
+- `Movimiento` = definición permanente de un movimiento.
+- `MovimientoEnPartida` = usos y estado temporal de ese movimiento durante una batalla.
+- `Poder de Maestría` = movimiento especial fijo de carta que utiliza el mismo modelo de movimiento con reglas adicionales.
+- `HabilidadPasiva` = reacción o capacidad propia permanente de una carta.
 - estado activo en `CartaEnPartida` = qué efecto está sufriendo actualmente la carta.
 - `Mazo` = configuración preparada antes del combate.
 - `MazoEnPartida` = estado temporal del equipo durante el combate.
 - `JugadorEnPartida` = estado del participante dentro de la partida.
 - `Partida` = coordinador del flujo completo, las rondas, el orden de ejecución y la condición de victoria.
 
-Esta separación evita modificar accidentalmente datos permanentes con información temporal de una batalla y permite reutilizar cartas y mazos en muchas partidas independientes.
+Esta separación evita modificar accidentalmente datos permanentes con información temporal de una batalla y permite reutilizar cartas, movimientos y mazos en muchas partidas independientes.
