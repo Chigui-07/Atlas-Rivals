@@ -51,14 +51,17 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Asignar rareza, tipos, Vida y movimientos.
 - [ ] Crear más movimientos equipables para probar personalización de mazos.
 
+**Nota:** la creación de nuevas cartas y movimientos se realizará después de cerrar el modelo técnico del combate.
+
 ## 5. Movimientos y compatibilidad
 
+- [x] Categorías oficiales de movimientos: **Ofensivo, Curativo y Apoyo**.
 - [x] Movimientos propios no transferibles y sí desequipables.
 - [x] Movimientos equipables intercambiables entre cartas compatibles.
 - [x] Movimientos ofensivos equipables requieren compartir tipo.
 - [x] Curativos son Normal y solo para cartas compatibles con curación.
 - [ ] Definir catálogo inicial de movimientos equipables más allá del mazo inicial.
-- [ ] Registrar explícitamente el tipo de cada movimiento en los datos.
+- [ ] Registrar explícitamente el tipo y la categoría de cada movimiento en los datos.
 
 ## 6. Estados y efectos
 
@@ -157,7 +160,7 @@ La dirección completa está documentada en `PLATAFORMA_WEB.md`.
 Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el siguiente paso es diseñar el modelo técnico del combate:
 
 - [ ] Diseñar entidad `Carta`.
-- [ ] Diseñar entidad `Movimiento`.
+- [ ] Diseñar entidad `Movimiento` incluyendo su categoría.
 - [ ] Diseñar entidad `Tipo` y matriz de efectividad.
 - [ ] Diseñar entidad `Objeto`.
 - [ ] Diseñar entidad `Estado`.
