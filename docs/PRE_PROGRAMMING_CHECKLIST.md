@@ -10,15 +10,17 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Hasta 3 objetos por partida.
 - [x] Máximo 2 unidades del mismo objeto, salvo límites especiales.
 - [x] Energía: 3 inicial, +2 al inicio de cada ronda, máximo 10.
-- [x] Mostrar antes del combate la composición de cartas del mazo rival, ocultando movimientos y objetos.
+- [x] Mostrar antes del combate la composición de cartas del mazo rival, ocultando movimientos, Poderes de Maestría y objetos.
 - [x] Selección secreta y revelación simultánea de la carta activa inicial.
 - [x] Dado al inicio de cada ronda para decidir el orden de ejecución.
 - [x] Si los dados empatan, repetir las tiradas.
 - [x] Ambos jugadores seleccionan su acción antes de comenzar la resolución de la ronda.
-- [x] Acciones base: atacar, usar objeto, cambiar carta o abandonar.
+- [x] Acciones base: atacar, usar Poder de Maestría, usar objeto, cambiar carta o abandonar.
 - [x] Las acciones se ejecutan según el orden fijado por los dados.
 - [x] Cambio de carta consume la acción de la ronda.
 - [x] Uso de objeto consume la acción de la ronda.
+- [x] Uso del Poder de Maestría consume la acción de la ronda.
+- [x] Poder de Maestría: tercer movimiento especial, 0 Energía y 1 uso por partida por carta.
 - [x] Temporizador de 20 segundos para seleccionar acción.
 - [x] Pausa por desconexión y límite de 2 minutos.
 - [x] Rendición, abandono o desconexión no recuperada = derrota.
@@ -26,7 +28,6 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Si la primera acción derrota la carta activa del jugador que iba segundo, su acción seleccionada se cancela.
 - [x] Si al jugador derrotado le quedan cartas vivas, la ronda termina y en la nueva ronda selecciona obligatoriamente otra carta activa sin consumir su acción.
 - [x] Si la carta del segundo jugador sigue viva, su acción se resuelve usando el estado actualizado del combate.
-- [ ] Definir cómo se integra el Poder de Maestría en el flujo de selección simultánea.
 
 ## 2. Sistema de tipos — cerrado a nivel de diseño
 
@@ -178,6 +179,7 @@ Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el sigui
 - [x] Diseñar `JugadorEnPartida` a nivel conceptual, incluyendo nombre de usuario visible.
 - [x] Diseñar el flujo principal de `Partida`: conexión, vista de mazos, carta inicial, dados, selección simultánea, resolución y victoria.
 - [x] Definir la resolución cuando la primera acción derrota la carta activa antes de la segunda acción.
+- [x] Integrar el Poder de Maestría como tercer movimiento especial oculto, con 1 uso por partida por carta y 0 Energía.
 - [ ] Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
 - [ ] Diseñar entidad `Movimiento` incluyendo su categoría.
 - [ ] Diseñar entidad `Tipo` y matriz de efectividad.
