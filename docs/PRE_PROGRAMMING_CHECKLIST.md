@@ -70,9 +70,16 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Movimientos equipables intercambiables entre cartas compatibles.
 - [x] Movimientos ofensivos equipables requieren compartir tipo.
 - [x] Curativos son Normal y solo para cartas compatibles con curación.
+- [x] Diseñar `Movimiento` como definición permanente.
+- [x] Diseñar `MovimientoEnPartida` para usos y modificaciones temporales.
+- [x] Separar `Tipo` del movimiento de la condición de contacto físico/directo.
+- [x] Definir objetivo permitido del movimiento.
+- [x] Definir soporte para daño, curación, coste de Energía y usos limitados/ilimitados.
+- [x] Definir soporte para efectos con probabilidad, duración, intensidad y reglas de reaplicación.
+- [x] Distinguir procedencia: propio de carta, equipable o Poder de Maestría.
 - [ ] Cerrar el nombre definitivo de la tercera categoría de movimientos.
 - [ ] Definir catálogo inicial de movimientos equipables más allá del mazo inicial.
-- [ ] Registrar explícitamente el tipo y la categoría de cada movimiento en los datos.
+- [ ] Registrar explícitamente el tipo y la categoría de cada movimiento del contenido inicial en los datos cuando comience la implementación.
 
 ## 6. Estados y efectos
 
@@ -83,7 +90,8 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Hervor Intenso: Quemadura de 1 de daño al final de los próximos 2 turnos; no se acumula y reaplicarla reinicia la duración.
 - [x] Golpe Ceremonial: 15% de probabilidad de Parálisis; al activarse hace perder la próxima acción.
 - [x] Diferenciar entre una fuente capaz de provocar un estado y una carta que actualmente está sufriendo ese estado.
-- [ ] Diseñar técnicamente cómo representar los parámetros variables de cada efecto de estado dentro de `Movimiento` y `Estado`.
+- [x] Definir conceptualmente que los parámetros variables del efecto pertenecen al movimiento que lo provoca.
+- [ ] Diseñar la entidad técnica `Estado` y la instancia temporal del estado aplicado durante una partida.
 
 ## 7. Objetos — cerrados para la primera prueba
 
@@ -172,19 +180,19 @@ La dirección completa está documentada en `PLATAFORMA_WEB.md`.
 Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el siguiente paso es diseñar el modelo técnico del combate:
 
 - [x] Separar la carta permanente `CartaBase` del estado temporal `CartaEnPartida`.
-- [x] Definir que `CartaEnPartida` referencia a `CartaBase` y guarda Vida actual, movimientos activos/usos, estados que la afectan, efectos temporales y estado activa/derrotada.
+- [x] Definir que `CartaEnPartida` referencia a `CartaBase` y guarda Vida actual, movimientos activos, estados que la afectan, efectos temporales y estado activa/derrotada.
 - [x] Definir soporte para `HabilidadPasiva` opcional en `CartaBase`.
 - [x] Separar las habilidades o movimientos capaces de causar estados de los estados que actualmente afectan a `CartaEnPartida`.
+- [x] Diseñar `Movimiento` y `MovimientoEnPartida` a nivel conceptual.
 - [x] Diseñar `Mazo` y `MazoEnPartida` a nivel conceptual.
 - [x] Diseñar `JugadorEnPartida` a nivel conceptual, incluyendo nombre de usuario visible.
 - [x] Diseñar el flujo principal de `Partida`: conexión, vista de mazos, carta inicial, dados, selección simultánea, resolución y victoria.
 - [x] Definir la resolución cuando la primera acción derrota la carta activa antes de la segunda acción.
 - [x] Integrar el Poder de Maestría como tercer movimiento especial oculto, con 1 uso por partida por carta y 0 Energía.
-- [ ] Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
-- [ ] Diseñar entidad `Movimiento` incluyendo su categoría.
+- [ ] Terminar detalles de implementación de las entidades cuando se elija la tecnología del núcleo.
 - [ ] Diseñar entidad `Tipo` y matriz de efectividad.
 - [ ] Diseñar entidad `Objeto`.
-- [ ] Diseñar entidad `Estado`.
+- [ ] Diseñar entidad `Estado` y estado aplicado en combate.
 - [ ] Separar datos de contenido de la lógica de combate.
 - [ ] Mantener el modelo independiente de la interfaz responsive.
 - [ ] Crear la fuente técnica única de tipos compartida por combate y AYUDA/TABLA.
