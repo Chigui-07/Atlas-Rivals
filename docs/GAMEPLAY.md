@@ -14,23 +14,24 @@ Este documento recoge las reglas de combate confirmadas para la primera versión
 
 ## 2. Movimientos
 
-Los movimientos se dividen en tres categorías iniciales de diseño:
+Los movimientos se dividen en tres categorías oficiales de diseño:
 
-- **Ofensivo:** su función principal es causar daño a una carta rival.
-- **Curativo:** su función principal es recuperar Vida de una carta compatible.
-- **Apoyo:** modifica el combate sin tener como función principal causar daño directo ni curar, por ejemplo mediante estados, mejoras u otros efectos especiales.
+- **Ofensivo:** su función principal es atacar y causar daño a una carta rival.
+- **Curativo:** puede combinar ataque y recuperación de Vida; el movimiento concreto define cuánto daño y/o curación realiza.
+- **Instantáneo:** movimiento especial pensado principalmente como hechizo u otro efecto inmediato. Puede diseñarse con **3 usos por partida**.
 
-El nombre definitivo de la tercera categoría todavía puede ajustarse antes de implementación.
+El nombre **Instantáneo** describe la categoría del movimiento. Por sí solo no significa que sea una acción gratuita ni que ignore el flujo normal de selección y resolución de la ronda.
 
 Reglas generales:
 
 - Cada carta dispone de 2 espacios de movimientos activos.
 - Debe existir **al menos 1 movimiento ilimitado** entre los movimientos activos de la carta.
-- Los movimientos pueden tener coste de Energía, usos limitados o ilimitados, daño y/o efectos.
+- Los movimientos pueden tener coste de Energía, usos limitados o ilimitados, daño, curación y/o efectos.
 - Los movimientos propios/originales de una carta se pueden desequipar, pero **no se transfieren a otras cartas**.
 - Los movimientos equipables pueden intercambiarse entre cartas compatibles.
 - Los movimientos ofensivos equipables requieren compatibilidad de tipo con la carta.
 - Los movimientos curativos son de tipo Normal y solo pueden equiparse en cartas compatibles con curación.
+- Los movimientos instantáneos se planifican principalmente como hechizos y pueden tener 3 usos por partida según su diseño.
 - En cartas de un solo tipo, normalmente ambos movimientos ofensivos pertenecen a ese tipo.
 - En cartas de dos tipos, normalmente se distribuyen entre ambos tipos, salvo habilidades especiales como curación.
 
