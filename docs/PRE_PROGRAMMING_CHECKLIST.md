@@ -23,7 +23,9 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Pausa por desconexión y límite de 2 minutos.
 - [x] Rendición, abandono o desconexión no recuperada = derrota.
 - [x] Sin empates.
-- [ ] Definir cómo se resuelve una segunda acción que quede invalidada o alterada por la primera acción ejecutada.
+- [x] Si la primera acción derrota la carta activa del jugador que iba segundo, su acción seleccionada se cancela.
+- [x] Si al jugador derrotado le quedan cartas vivas, la ronda termina y en la nueva ronda selecciona obligatoriamente otra carta activa sin consumir su acción.
+- [x] Si la carta del segundo jugador sigue viva, su acción se resuelve usando el estado actualizado del combate.
 - [ ] Definir cómo se integra el Poder de Maestría en el flujo de selección simultánea.
 
 ## 2. Sistema de tipos — cerrado a nivel de diseño
@@ -175,7 +177,7 @@ Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el sigui
 - [x] Diseñar `Mazo` y `MazoEnPartida` a nivel conceptual.
 - [x] Diseñar `JugadorEnPartida` a nivel conceptual, incluyendo nombre de usuario visible.
 - [x] Diseñar el flujo principal de `Partida`: conexión, vista de mazos, carta inicial, dados, selección simultánea, resolución y victoria.
-- [ ] Definir casos de resolución cuando la primera acción invalida o modifica la segunda.
+- [x] Definir la resolución cuando la primera acción derrota la carta activa antes de la segunda acción.
 - [ ] Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
 - [ ] Diseñar entidad `Movimiento` incluyendo su categoría.
 - [ ] Diseñar entidad `Tipo` y matriz de efectividad.
