@@ -6,23 +6,27 @@ Guatemala 1.0 es la primera versión formal de Atlas Rivals y funciona como set 
 
 ## Plataforma objetivo
 
-Guatemala 1.0 se desarrollará inicialmente para **teléfonos Android** con enfoque mobile-first.
+Guatemala 1.0 se desarrollará inicialmente como **juego web adaptable**.
 
-La primera plataforma de publicación objetivo será **Google Play Store**.
+La misma aplicación deberá poder utilizarse desde un navegador en:
+
+- teléfonos;
+- computadoras.
 
 Toda decisión de código, interfaz y arquitectura debe tomar como referencia principal:
 
-- controles táctiles;
-- pantallas pequeñas;
-- orientación vertical (portrait);
-- menús adaptados a móvil;
-- rendimiento en celulares modestos;
+- diseño responsive/adaptable;
+- controles táctiles en móvil;
+- interacción mediante clic en computadora;
+- disposición vertical como referencia en teléfonos;
+- aprovechamiento de pantallas más anchas en computadora sin crear una versión separada;
+- rendimiento razonable en teléfonos modestos y computadoras comunes;
 - partidas online relativamente cortas;
-- cuenta y progreso persistente.
+- cuenta y progreso persistente compartidos entre dispositivos.
 
-Una versión para PC está fuera del alcance inicial y podrá evaluarse en el futuro.
+No se requiere una aplicación Android nativa ni una publicación inicial en Google Play Store.
 
-La dirección completa está documentada en `PLATFORM_ANDROID.md`.
+La dirección completa está documentada en `PLATAFORMA_WEB.md`.
 
 ## Alcance de contenido
 
@@ -52,15 +56,16 @@ La dirección completa está documentada en `PLATFORM_ANDROID.md`.
 15. Tienda y regalos.
 16. Tutorial y navegación principal.
 17. Temporizador, desconexiones, rendición y antifarmeo.
-18. Interfaz táctil vertical y navegación mobile-first.
+18. Interfaz web responsive para móvil y computadora.
 19. Persistencia de cuenta, colección y progreso.
-20. Rendimiento adecuado para dispositivos Android modestos.
+20. Rendimiento adecuado en navegadores de teléfonos y computadoras.
 
 ## Fuera de alcance por ahora
 
 - Desarrollar varios países al mismo tiempo.
 - Dar por terminada toda la colección de Guatemala.
-- Desarrollar una versión para PC en paralelo con la primera versión Android.
+- Mantener clientes separados para móvil y computadora cuando la misma aplicación web pueda resolver ambos casos.
+- Crear una aplicación Android nativa como requisito de Guatemala 1.0.
 - Elegir tecnologías de backend o monetización antes de necesitar esa decisión técnicamente.
 - Fijar nuevos valores de cartas, movimientos u objetos sin documentarlos primero.
 
@@ -85,20 +90,25 @@ La tabla completa de tipos ya está transcrita y auditada en `TYPES.md`.
 
 Los objetos de la primera prueba ya están documentados en `OBJECTS_FIRST_TEST.md`. Sus valores son provisionales y podrán ajustarse posteriormente mediante balance.
 
-### Gate 3 — Dirección móvil
+### Gate 3 — Dirección web
 
-La dirección base ya está cerrada:
+La dirección base queda definida:
 
-- plataforma principal: Android;
-- orientación principal: vertical (portrait);
-- interacción completamente táctil;
-- estructura de combate y menús pensada para pantallas pequeñas.
+- plataforma principal: Web;
+- acceso desde teléfono y computadora;
+- una sola aplicación responsive/adaptable;
+- disposición vertical como referencia móvil;
+- soporte de toque y clic;
+- misma cuenta, progreso y reglas en ambos tipos de dispositivo.
 
-Todavía deben definirse durante el diseño de UI:
+Todavía deben definirse durante el diseño técnico/UI:
 
+- tecnología concreta del cliente web;
 - tamaños cómodos de interacción para cartas y botones;
-- distribución exacta de la interfaz vertical;
-- objetivos medibles de rendimiento para celulares modestos.
+- puntos de adaptación responsive;
+- distribución exacta del combate en móvil y computadora;
+- compatibilidad mínima de navegadores;
+- objetivos medibles de rendimiento web.
 
 ### Gate 4 — Modelo técnico
 
@@ -107,9 +117,9 @@ El siguiente paso es diseñar las entidades y estructuras principales: Carta, Mo
 El modelo debe:
 
 - separar datos de contenido de lógica de combate;
-- evitar dependencias innecesarias de escritorio;
-- asumir Android vertical y entrada táctil para el cliente;
-- contemplar desde el principio que la aplicación tendrá cuenta y progreso persistente;
+- mantenerse independiente de la distribución visual responsive;
+- poder ser consumido por el cliente web tanto en móvil como en computadora;
+- contemplar desde el principio que el juego tendrá cuenta y progreso persistente;
 - permitir probar tipos, daño, Energía, objetos, estados, mazos y condición de victoria de forma aislada.
 
 ## Monetización
@@ -121,7 +131,7 @@ Primero deben validarse:
 1. jugabilidad;
 2. balance;
 3. estabilidad;
-4. experiencia móvil;
+4. experiencia web en móvil y computadora;
 5. rendimiento;
 6. progresión y economía.
 
@@ -131,4 +141,4 @@ Solo después deberá evaluarse una estrategia de ingresos que no perjudique eso
 
 **Fase:** listo para comenzar el diseño técnico del núcleo de combate.
 
-Ya están documentados la tabla de tipos, el mazo inicial, los estados principales, la dirección Android vertical y los objetos de la primera prueba. El siguiente objetivo formal es diseñar el modelo técnico de `Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida` antes del primer `Feat:` de código.
+Ya están documentados la tabla de tipos, el mazo inicial, los estados principales, la dirección web adaptable y los objetos de la primera prueba. El siguiente objetivo formal es diseñar el modelo técnico de `Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida` antes del primer `Feat:` de código.
