@@ -33,8 +33,6 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 
 **Criterio de diseño cumplido:** la matriz completa ya existe versionada en `TYPES.md` y no depende del recuerdo del chat.
 
-**Pendiente técnico:** al diseñar el modelo, la tabla deberá convertirse en datos consumidos por el motor y la interfaz sin duplicar lógica.
-
 ## 3. Mazo inicial de Guatemala
 
 - [x] Definir las 6 cartas del mazo inicial fijo.
@@ -52,8 +50,6 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Definir sus categorías temáticas.
 - [ ] Asignar rareza, tipos, Vida y movimientos.
 - [ ] Crear más movimientos equipables para probar personalización de mazos.
-
-El mazo inicial ya permite probar el núcleo; este catálogo adicional puede crecer durante la rama.
 
 ## 5. Movimientos y compatibilidad
 
@@ -74,8 +70,6 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 - [x] Golpe Ceremonial: 15% de probabilidad de Parálisis; al activarse hace perder la próxima acción.
 - [ ] Diseñar técnicamente cómo representar los parámetros variables de cada efecto de estado dentro de `Movimiento` y `Estado`.
 
-**Regla importante:** los valores de Hervor Intenso y Golpe Ceremonial son propios de esos movimientos; no definen valores universales para todas las Quemaduras o Parálisis futuras.
-
 ## 7. Objetos — cerrados para la primera prueba
 
 - [x] Sistema de hasta 3 objetos por partida.
@@ -91,8 +85,6 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 - [x] Impulso: +2 al daño base del próximo movimiento ofensivo antes de aplicar tipos.
 - [x] Cambio rápido: cambia la carta activa por otra viva consumiendo la acción del turno.
 - [x] Documentar el catálogo en `OBJECTS_FIRST_TEST.md`.
-
-**Estado:** valores provisionales aceptados para la primera prueba. Cualquier cambio posterior debe tratarse como balance.
 
 ## 8. Progresión y economía
 
@@ -131,32 +123,38 @@ El mazo inicial ya permite probar el núcleo; este catálogo adicional puede cre
 - [x] Información mínima de la interfaz de combate.
 - [x] Pestaña AYUDA/TABLA.
 - [x] UI de temporizador y reconexión.
-- [x] Orientación principal de interfaz: vertical (portrait).
+- [x] Disposición vertical como referencia para teléfonos.
+- [x] La misma interfaz debe adaptarse también a computadora.
+- [x] Interacción esencial mediante toque y clic.
 - [ ] Diseñar visualmente las pantallas durante la fase de UI.
-- [ ] Diseñar la distribución concreta del combate en formato vertical.
+- [ ] Diseñar la distribución responsive concreta del combate en móvil y computadora.
 
-## 11. Plataforma Android — dirección confirmada
+## 11. Plataforma web — dirección confirmada
 
-- [x] Plataforma inicial: teléfonos Android.
-- [x] Primera publicación objetivo: Google Play Store.
-- [x] Enfoque mobile-first para Guatemala 1.0.
-- [x] Controles principales completamente táctiles.
-- [x] Menús y combate diseñados para pantallas pequeñas.
-- [x] Orientación principal: vertical (portrait).
-- [x] Rendimiento en celulares modestos como prioridad técnica.
-- [x] Cuenta y progreso persistente como requisito del producto.
-- [x] PC fuera del alcance inicial.
-- [x] Monetización subordinada a jugabilidad, balance y estabilidad.
-- [ ] Definir tamaños/criterios mínimos de zonas táctiles durante el diseño de UI.
-- [ ] Definir objetivos medibles de rendimiento para dispositivos modestos.
-- [ ] Definir posteriormente tecnología de autenticación, backend y almacenamiento persistente.
-- [ ] Medir la duración real de partidas y fijar un objetivo de sesión móvil después de las primeras pruebas.
+- [x] Plataforma inicial: Web.
+- [x] Acceso desde navegador en teléfonos y computadoras.
+- [x] Una sola aplicación responsive/adaptable.
+- [x] Disposición móvil principal: vertical.
+- [x] Controles táctiles en móvil.
+- [x] Interacción mediante clic en computadora.
+- [x] Misma cuenta, colección, progreso y reglas entre dispositivos.
+- [x] Android nativo deja de ser requisito inicial.
+- [x] Google Play Store deja de ser objetivo inicial de publicación.
+- [x] PWA instalable queda como posibilidad futura, no como requisito.
+- [ ] Elegir tecnología concreta del cliente web.
+- [ ] Definir tamaños/criterios mínimos de zonas táctiles.
+- [ ] Definir puntos de adaptación responsive.
+- [ ] Definir compatibilidad mínima de navegadores.
+- [ ] Definir objetivos medibles de rendimiento para teléfonos modestos y computadoras comunes.
+- [ ] Definir posteriormente autenticación, backend y almacenamiento persistente.
+- [ ] Elegir alojamiento y dominio cuando corresponda.
+- [ ] Medir la duración real de partidas y fijar un objetivo de sesión después de las primeras pruebas.
 
-La dirección completa está documentada en `PLATFORM_ANDROID.md`.
+La dirección completa está documentada en `PLATAFORMA_WEB.md`.
 
 ## 12. Modelo técnico — siguiente objetivo
 
-Con tipos, mazo inicial, estados y objetos de primera prueba ya documentados, el siguiente paso es diseñar el modelo técnico del combate:
+Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el siguiente paso es diseñar el modelo técnico del combate:
 
 - [ ] Diseñar entidad `Carta`.
 - [ ] Diseñar entidad `Movimiento`.
@@ -167,9 +165,8 @@ Con tipos, mazo inicial, estados y objetos de primera prueba ya documentados, el
 - [ ] Diseñar estado de `Jugador` dentro de partida.
 - [ ] Diseñar estado y flujo de `Partida`.
 - [ ] Separar datos de contenido de la lógica de combate.
+- [ ] Mantener el modelo independiente de la interfaz responsive.
 - [ ] Crear la fuente técnica única de tipos compartida por combate y AYUDA/TABLA.
-- [ ] Evitar dependencias de escritorio en la arquitectura del cliente.
-- [ ] Diseñar el cliente suponiendo entrada táctil, orientación vertical y restricciones de teléfono Android.
 - [ ] Contemplar persistencia de cuenta y progreso en las fronteras del modelo/servicios.
 - [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, objetos, estados, mazos y condición de victoria.
 
@@ -177,9 +174,9 @@ Con tipos, mazo inicial, estados y objetos de primera prueba ya documentados, el
 
 1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
 2. ~~Cerrar objetos de la primera prueba.~~ ✅ Completado.
-3. ~~Decidir orientación móvil principal.~~ ✅ Vertical.
-4. **Diseñar modelo técnico del combate con Android vertical como referencia.** ← siguiente paso.
+3. ~~Definir plataforma y dispositivos objetivo.~~ ✅ Web adaptable para móvil y computadora.
+4. **Diseñar modelo técnico del combate independiente de la interfaz.** ← siguiente paso.
 5. Crear pruebas del modelo y de las reglas numéricas.
-6. Comenzar el primer `Feat:` del núcleo.
+6. Elegir la estructura técnica del cliente web y comenzar el primer `Feat:` del núcleo.
 
 Los sistemas de progresión, tienda, Pase y Maestría pueden implementarse después del núcleo de combate, respetando siempre su documentación antes de codificar cada sistema.
