@@ -138,9 +138,10 @@ Debe contener conceptualmente:
 - nombre de usuario visible durante el combate, para identificar al rival;
 - `MazoEnPartida`;
 - Energía actual;
-- información necesaria para saber si puede actuar en el turno actual;
+- información necesaria para saber si puede actuar en la ronda actual;
+- acción elegida para la ronda cuando corresponda;
 - estado de conexión;
-- si se rindió;
+- si se rindió o abandonó;
 - si fue derrotado;
 - efectos que afecten al jugador completo y no a una carta concreta, si llegan a existir.
 
@@ -148,7 +149,92 @@ Datos permanentes del perfil como colección completa, Oro, progreso general o h
 
 La carta activa y los objetos disponibles pertenecen al `MazoEnPartida`; `JugadorEnPartida` los controla a través de ese mazo en lugar de duplicarlos innecesariamente.
 
-## 6. Regla de separación
+## 6. Partida
+
+### `Partida`
+
+Representa el combate completo entre dos `JugadorEnPartida` y coordina el flujo de rondas hasta que exista un ganador.
+
+Debe contener conceptualmente:
+
+- los 2 jugadores conectados;
+- estado de la partida;
+- número de ronda;
+- tirada de dado de cada jugador;
+- orden de ejecución de la ronda;
+- acción seleccionada por cada jugador;
+- temporizador de selección;
+- información de pausa y reconexión;
+- ganador cuando exista;
+- motivo de finalización.
+
+### Inicio de la partida
+
+La partida comienza cuando los dos jugadores han terminado de conectarse.
+
+Antes del combate:
+
+1. se muestran a ambos jugadores los mazos rivales;
+2. solo se muestra la composición de cartas del mazo;
+3. los movimientos equipados y los objetos elegidos por el rival permanecen ocultos;
+4. cada jugador selecciona en secreto su carta activa inicial;
+5. ambas cartas iniciales se revelan simultáneamente;
+6. comienza la ronda 1.
+
+### Inicio de cada ronda
+
+Al comenzar una ronda:
+
+1. se aplican las reglas de recuperación de Energía correspondientes;
+2. un jugador realiza su tirada de dado y el resultado se guarda;
+3. el otro jugador realiza su tirada y el resultado se guarda;
+4. se comparan ambos resultados;
+5. el jugador con el número mayor tendrá su acción ejecutada primero;
+6. el jugador con el número menor tendrá su acción ejecutada después;
+7. si ambos resultados son iguales, se repiten las tiradas hasta obtener resultados distintos.
+
+Las tiradas determinan el **orden de ejecución**, no obligan a que el segundo jugador espere a conocer la acción elegida por el primero.
+
+### Selección de acciones
+
+Después de fijar el orden de la ronda, ambos jugadores seleccionan su acción para esa ronda.
+
+Las acciones base son:
+
+- **Atacar:** utilizar uno de los movimientos disponibles de la carta activa;
+- **Usar objeto:** utilizar uno de los objetos disponibles;
+- **Cambiar carta:** sustituir la carta activa por otra carta viva válida;
+- **Abandonar:** terminar voluntariamente la partida y recibir la derrota correspondiente.
+
+La acción de cada jugador se guarda antes de comenzar la resolución de la ronda.
+
+### Resolución de la ronda
+
+Cuando ambos jugadores han elegido su acción, se ejecutan en el orden establecido por las tiradas de dado:
+
+1. se resuelve la acción del jugador con la tirada mayor;
+2. se actualiza el estado del combate resultante;
+3. se resuelve la acción del jugador con la tirada menor si sigue siendo válida según el estado actualizado;
+4. se procesan los efectos de fin de ronda o de turno que correspondan;
+5. se comprueba la condición de victoria;
+6. si ambos jugadores todavía tienen cartas vivas, comienza una nueva ronda y se realizan nuevas tiradas.
+
+Queda pendiente definir con precisión todos los casos en los que la primera acción de la ronda pueda volver imposible o alterar la segunda acción ya seleccionada, por ejemplo si la primera acción derrota una carta antes de que pueda ejecutar su ataque.
+
+### Fin de la partida
+
+La condición principal de victoria es dejar al rival sin cartas vivas.
+
+La partida también puede terminar por abandono, rendición o desconexión no recuperada según las reglas generales ya documentadas.
+
+Al finalizar deben registrarse como mínimo:
+
+- jugador ganador;
+- jugador derrotado;
+- motivo de finalización;
+- estado final necesario para recompensas, historial y sistemas posteriores.
+
+## 7. Regla de separación
 
 Como principio general:
 
@@ -159,5 +245,6 @@ Como principio general:
 - `Mazo` = configuración preparada antes del combate.
 - `MazoEnPartida` = estado temporal del equipo durante el combate.
 - `JugadorEnPartida` = estado del participante dentro de la partida.
+- `Partida` = coordinador del flujo completo, las rondas, el orden de ejecución y la condición de victoria.
 
 Esta separación evita modificar accidentalmente datos permanentes con información temporal de una batalla y permite reutilizar cartas y mazos en muchas partidas independientes.
