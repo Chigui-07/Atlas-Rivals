@@ -68,7 +68,11 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 
 ## 5. Movimientos y compatibilidad
 
-- [x] Categorías iniciales de movimientos definidas a nivel de diseño.
+- [x] Categorías oficiales: Ofensivo, Curativo e Instantáneo.
+- [x] Ofensivo: función principal de ataque y daño.
+- [x] Curativo: puede combinar ataque y recuperación de Vida.
+- [x] Instantáneo: categoría especial planificada principalmente como hechizos y con posibilidad de 3 usos por partida.
+- [x] El nombre Instantáneo no implica por sí mismo una acción gratuita.
 - [x] Movimientos propios no transferibles y sí desequipables.
 - [x] Movimientos equipables intercambiables entre cartas compatibles.
 - [x] Movimientos ofensivos equipables requieren compartir tipo.
@@ -80,11 +84,10 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Definir soporte para daño, curación, coste de Energía y usos limitados/ilimitados.
 - [x] Definir soporte para efectos con probabilidad, duración, intensidad y reglas de reaplicación.
 - [x] Distinguir procedencia: propio de carta, equipable o Poder de Maestría.
-- [ ] Cerrar el nombre definitivo de la tercera categoría de movimientos.
 - [ ] Definir catálogo inicial de movimientos equipables más allá del mazo inicial.
 - [ ] Registrar explícitamente el tipo y la categoría de cada movimiento del contenido inicial en los datos cuando comience la implementación.
 
-El catálogo adicional de movimientos no bloquea el primer núcleo, pero el nombre definitivo de la tercera categoría sí debe cerrarse antes de crear sus identificadores técnicos.
+El catálogo adicional de movimientos no bloquea el primer núcleo.
 
 ## 6. Estados y efectos
 
@@ -208,13 +211,12 @@ La dirección completa está documentada en `PLATAFORMA_WEB.md`. Para comenzar e
 
 ## 13. Bloqueadores reales para el primer `Feat:`
 
-Después de cerrar `Estado`, `Objeto` y `Tipo`, quedan **3 decisiones mínimas** antes de comenzar a programar el núcleo:
+Después de cerrar las categorías de movimientos, quedan **2 decisiones mínimas** antes de comenzar a programar el núcleo:
 
-1. **Cerrar el nombre de la tercera categoría de movimientos**, para no crear un identificador técnico provisional que luego haya que renombrar.
-2. **Elegir la tecnología concreta del cliente/núcleo web**, que determinará lenguaje, herramientas y estructura del proyecto.
-3. **Definir la estructura inicial del código y las primeras pruebas**, incluyendo dónde vivirán entidades, datos de contenido, tabla de tipos y lógica de combate.
+1. **Elegir la tecnología concreta del cliente/núcleo web**, que determinará lenguaje, herramientas y estructura del proyecto.
+2. **Definir la estructura inicial del código y las primeras pruebas**, incluyendo dónde vivirán entidades, datos de contenido, tabla de tipos y lógica de combate.
 
-Una vez cerrados esos tres puntos, puede comenzar el primer commit `Feat:` del núcleo. La implementación de la tabla de tipos, las pruebas automáticas, el catálogo adicional, backend, cuentas, economía, UI final y demás sistemas se desarrollará de forma incremental después de comenzar a programar.
+Una vez cerrados esos dos puntos, puede comenzar el primer commit `Feat:` del núcleo. La implementación de la tabla de tipos, las pruebas automáticas, el catálogo adicional, backend, cuentas, economía, UI final y demás sistemas se desarrollará de forma incremental después de comenzar a programar.
 
 ## Orden recomendado de cierre
 
@@ -222,7 +224,7 @@ Una vez cerrados esos tres puntos, puede comenzar el primer commit `Feat:` del n
 2. ~~Cerrar objetos de la primera prueba.~~ ✅ Completado.
 3. ~~Definir plataforma y dispositivos objetivo.~~ ✅ Web adaptable para móvil y computadora.
 4. ~~Diseñar modelo técnico conceptual del combate.~~ ✅ Completado a nivel previo a implementación.
-5. **Cerrar los 3 bloqueadores reales del primer `Feat:`.** ← siguiente paso.
+5. **Cerrar los 2 bloqueadores reales del primer `Feat:`.** ← siguiente paso.
 6. Comenzar a programar el núcleo con pruebas desde el inicio.
 
 Los sistemas de progresión, tienda, Pase y Maestría avanzada pueden implementarse después del núcleo, respetando siempre su documentación antes de codificar cada sistema.
