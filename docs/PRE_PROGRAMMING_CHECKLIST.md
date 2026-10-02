@@ -181,7 +181,8 @@ La interfaz visual completa no bloquea la implementación del modelo de combate.
 - [x] Android nativo deja de ser requisito inicial.
 - [x] Google Play Store deja de ser objetivo inicial de publicación.
 - [x] PWA instalable queda como posibilidad futura, no como requisito.
-- [ ] Elegir tecnología concreta del cliente y núcleo web.
+- [x] Tecnología inicial: Node.js 24 LTS + npm + TypeScript + React + Vite + Vitest.
+- [x] Motor de combate independiente de React.
 - [ ] Definir tamaños/criterios mínimos de zonas táctiles.
 - [ ] Definir puntos de adaptación responsive.
 - [ ] Definir compatibilidad mínima de navegadores.
@@ -190,9 +191,9 @@ La interfaz visual completa no bloquea la implementación del modelo de combate.
 - [ ] Elegir alojamiento y dominio cuando corresponda.
 - [ ] Medir la duración real de partidas y fijar un objetivo de sesión después de las primeras pruebas.
 
-La dirección completa está documentada en `PLATAFORMA_WEB.md`. Para comenzar el núcleo solo es bloqueante elegir la tecnología concreta; backend, autenticación, alojamiento y detalles responsive pueden definirse más adelante.
+La dirección completa está documentada en `PLATAFORMA_WEB.md` y `ARQUITECTURA_TECNICA.md`. Los puntos aún pendientes de esta sección no bloquean el comienzo del núcleo.
 
-## 12. Modelo técnico — siguiente objetivo
+## 12. Modelo técnico — listo para implementación
 
 - [x] Separar la carta permanente `CartaBase` del estado temporal `CartaEnPartida`.
 - [x] Definir soporte para `HabilidadPasiva` opcional en `CartaBase`.
@@ -205,26 +206,33 @@ La dirección completa está documentada en `PLATAFORMA_WEB.md`. Para comenzar e
 - [x] Diseñar el flujo principal de `Partida`.
 - [x] Integrar el Poder de Maestría.
 - [x] Mantener conceptualmente separados datos permanentes y estado temporal del combate.
-- [ ] Elegir la tecnología concreta para traducir el modelo a código.
-- [ ] Definir la estructura inicial de carpetas/módulos y la separación entre datos de contenido y lógica de combate.
-- [ ] Definir el conjunto mínimo de pruebas con el que comenzará el núcleo.
+- [x] Elegir tecnología concreta para traducir el modelo a código.
+- [x] Definir estructura inicial de carpetas/módulos.
+- [x] Separar datos de contenido, dominio, motor e interfaz.
+- [x] Definir el conjunto mínimo de pruebas con el que comenzará el núcleo.
 
-## 13. Bloqueadores reales para el primer `Feat:`
+## 13. Estado para el primer `Feat:`
 
-Después de cerrar las categorías de movimientos, quedan **2 decisiones mínimas** antes de comenzar a programar el núcleo:
+**No quedan bloqueadores conceptuales para comenzar a programar el núcleo.**
 
-1. **Elegir la tecnología concreta del cliente/núcleo web**, que determinará lenguaje, herramientas y estructura del proyecto.
-2. **Definir la estructura inicial del código y las primeras pruebas**, incluyendo dónde vivirán entidades, datos de contenido, tabla de tipos y lógica de combate.
+La arquitectura inicial queda documentada en `ARQUITECTURA_TECNICA.md` y establece:
 
-Una vez cerrados esos dos puntos, puede comenzar el primer commit `Feat:` del núcleo. La implementación de la tabla de tipos, las pruebas automáticas, el catálogo adicional, backend, cuentas, economía, UI final y demás sistemas se desarrollará de forma incremental después de comenzar a programar.
+- React + TypeScript + Vite para la aplicación web;
+- Vitest para pruebas;
+- Node.js 24 LTS y npm como entorno base;
+- motor de combate independiente de React;
+- carpetas separadas para dominio, motor, datos e interfaz;
+- pruebas del sistema de tipos, Energía, movimientos, Vida, estados y victoria desde el inicio.
+
+A partir de este punto ya puede comenzar el primer commit `Feat:`. La tabla de tipos, entidades y reglas se implementarán de forma incremental acompañadas por pruebas.
 
 ## Orden recomendado de cierre
 
 1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
 2. ~~Cerrar objetos de la primera prueba.~~ ✅ Completado.
 3. ~~Definir plataforma y dispositivos objetivo.~~ ✅ Web adaptable para móvil y computadora.
-4. ~~Diseñar modelo técnico conceptual del combate.~~ ✅ Completado a nivel previo a implementación.
-5. **Cerrar los 2 bloqueadores reales del primer `Feat:`.** ← siguiente paso.
-6. Comenzar a programar el núcleo con pruebas desde el inicio.
+4. ~~Diseñar modelo técnico conceptual del combate.~~ ✅ Completado.
+5. ~~Cerrar decisiones de tecnología, arquitectura y pruebas.~~ ✅ Completado.
+6. **Comenzar a programar el núcleo con pruebas desde el inicio.** ← siguiente paso.
 
-Los sistemas de progresión, tienda, Pase y Maestría avanzada pueden implementarse después del núcleo, respetando siempre su documentación antes de codificar cada sistema.
+Los sistemas de progresión, tienda, Pase, backend, cuentas y Maestría avanzada pueden implementarse después del núcleo, respetando siempre su documentación antes de codificar cada sistema.
