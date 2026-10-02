@@ -17,8 +17,8 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 
 - [`docs/GUATEMALA_1_0.md`](docs/GUATEMALA_1_0.md) — alcance y estado de la versión.
 - [`docs/PLATAFORMA_WEB.md`](docs/PLATAFORMA_WEB.md) — dirección web adaptable, móvil/computadora, interacción y rendimiento.
-- [`docs/GAMEPLAY.md`](docs/GAMEPLAY.md) — reglas de partida, turnos, movimientos, Energía, objetos, estados y desconexiones.
-- [`docs/MODELO_TECNICO.md`](docs/MODELO_TECNICO.md) — decisiones del modelo técnico del combate, comenzando por `CartaBase`, `CartaEnPartida` y habilidades pasivas.
+- [`docs/GAMEPLAY.md`](docs/GAMEPLAY.md) — reglas de partida, rondas, movimientos, Energía, objetos, estados y desconexiones.
+- [`docs/MODELO_TECNICO.md`](docs/MODELO_TECNICO.md) — decisiones del modelo técnico del combate: cartas, mazo, jugador y flujo de partida.
 - [`docs/OBJECTS_FIRST_TEST.md`](docs/OBJECTS_FIRST_TEST.md) — catálogo y valores provisionales de objetos para la primera prueba.
 - [`docs/TYPES.md`](docs/TYPES.md) — tabla final auditada de 18 tipos, multiplicadores y reglas de doble tipo.
 - [`docs/STARTER_DECK.md`](docs/STARTER_DECK.md) — mazo inicial fijo del tutorial de Guatemala 1.0.
@@ -49,7 +49,6 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Disposición móvil principal: vertical.
 - Interacción esencial mediante toque y clic.
 - Una misma cuenta, colección, progreso y reglas para móvil y computadora.
-- Estructura general de combate por rondas y turnos.
 - Mazo de 6 cartas sin copias exactas repetidas y hasta 3 objetos.
 - Máximo 2 unidades del mismo objeto, salvo límites especiales.
 - Catálogo de primera prueba: Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido.
@@ -61,7 +60,17 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Probabilidad, duración e intensidad de un estado pueden variar según el movimiento que lo aplique.
 - Separación técnica entre `CartaBase` y `CartaEnPartida`.
 - Soporte previsto para habilidades pasivas de carta.
-- Diferencia entre una fuente que puede provocar un estado y un estado que actualmente afecta a una carta.
+- Separación entre `Mazo` y `MazoEnPartida`.
+- `JugadorEnPartida` con nombre de usuario visible y estado temporal de combate.
+- Flujo principal de `Partida` definido.
+- Antes del combate se muestra la composición de cartas del mazo rival, pero se ocultan movimientos y objetos.
+- Carta activa inicial seleccionada en secreto y revelada simultáneamente.
+- Cada ronda usa dados para determinar el orden de ejecución.
+- Ambos jugadores eligen su acción antes de ejecutar la ronda.
+- Acciones base: atacar, usar objeto, cambiar carta o abandonar.
+- Las acciones se resuelven según el orden de los dados.
+- Temporizador de 20 segundos para seleccionar acción.
+- Condición principal de victoria: dejar al rival sin cartas vivas.
 - Mazo inicial fijo del tutorial.
 - Rarezas, repetidas y sobres.
 - Oro y recompensas principales.
@@ -69,13 +78,15 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Maestría como sistema, con su desbloqueo numérico aún provisional.
 - Misiones diarias/semanales y Pase de Batalla.
 - Tienda, tutorial y menú principal.
-- Temporizador de 20 segundos, desconexiones y derrota por abandono.
+- Desconexiones, derrota por abandono y reglas base de reconexión.
 - Reputación/antifarmeo a nivel de reglas, con fórmula detallada pendiente.
 - Convenciones de ramas y commits en español.
 
 ### Pendiente antes del primer `Feat:` del núcleo
 
-- Continuar el modelo técnico de `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`.
+- Definir cómo se resuelve una acción seleccionada que quede invalidada o alterada por la acción ejecutada primero.
+- Definir cómo se integra el Poder de Maestría en el nuevo flujo de selección simultánea.
+- Continuar el modelo técnico de `Movimiento`, `Tipo`, `Objeto` y `Estado`.
 - Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
 - Definir cómo representarán `Movimiento` y `Estado` los parámetros variables de los efectos.
 - Convertir la tabla final de tipos en una única fuente técnica de datos y añadir validaciones automáticas.
@@ -91,6 +102,18 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Cerrar el objetivo final e hitos exactos del desbloqueo de Maestría.
 
 ## Bitácora — Guatemala 1.0
+
+### 2026-10-02
+
+- Cerrado el flujo principal de `Partida`.
+- Definido que el combate comienza cuando ambos jugadores terminan de conectarse.
+- Añadida vista previa del mazo rival mostrando cartas, pero ocultando movimientos y objetos.
+- Conservada la selección secreta y revelación simultánea de la carta activa inicial.
+- Redefinidos los dados como sistema de orden de ejecución de cada ronda.
+- Establecido que ambos jugadores eligen su acción antes de comenzar a resolver la ronda.
+- Definidas como acciones base: atacar, usar objeto, cambiar carta y abandonar.
+- Establecida la resolución secuencial según las tiradas, actualizando el combate entre la primera y segunda acción.
+- Marcados como pendientes los casos donde la primera acción invalide la segunda y la integración del Poder de Maestría.
 
 ### 2026-10-01
 
@@ -123,4 +146,4 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Añadidos Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido como objetos iniciales.
 - Definido que los parámetros de los estados pertenecen al movimiento que los aplica y pueden variar entre movimientos.
 
-**Próximo objetivo:** continuar el modelo técnico del combate, con `Mazo`, `Jugador` y `Partida` como próximos bloques principales después de cerrar los detalles pendientes de movimiento/estado.
+**Próximo objetivo:** cerrar los casos especiales de resolución de ronda y continuar el modelo técnico de `Movimiento`, `Tipo`, `Objeto` y `Estado` antes del primer `Feat:` del núcleo.
