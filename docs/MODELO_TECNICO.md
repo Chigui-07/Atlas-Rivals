@@ -33,7 +33,7 @@ Incluye conceptualmente:
 - Vida actual;
 - los 2 `MovimientoEnPartida` activos con los que entró a la partida;
 - representación temporal del Poder de Maestría, cuando esté desbloqueado;
-- estados negativos o positivos que actualmente estén afectando a la carta;
+- lista de `EstadoAplicado` que actualmente afectan a la carta;
 - efectos temporales activos, como Protector o Impulso;
 - si la carta está activa actualmente;
 - si la carta fue derrotada.
@@ -68,9 +68,9 @@ En ese caso, la capacidad de provocar Quemadura pertenece a la habilidad pasiva 
 
 ### Estado que afecta a una carta
 
-Cuando un movimiento, habilidad u otra fuente consigue aplicar un estado sobre una carta, ese estado pasa a formar parte de los estados activos de su `CartaEnPartida`.
+Cuando un movimiento, habilidad u otra fuente consigue aplicar un estado sobre una carta, se crea un `EstadoAplicado` dentro de la `CartaEnPartida` objetivo.
 
-Ejemplo conceptual: si un movimiento de Impacto aplica Parálisis con éxito, la `CartaEnPartida` objetivo registra Parálisis como un estado que actualmente la afecta.
+Ejemplo conceptual: si un movimiento de Impacto aplica Parálisis con éxito, la carta objetivo registra una instancia temporal de Parálisis como un estado que actualmente la afecta.
 
 ## 3. Habilidades pasivas
 
@@ -127,8 +127,6 @@ Por lo tanto:
 - no se debe asumir que todos los movimientos de `Impacto` hacen contacto;
 - no se debe asumir que únicamente `Impacto` puede hacer contacto.
 
-Ejemplo conceptual: una carta de tipo Brasa podría reaccionar específicamente al recibir un movimiento de contacto, independientemente del tipo elemental del movimiento que la golpeó.
-
 ### Objetivo del movimiento
 
 Cada movimiento debe indicar qué objetivos admite. Entre los objetivos posibles que el modelo debe poder representar están:
@@ -137,8 +135,6 @@ Cada movimiento debe indicar qué objetivos admite. Entre los objetivos posibles
 - la propia carta activa;
 - cualquier carta aliada viva compatible;
 - otro objetivo especial que una carta futura pueda requerir.
-
-Esto permite representar correctamente tanto ataques como curaciones y futuros movimientos especiales sin codificar reglas distintas dentro de cada carta.
 
 ### Efectos provocados por el movimiento
 
@@ -153,8 +149,6 @@ Un movimiento puede tener efectos adicionales además de daño o curación. Cada
 
 Estos parámetros pertenecen al movimiento concreto, no al `Estado` universal.
 
-Un movimiento puede no aplicar ningún estado o puede tener más de un efecto si en el futuro el diseño de una carta lo requiere.
-
 ### Procedencia y equipamiento
 
 Los movimientos pueden pertenecer a diferentes procedencias:
@@ -162,8 +156,6 @@ Los movimientos pueden pertenecer a diferentes procedencias:
 - **Propio de carta:** forma parte del diseño original de una carta. Puede desequiparse, pero no transferirse a otra carta.
 - **Equipable:** puede asignarse a cartas compatibles según las reglas de tipo/categoría.
 - **Poder de Maestría:** tercer movimiento especial fijo de una carta; no se remueve ni intercambia, cuesta 0 Energía y tiene 1 uso por partida una vez desbloqueado.
-
-La rareza y procedencia no deben confundirse con el tipo ni con la categoría del movimiento.
 
 ### `MovimientoEnPartida`
 
@@ -180,9 +172,138 @@ Para movimientos ilimitados no es necesario decrementar usos.
 
 El Poder de Maestría puede utilizar la misma representación temporal: comienza disponible cuando está desbloqueado y, después de utilizarse, queda sin usos para el resto de esa partida.
 
-De esta forma `CartaEnPartida` no necesita administrar manualmente contadores separados para cada movimiento; contiene sus `MovimientoEnPartida` y cada uno conserva su propio estado temporal.
+## 5. Estados
 
-## 5. Mazo
+Los estados se dividen en una definición general y una instancia temporal que existe únicamente durante la batalla.
+
+### `Estado`
+
+Representa qué clase de condición es un estado, no los valores concretos con los que una fuente lo aplica.
+
+Debe contener conceptualmente:
+
+- identificador;
+- nombre;
+- descripción general de su comportamiento;
+- si es positivo, negativo o de otra clasificación que se defina posteriormente;
+- reglas generales que sean inseparables del propio estado.
+
+Ejemplos iniciales: `Quemadura` y `Parálisis`.
+
+`Estado` **no debe fijar universalmente** valores como probabilidad, duración o intensidad cuando esos valores pueden variar entre movimientos, habilidades u otras fuentes.
+
+### `EstadoAplicado`
+
+Representa una instancia concreta de un estado que actualmente afecta a una `CartaEnPartida`.
+
+Debe contener conceptualmente:
+
+- referencia al `Estado`;
+- duración restante, cuando corresponda;
+- intensidad o valor actual, cuando corresponda;
+- fuente que lo provocó, cuando sea necesario conocerla;
+- regla de reaplicación/acumulación utilizada por esa aplicación;
+- otros parámetros temporales necesarios para resolver el efecto.
+
+Ejemplo: una Quemadura aplicada por un movimiento puede registrar 1 punto de daño y 2 activaciones restantes, mientras otra fuente podría aplicar Quemadura con valores diferentes.
+
+Cuando el estado termina, su `EstadoAplicado` se elimina de la carta. Si la carta es derrotada, sus estados dejan de tener efecto de combate salvo que una regla futura indique expresamente lo contrario.
+
+## 6. Objetos
+
+Los objetos se separan entre su definición permanente y la cantidad disponible durante una partida.
+
+### `Objeto`
+
+Representa la definición permanente de un objeto de combate.
+
+Debe contener conceptualmente:
+
+- identificador;
+- nombre;
+- descripción;
+- objetivo permitido;
+- efectos que produce;
+- límite máximo de copias permitidas en un mazo;
+- cualquier condición especial necesaria para poder utilizarlo.
+
+Los efectos del objeto pueden incluir, entre otros:
+
+- curar Vida;
+- eliminar un estado negativo;
+- crear un efecto temporal, como Protector o Impulso;
+- cambiar la carta activa;
+- combinar varios efectos, como el Kit de Emergencias.
+
+Usar un objeto consume la acción de la ronda según las reglas actuales. Los objetos no reviven cartas derrotadas y las curaciones no pueden superar la Vida máxima.
+
+### `ObjetoEnPartida`
+
+Representa un objeto seleccionado dentro del mazo durante una batalla.
+
+Debe contener conceptualmente:
+
+- referencia al `Objeto` permanente;
+- cantidad restante disponible en esa partida;
+- cualquier modificación temporal del objeto si una regla futura llegara a requerirla.
+
+Cada uso válido reduce la cantidad restante en 1. Cuando llega a 0, el objeto ya no puede seleccionarse.
+
+Los objetos del rival permanecen ocultos en la vista previa del mazo.
+
+`MazoEnPartida` debe contener los `ObjetoEnPartida` seleccionados en lugar de administrar cantidades separadas sin referencia al objeto.
+
+## 7. Tipos
+
+Los 18 tipos oficiales se representan mediante identificadores fijos y una única tabla central de relaciones.
+
+### `Tipo`
+
+Representa uno de los tipos oficiales de Atlas Rivals.
+
+Debe contener como mínimo:
+
+- identificador estable;
+- nombre visible;
+- metadatos de presentación que puedan necesitarse más adelante, como icono.
+
+`Tipo` no debe contener listas de cartas o movimientos que lo utilizan. Las cartas y movimientos referencian al tipo.
+
+### Relaciones de tipo
+
+La relación ofensiva entre un tipo de movimiento y un tipo defensor se representa mediante una relación central, por ejemplo:
+
+- `VENTAJA`;
+- `NEUTRAL`;
+- `DESVENTAJA`.
+
+Debe existir una única fuente técnica, conceptualmente `TablaTipos` o servicio equivalente, capaz de responder:
+
+`obtenerRelacion(tipoMovimiento, tipoDefensor)`
+
+El motor de combate y la interfaz **AYUDA/TABLA** deben consultar esa misma fuente técnica.
+
+Los cinco casos especiales de Eclipse, Mente, Espectro, Enjambre y Dragón contra sí mismos deben resolverse explícitamente como **Ventaja ofensiva** al consultar la relación para calcular daño.
+
+### Multiplicadores y doble tipo
+
+La fuente técnica debe aplicar las reglas ya cerradas:
+
+- ventaja ×1.5;
+- neutral ×1;
+- desventaja ×0.75;
+- ventaja + ventaja ×2;
+- ventaja + neutral ×1.5;
+- ventaja + desventaja ×1;
+- neutral + neutral = fallo automático;
+- neutral + desventaja ×0.75;
+- desventaja + desventaja ×0.5.
+
+El redondeo final sigue la regla oficial: entero más cercano y `.5` hacia arriba.
+
+La matriz técnica debe validarse automáticamente para asegurar que no falten relaciones, que las relaciones ordinarias sean consistentes y que las cinco excepciones de mismo tipo funcionen correctamente.
+
+## 8. Mazo
 
 El mazo también se divide entre su configuración guardada y su estado dentro del combate.
 
@@ -216,11 +337,11 @@ Incluye conceptualmente:
 - las 6 `CartaEnPartida`;
 - la carta activa;
 - las cartas vivas disponibles para cambio;
-- objetos restantes y sus cantidades durante el combate.
+- `ObjetoEnPartida` seleccionados y sus cantidades restantes.
 
 El daño, los estados, el gasto de movimientos u objetos y cualquier otro cambio temporal no deben modificar el `Mazo` guardado del jugador.
 
-## 6. Jugador en partida
+## 9. Jugador en partida
 
 ### `JugadorEnPartida`
 
@@ -241,9 +362,7 @@ Debe contener conceptualmente:
 
 Datos permanentes del perfil como colección completa, Oro, progreso general o historial no pertenecen a `JugadorEnPartida`, salvo la referencia necesaria para identificar al jugador y mostrar su nombre de usuario.
 
-La carta activa y los objetos disponibles pertenecen al `MazoEnPartida`; `JugadorEnPartida` los controla a través de ese mazo en lugar de duplicarlos innecesariamente.
-
-## 7. Partida
+## 10. Partida
 
 ### `Partida`
 
@@ -287,7 +406,7 @@ Al comenzar una ronda:
 6. el jugador con el número menor tendrá su acción ejecutada después;
 7. si ambos resultados son iguales, se repiten las tiradas hasta obtener resultados distintos.
 
-Las tiradas determinan el **orden de ejecución**, no obligan a que el segundo jugador espere a conocer la acción elegida por el primero.
+Las tiradas determinan el **orden de ejecución**.
 
 ### Selección de acciones
 
@@ -296,25 +415,10 @@ Después de fijar el orden de la ronda, ambos jugadores seleccionan su acción p
 Las acciones base son:
 
 - **Atacar:** utilizar uno de los 2 movimientos activos disponibles de la carta activa;
-- **Usar Poder de Maestría:** utilizar el tercer movimiento especial de la carta activa, solo si está desbloqueado y todavía no fue usado durante esa partida;
+- **Usar Poder de Maestría:** utilizar el tercer movimiento especial de la carta activa, solo si está desbloqueado y disponible;
 - **Usar objeto:** utilizar uno de los objetos disponibles;
 - **Cambiar carta:** sustituir la carta activa por otra carta viva válida;
 - **Abandonar:** terminar voluntariamente la partida y recibir la derrota correspondiente.
-
-La acción de cada jugador se guarda antes de comenzar la resolución de la ronda.
-
-### Poder de Maestría
-
-El Poder de Maestría se modela como un movimiento especial propio de cada carta:
-
-- pertenece a la carta y no al jugador completo;
-- es fijo, no removible y no intercambiable;
-- tiene 1 uso por partida por carta;
-- cuesta 0 Energía;
-- debe estar desbloqueado para poder seleccionarse;
-- usarlo consume la acción de la ronda;
-- el rival no puede conocerlo desde la vista previa del mazo, porque se mantiene oculto igual que los demás movimientos;
-- su disponibilidad temporal se representa mediante el `MovimientoEnPartida` correspondiente.
 
 ### Resolución de la ronda
 
@@ -326,37 +430,27 @@ Cuando ambos jugadores han elegido su acción, se ejecutan en el orden estableci
 4. si al jugador afectado no le quedan cartas vivas, la partida termina inmediatamente;
 5. si todavía le quedan cartas vivas, la ronda termina y comienza una nueva ronda;
 6. al iniciar esa nueva ronda, el jugador afectado debe seleccionar una carta viva como nueva carta activa antes de elegir acciones;
-7. ese reemplazo es obligatorio por derrota y **no consume** la acción de la nueva ronda;
+7. ese reemplazo es obligatorio por derrota y no consume la acción de la nueva ronda;
 8. si la carta del segundo jugador sigue viva, su acción se ejecuta normalmente sobre el estado actualizado del combate;
 9. se procesan los efectos de cierre que correspondan y se comprueba la condición de victoria.
 
-### Fin de la partida
-
-La condición principal de victoria es dejar al rival sin cartas vivas.
-
-La partida también puede terminar por abandono, rendición o desconexión no recuperada según las reglas generales ya documentadas.
-
-Al finalizar deben registrarse como mínimo:
-
-- jugador ganador;
-- jugador derrotado;
-- motivo de finalización;
-- estado final necesario para recompensas, historial y sistemas posteriores.
-
-## 8. Regla de separación
+## 11. Regla de separación
 
 Como principio general:
 
 - `CartaBase` = qué es la carta.
 - `CartaEnPartida` = cómo se encuentra esa carta ahora mismo dentro del combate.
 - `Movimiento` = definición permanente de un movimiento.
-- `MovimientoEnPartida` = usos y estado temporal de ese movimiento durante una batalla.
-- `Poder de Maestría` = movimiento especial fijo de carta que utiliza el mismo modelo de movimiento con reglas adicionales.
-- `HabilidadPasiva` = reacción o capacidad propia permanente de una carta.
-- estado activo en `CartaEnPartida` = qué efecto está sufriendo actualmente la carta.
+- `MovimientoEnPartida` = usos y cambios temporales del movimiento.
+- `Estado` = qué clase de condición existe.
+- `EstadoAplicado` = instancia concreta que afecta a una carta durante el combate.
+- `Objeto` = definición permanente de un objeto.
+- `ObjetoEnPartida` = cantidad y estado temporal del objeto durante la batalla.
+- `Tipo` = identidad de uno de los 18 tipos.
+- `TablaTipos` = única fuente técnica de relaciones y multiplicadores.
 - `Mazo` = configuración preparada antes del combate.
 - `MazoEnPartida` = estado temporal del equipo durante el combate.
 - `JugadorEnPartida` = estado del participante dentro de la partida.
-- `Partida` = coordinador del flujo completo, las rondas, el orden de ejecución y la condición de victoria.
+- `Partida` = coordinador del flujo completo.
 
-Esta separación evita modificar accidentalmente datos permanentes con información temporal de una batalla y permite reutilizar cartas, movimientos y mazos en muchas partidas independientes.
+Esta separación evita modificar accidentalmente datos permanentes con información temporal de una batalla y permite reutilizar contenido en muchas partidas independientes.
