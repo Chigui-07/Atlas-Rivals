@@ -214,12 +214,13 @@ Cuando ambos jugadores han elegido su acción, se ejecutan en el orden estableci
 
 1. se resuelve la acción del jugador con la tirada mayor;
 2. se actualiza el estado del combate resultante;
-3. se resuelve la acción del jugador con la tirada menor si sigue siendo válida según el estado actualizado;
-4. se procesan los efectos de fin de ronda o de turno que correspondan;
-5. se comprueba la condición de victoria;
-6. si ambos jugadores todavía tienen cartas vivas, comienza una nueva ronda y se realizan nuevas tiradas.
-
-Queda pendiente definir con precisión todos los casos en los que la primera acción de la ronda pueda volver imposible o alterar la segunda acción ya seleccionada, por ejemplo si la primera acción derrota una carta antes de que pueda ejecutar su ataque.
+3. si esa acción derrota la carta activa del jugador que iba segundo, su acción seleccionada se cancela y no se ejecuta;
+4. si al jugador afectado no le quedan cartas vivas, la partida termina inmediatamente;
+5. si todavía le quedan cartas vivas, la ronda termina y comienza una nueva ronda;
+6. al iniciar esa nueva ronda, el jugador afectado debe seleccionar una carta viva como nueva carta activa antes de elegir acciones;
+7. ese reemplazo es obligatorio por derrota y **no consume** la acción de la nueva ronda;
+8. si la carta del segundo jugador sigue viva, su acción se ejecuta normalmente sobre el estado actualizado del combate;
+9. se procesan los efectos de cierre que correspondan y se comprueba la condición de victoria.
 
 ### Fin de la partida
 
