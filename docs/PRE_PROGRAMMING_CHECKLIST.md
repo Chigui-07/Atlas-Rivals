@@ -51,11 +51,11 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Asignar rareza, tipos, Vida y movimientos.
 - [ ] Crear más movimientos equipables para probar personalización de mazos.
 
-**Nota:** la creación de nuevas cartas y movimientos se realizará después de cerrar el modelo técnico del combate.
+**Nota:** la creación de nuevas cartas y movimientos se realizará después de cerrar el modelo técnico del combate. El creador del juego define cada carta y movimiento; la implementación técnica debe traducir ese diseño al modelo sin inventar contenido nuevo.
 
 ## 5. Movimientos y compatibilidad
 
-- [x] Categorías oficiales de movimientos: **Ofensivo, Curativo y Apoyo**.
+- [x] Categorías iniciales de movimientos definidas a nivel de diseño.
 - [x] Movimientos propios no transferibles y sí desequipables.
 - [x] Movimientos equipables intercambiables entre cartas compatibles.
 - [x] Movimientos ofensivos equipables requieren compartir tipo.
@@ -71,6 +71,7 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Cada movimiento con efecto de estado debe guardar sus parámetros concretos de aplicación.
 - [x] Hervor Intenso: Quemadura de 1 de daño al final de los próximos 2 turnos; no se acumula y reaplicarla reinicia la duración.
 - [x] Golpe Ceremonial: 15% de probabilidad de Parálisis; al activarse hace perder la próxima acción.
+- [x] Diferenciar entre una fuente capaz de provocar un estado y una carta que actualmente está sufriendo ese estado.
 - [ ] Diseñar técnicamente cómo representar los parámetros variables de cada efecto de estado dentro de `Movimiento` y `Estado`.
 
 ## 7. Objetos — cerrados para la primera prueba
@@ -159,7 +160,11 @@ La dirección completa está documentada en `PLATAFORMA_WEB.md`.
 
 Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el siguiente paso es diseñar el modelo técnico del combate:
 
-- [ ] Diseñar entidad `Carta`.
+- [x] Separar la carta permanente `CartaBase` del estado temporal `CartaEnPartida`.
+- [x] Definir que `CartaEnPartida` referencia a `CartaBase` y guarda Vida actual, movimientos activos/usos, estados que la afectan, efectos temporales y estado activa/derrotada.
+- [x] Definir soporte para `HabilidadPasiva` opcional en `CartaBase`.
+- [x] Separar las habilidades o movimientos capaces de causar estados de los estados que actualmente afectan a `CartaEnPartida`.
+- [ ] Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
 - [ ] Diseñar entidad `Movimiento` incluyendo su categoría.
 - [ ] Diseñar entidad `Tipo` y matriz de efectividad.
 - [ ] Diseñar entidad `Objeto`.
@@ -173,12 +178,14 @@ Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el sigui
 - [ ] Contemplar persistencia de cuenta y progreso en las fronteras del modelo/servicios.
 - [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, objetos, estados, mazos y condición de victoria.
 
+Las decisiones de cartas ya cerradas están documentadas en `MODELO_TECNICO.md`.
+
 ## Orden recomendado de cierre
 
 1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
 2. ~~Cerrar objetos de la primera prueba.~~ ✅ Completado.
 3. ~~Definir plataforma y dispositivos objetivo.~~ ✅ Web adaptable para móvil y computadora.
-4. **Diseñar modelo técnico del combate independiente de la interfaz.** ← siguiente paso.
+4. **Diseñar modelo técnico del combate independiente de la interfaz.** ← en progreso.
 5. Crear pruebas del modelo y de las reglas numéricas.
 6. Elegir la estructura técnica del cliente web y comenzar el primer `Feat:` del núcleo.
 
