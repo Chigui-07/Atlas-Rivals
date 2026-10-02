@@ -18,7 +18,8 @@ Representa la definición permanente de una carta. Contiene los datos que no cam
 - tipo principal;
 - tipo secundario opcional;
 - movimientos propios;
-- habilidad pasiva opcional.
+- habilidad pasiva opcional;
+- Poder de Maestría asociado a la carta, cuando corresponda.
 
 Las cartas concretas serán diseñadas por el creador del juego y después se convertirán a esta estructura técnica. No es necesario crear nuevas cartas durante esta fase de modelado.
 
@@ -32,6 +33,7 @@ Incluye conceptualmente:
 - Vida actual;
 - los 2 movimientos activos con los que entró a la partida;
 - usos restantes de movimientos limitados;
+- si el Poder de Maestría de esa carta ya fue utilizado en la partida;
 - estados negativos o positivos que actualmente estén afectando a la carta;
 - efectos temporales activos, como Protector o Impulso;
 - si la carta está activa actualmente;
@@ -176,7 +178,7 @@ Antes del combate:
 
 1. se muestran a ambos jugadores los mazos rivales;
 2. solo se muestra la composición de cartas del mazo;
-3. los movimientos equipados y los objetos elegidos por el rival permanecen ocultos;
+3. los 2 movimientos equipados, los Poderes de Maestría y los objetos elegidos por el rival permanecen ocultos;
 4. cada jugador selecciona en secreto su carta activa inicial;
 5. ambas cartas iniciales se revelan simultáneamente;
 6. comienza la ronda 1.
@@ -201,12 +203,26 @@ Después de fijar el orden de la ronda, ambos jugadores seleccionan su acción p
 
 Las acciones base son:
 
-- **Atacar:** utilizar uno de los movimientos disponibles de la carta activa;
+- **Atacar:** utilizar uno de los 2 movimientos activos disponibles de la carta activa;
+- **Usar Poder de Maestría:** utilizar el tercer movimiento especial de la carta activa, solo si está desbloqueado y todavía no fue usado durante esa partida;
 - **Usar objeto:** utilizar uno de los objetos disponibles;
 - **Cambiar carta:** sustituir la carta activa por otra carta viva válida;
 - **Abandonar:** terminar voluntariamente la partida y recibir la derrota correspondiente.
 
 La acción de cada jugador se guarda antes de comenzar la resolución de la ronda.
+
+### Poder de Maestría
+
+El Poder de Maestría se modela como un movimiento especial propio de cada carta:
+
+- pertenece a la carta y no al jugador completo;
+- es fijo, no removible y no intercambiable;
+- tiene 1 uso por partida por carta;
+- cuesta 0 Energía;
+- debe estar desbloqueado para poder seleccionarse;
+- usarlo consume la acción de la ronda;
+- el rival no puede conocerlo desde la vista previa del mazo, porque se mantiene oculto igual que los demás movimientos;
+- `CartaEnPartida` debe registrar si ese uso ya fue consumido durante la partida.
 
 ### Resolución de la ronda
 
@@ -241,7 +257,7 @@ Como principio general:
 
 - `CartaBase` = qué es la carta.
 - `CartaEnPartida` = cómo se encuentra esa carta ahora mismo dentro del combate.
-- `Movimiento` o `HabilidadPasiva` = qué efectos puede intentar provocar.
+- `Movimiento`, `Poder de Maestría` o `HabilidadPasiva` = qué efectos puede intentar provocar.
 - estado activo en `CartaEnPartida` = qué efecto está sufriendo actualmente la carta.
 - `Mazo` = configuración preparada antes del combate.
 - `MazoEnPartida` = estado temporal del equipo durante el combate.
