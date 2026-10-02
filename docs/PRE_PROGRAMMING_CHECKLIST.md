@@ -10,14 +10,21 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Hasta 3 objetos por partida.
 - [x] Máximo 2 unidades del mismo objeto, salvo límites especiales.
 - [x] Energía: 3 inicial, +2 al inicio de cada ronda, máximo 10.
-- [x] Dado al inicio de cada ronda para decidir quién actúa primero.
-- [x] Una acción por turno.
-- [x] Cambio de carta consume turno.
-- [x] Uso de objeto consume turno.
-- [x] Temporizador de 20 segundos.
+- [x] Mostrar antes del combate la composición de cartas del mazo rival, ocultando movimientos y objetos.
+- [x] Selección secreta y revelación simultánea de la carta activa inicial.
+- [x] Dado al inicio de cada ronda para decidir el orden de ejecución.
+- [x] Si los dados empatan, repetir las tiradas.
+- [x] Ambos jugadores seleccionan su acción antes de comenzar la resolución de la ronda.
+- [x] Acciones base: atacar, usar objeto, cambiar carta o abandonar.
+- [x] Las acciones se ejecutan según el orden fijado por los dados.
+- [x] Cambio de carta consume la acción de la ronda.
+- [x] Uso de objeto consume la acción de la ronda.
+- [x] Temporizador de 20 segundos para seleccionar acción.
 - [x] Pausa por desconexión y límite de 2 minutos.
 - [x] Rendición, abandono o desconexión no recuperada = derrota.
 - [x] Sin empates.
+- [ ] Definir cómo se resuelve una segunda acción que quede invalidada o alterada por la primera acción ejecutada.
+- [ ] Definir cómo se integra el Poder de Maestría en el flujo de selección simultánea.
 
 ## 2. Sistema de tipos — cerrado a nivel de diseño
 
@@ -60,6 +67,7 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Movimientos equipables intercambiables entre cartas compatibles.
 - [x] Movimientos ofensivos equipables requieren compartir tipo.
 - [x] Curativos son Normal y solo para cartas compatibles con curación.
+- [ ] Cerrar el nombre definitivo de la tercera categoría de movimientos.
 - [ ] Definir catálogo inicial de movimientos equipables más allá del mazo inicial.
 - [ ] Registrar explícitamente el tipo y la categoría de cada movimiento en los datos.
 
@@ -78,7 +86,7 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 
 - [x] Sistema de hasta 3 objetos por partida.
 - [x] Máximo 2 unidades del mismo objeto, salvo límites especiales.
-- [x] Uso de objeto consume turno.
+- [x] Uso de objeto consume la acción de la ronda.
 - [x] Objetos no reviven cartas derrotadas.
 - [x] Curaciones no superan la Vida máxima.
 - [x] Vendaje: +3 Vida a la carta activa.
@@ -87,7 +95,7 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Kit de Emergencias limitado a 1 por partida.
 - [x] Protector: reduce en 3 el próximo daño recibido por la carta activa.
 - [x] Impulso: +2 al daño base del próximo movimiento ofensivo antes de aplicar tipos.
-- [x] Cambio rápido: cambia la carta activa por otra viva consumiendo la acción del turno.
+- [x] Cambio rápido: cambia la carta activa por otra viva consumiendo la acción de la ronda.
 - [x] Documentar el catálogo en `OBJECTS_FIRST_TEST.md`.
 
 ## 8. Progresión y economía
@@ -164,21 +172,22 @@ Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el sigui
 - [x] Definir que `CartaEnPartida` referencia a `CartaBase` y guarda Vida actual, movimientos activos/usos, estados que la afectan, efectos temporales y estado activa/derrotada.
 - [x] Definir soporte para `HabilidadPasiva` opcional en `CartaBase`.
 - [x] Separar las habilidades o movimientos capaces de causar estados de los estados que actualmente afectan a `CartaEnPartida`.
+- [x] Diseñar `Mazo` y `MazoEnPartida` a nivel conceptual.
+- [x] Diseñar `JugadorEnPartida` a nivel conceptual, incluyendo nombre de usuario visible.
+- [x] Diseñar el flujo principal de `Partida`: conexión, vista de mazos, carta inicial, dados, selección simultánea, resolución y victoria.
+- [ ] Definir casos de resolución cuando la primera acción invalida o modifica la segunda.
 - [ ] Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
 - [ ] Diseñar entidad `Movimiento` incluyendo su categoría.
 - [ ] Diseñar entidad `Tipo` y matriz de efectividad.
 - [ ] Diseñar entidad `Objeto`.
 - [ ] Diseñar entidad `Estado`.
-- [ ] Diseñar entidad `Mazo` y sus validaciones.
-- [ ] Diseñar estado de `Jugador` dentro de partida.
-- [ ] Diseñar estado y flujo de `Partida`.
 - [ ] Separar datos de contenido de la lógica de combate.
 - [ ] Mantener el modelo independiente de la interfaz responsive.
 - [ ] Crear la fuente técnica única de tipos compartida por combate y AYUDA/TABLA.
 - [ ] Contemplar persistencia de cuenta y progreso en las fronteras del modelo/servicios.
 - [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, objetos, estados, mazos y condición de victoria.
 
-Las decisiones de cartas ya cerradas están documentadas en `MODELO_TECNICO.md`.
+Las decisiones técnicas ya cerradas están documentadas en `MODELO_TECNICO.md`.
 
 ## Orden recomendado de cierre
 
