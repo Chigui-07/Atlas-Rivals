@@ -18,6 +18,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - [`docs/GUATEMALA_1_0.md`](docs/GUATEMALA_1_0.md) — alcance y estado de la versión.
 - [`docs/PLATAFORMA_WEB.md`](docs/PLATAFORMA_WEB.md) — dirección web adaptable, móvil/computadora, interacción y rendimiento.
 - [`docs/GAMEPLAY.md`](docs/GAMEPLAY.md) — reglas de partida, turnos, movimientos, Energía, objetos, estados y desconexiones.
+- [`docs/MODELO_TECNICO.md`](docs/MODELO_TECNICO.md) — decisiones del modelo técnico del combate, comenzando por `CartaBase`, `CartaEnPartida` y habilidades pasivas.
 - [`docs/OBJECTS_FIRST_TEST.md`](docs/OBJECTS_FIRST_TEST.md) — catálogo y valores provisionales de objetos para la primera prueba.
 - [`docs/TYPES.md`](docs/TYPES.md) — tabla final auditada de 18 tipos, multiplicadores y reglas de doble tipo.
 - [`docs/STARTER_DECK.md`](docs/STARTER_DECK.md) — mazo inicial fijo del tutorial de Guatemala 1.0.
@@ -58,6 +59,9 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Tabla final auditada de 18 tipos, multiplicadores y combinaciones para cartas de doble tipo.
 - Estados base Quemadura y Parálisis.
 - Probabilidad, duración e intensidad de un estado pueden variar según el movimiento que lo aplique.
+- Separación técnica entre `CartaBase` y `CartaEnPartida`.
+- Soporte previsto para habilidades pasivas de carta.
+- Diferencia entre una fuente que puede provocar un estado y un estado que actualmente afecta a una carta.
 - Mazo inicial fijo del tutorial.
 - Rarezas, repetidas y sobres.
 - Oro y recompensas principales.
@@ -71,7 +75,8 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 
 ### Pendiente antes del primer `Feat:` del núcleo
 
-- Diseñar el modelo técnico de `Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`.
+- Continuar el modelo técnico de `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`.
+- Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
 - Definir cómo representarán `Movimiento` y `Estado` los parámetros variables de los efectos.
 - Convertir la tabla final de tipos en una única fuente técnica de datos y añadir validaciones automáticas.
 - Definir pruebas del modelo para daño, Energía, objetos, estados, rondas, mazos y condición de victoria.
@@ -96,6 +101,10 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Añadido soporte conceptual para interacción mediante toque y clic.
 - Google Play Store deja de ser el objetivo inicial de publicación; alojamiento y dominio web quedan pendientes de decisión técnica.
 - Una PWA instalable queda como posibilidad futura, no como requisito inicial.
+- Iniciado el modelo técnico formal del combate.
+- Separada la definición permanente `CartaBase` del estado temporal `CartaEnPartida`.
+- Definido soporte opcional para `HabilidadPasiva` y separación entre efectos que una carta puede provocar y estados que actualmente la afectan.
+- Acordado que las cartas y movimientos concretos serán diseñados por el creador del juego y luego traducidos a la estructura técnica.
 
 ### 2026-09-30
 
@@ -114,4 +123,4 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Añadidos Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido como objetos iniciales.
 - Definido que los parámetros de los estados pertenecen al movimiento que los aplica y pueden variar entre movimientos.
 
-**Próximo objetivo:** diseñar el modelo técnico del combate (`Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`) con una arquitectura independiente de la interfaz responsive.
+**Próximo objetivo:** continuar el modelo técnico del combate, con `Mazo`, `Jugador` y `Partida` como próximos bloques principales después de cerrar los detalles pendientes de movimiento/estado.
