@@ -1,20 +1,23 @@
 # Interfaz y tutorial — Guatemala 1.0
 
-## 0. Principio mobile-first
+## 0. Principio web responsive
 
-La interfaz de Guatemala 1.0 se diseña primero para **teléfonos Android en orientación vertical** y debe funcionar completamente mediante controles táctiles.
+La interfaz de Guatemala 1.0 se diseña como **experiencia web adaptable** y debe funcionar correctamente tanto en teléfonos como en computadoras.
 
 Principios obligatorios:
 
-- cartas y botones cómodos de seleccionar con el dedo;
+- cartas y botones cómodos de seleccionar con el dedo en móvil;
+- interacción clara mediante clic en computadora;
 - elementos importantes legibles en pantallas pequeñas;
+- aprovechamiento razonable del espacio adicional en pantallas grandes;
 - separación suficiente entre zonas táctiles para evitar pulsaciones accidentales;
-- navegación sin depender de cursor, teclado o ratón;
-- menús que no requieran mostrar demasiada información simultáneamente;
-- animaciones y efectos que no comprometan el rendimiento en celulares modestos;
-- estructura visual pensada para aprovechar el espacio vertical del teléfono.
+- información esencial accesible sin depender exclusivamente de hover;
+- navegación que no requiera teclado para jugar;
+- menús que no muestren demasiada información simultáneamente en móvil;
+- animaciones y efectos que no comprometan el rendimiento;
+- una misma estructura funcional de juego para móvil y computadora.
 
-La orientación principal queda definida como **vertical (portrait)**. Los prototipos de UI, el combate y los menús deben diseñarse tomando esta orientación como referencia.
+En teléfonos, la referencia principal seguirá siendo una disposición **vertical**. En computadoras, la interfaz podrá reorganizarse en columnas o paneles más anchos mediante diseño responsive.
 
 ## 1. Primera experiencia
 
@@ -28,7 +31,7 @@ Flujo general acordado:
 
 El mazo inicial se conserva después de completar la partida guiada.
 
-Todo este flujo debe poder completarse cómodamente mediante toque.
+Todo este flujo debe poder completarse cómodamente tanto mediante toque como mediante clic.
 
 ## 2. Contenido mínimo del tutorial
 
@@ -65,7 +68,7 @@ Después del tutorial se habilitan las secciones:
 
 En la zona superior del menú deben quedar accesibles la identidad básica del jugador y su Oro.
 
-La navegación debe priorizar pocas acciones claras por pantalla frente a menús demasiado densos para móvil. Las listas y secciones extensas pueden utilizar desplazamiento vertical.
+En móvil, la navegación debe priorizar pocas acciones claras por pantalla y puede utilizar desplazamiento vertical. En computadora podrá aprovecharse mayor anchura sin cambiar la jerarquía funcional.
 
 ## 4. Jugar
 
@@ -77,7 +80,7 @@ Antes de iniciar una partida, el sistema necesita validar como mínimo:
 - hasta 3 objetos;
 - compatibilidad de movimientos equipados.
 
-El botón para iniciar partida y cualquier selector previo deben estar optimizados para interacción táctil.
+El botón para iniciar partida y cualquier selector previo deben funcionar correctamente con toque y clic.
 
 ## 5. Colección
 
@@ -92,7 +95,7 @@ Debe permitir consultar:
 - movimientos propios y equipables;
 - progreso de Maestría cuando corresponda.
 
-La colección debe permitir revisar contenido sin exigir texto excesivamente pequeño. Si una carta necesita mucho detalle, la información puede dividirse entre vista resumida y vista detallada. La lista de cartas puede aprovechar desplazamiento vertical.
+La colección debe permitir revisar contenido sin exigir texto excesivamente pequeño. En móvil puede dividirse entre vista resumida y detallada con desplazamiento vertical; en computadora puede mostrar más columnas o información simultánea cuando sea cómodo.
 
 ## 6. Mazos
 
@@ -103,7 +106,7 @@ Debe permitir:
 - elegir hasta 3 objetos de la partida;
 - detectar configuraciones inválidas antes de entrar a combate.
 
-El proceso de edición debe poder realizarse mediante selección táctil directa sin requerir arrastrar elementos como única forma de interacción.
+El proceso de edición debe poder realizarse mediante selección directa. Arrastrar elementos puede utilizarse como mejora opcional, pero no debe ser la única forma de interacción.
 
 ## 7. Misiones
 
@@ -148,7 +151,7 @@ El regalo y la sección de personalización rotan diariamente.
 
 Los sobres se abren al obtener/comprar; no se necesita una sección de inventario de sobres cerrados.
 
-La tienda debe conservar una jerarquía clara en pantallas pequeñas y evitar interfaces que dependan de pasar el cursor sobre elementos. Su recorrido principal puede organizarse verticalmente.
+La tienda debe conservar una jerarquía clara en pantallas pequeñas y no depender de hover para mostrar información necesaria. En computadora puede usar una distribución más ancha.
 
 ## 11. Perfil
 
@@ -158,9 +161,9 @@ La reputación debe poder consultarse aquí o desde un espacio accesible relacio
 
 ## 12. Ajustes
 
-Se reserva para opciones generales del juego. La lista concreta se definirá durante la implementación de cliente.
+Se reserva para opciones generales del juego. La lista concreta se definirá durante la implementación del cliente web.
 
-Los ajustes futuros pueden incluir opciones destinadas a rendimiento y comodidad móvil cuando sean necesarias.
+Los ajustes futuros pueden incluir opciones de rendimiento, accesibilidad, audio y comodidad de interacción.
 
 ## 13. Interfaz de partida
 
@@ -178,9 +181,15 @@ Debe mostrar de forma clara, como mínimo:
 
 El Poder de Maestría debe mostrarse solo cuando esté desbloqueado/disponible según sus reglas.
 
-La partida debe permitir seleccionar movimientos, cartas y objetos con pulsaciones claras. Ninguna acción frecuente debe depender de precisión similar a la de un ratón.
+La partida debe permitir seleccionar movimientos, cartas y objetos tanto con pulsaciones táctiles como con clics claros.
 
-La composición del combate debe resolverse específicamente para formato vertical, distribuyendo la información en zonas apiladas sin reducir demasiado las cartas ni los controles.
+### Distribución móvil
+
+En teléfono se prioriza formato vertical, con información organizada en zonas apiladas y controles suficientemente grandes.
+
+### Distribución de computadora
+
+En computadora puede aprovecharse la anchura adicional para mostrar información lado a lado, siempre que conserve las mismas acciones, reglas y estado de partida que la vista móvil.
 
 ## 14. AYUDA / TABLA
 
@@ -198,7 +207,7 @@ Debe permitir consultar sin salir del combate:
 
 La interfaz debe leer la misma fuente de datos que utilice el motor de combate. No debe existir una tabla visual separada que pueda quedar desactualizada respecto a la lógica real.
 
-En móvil, esta información debe presentarse mediante una vista desplazable o equivalente que mantenga el texto legible.
+En móvil puede presentarse mediante una vista desplazable. En computadora podrá aprovechar paneles más amplios o columnas si mejora la lectura.
 
 ## 15. Temporizador y desconexión en UI
 
@@ -213,6 +222,8 @@ En móvil, esta información debe presentarse mediante una vista desplazable o e
 
 La interfaz debe asumir que el jugador tendrá identidad y progreso persistentes.
 
-Las pantallas de perfil, colección, mazos, economía y progresión deben diseñarse de forma compatible con datos que puedan recuperarse después de cerrar y volver a abrir la aplicación o iniciar sesión nuevamente.
+Las pantallas de perfil, colección, mazos, economía y progresión deben diseñarse de forma compatible con datos que puedan recuperarse después de cerrar el navegador, volver a abrir el juego o iniciar sesión desde otro dispositivo.
 
-La tecnología concreta de autenticación y almacenamiento todavía no está decidida.
+La misma cuenta debe poder utilizarse desde teléfono o computadora.
+
+La tecnología concreta de autenticación, backend y almacenamiento todavía no está decidida.
