@@ -38,10 +38,13 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Definir la regla especial de mismo tipo para Eclipse, Mente, Espectro, Enjambre y Dragón.
 - [x] Transcribir íntegramente la matriz v0.2 al repositorio.
 - [x] Verificar simetría y consistencia de la tabla transcrita.
-- [ ] Convertir la tabla en una única fuente técnica de datos para combate y AYUDA/TABLA.
+- [x] Diseñar `Tipo` con identificador estable y metadatos de presentación.
+- [x] Diseñar una única `TablaTipos`/fuente técnica para las relaciones ofensivas.
+- [x] Definir que combate y AYUDA/TABLA usarán la misma fuente técnica.
+- [ ] Implementar la fuente técnica única de tipos.
 - [ ] Añadir validaciones automáticas de simetría, excepciones y combinaciones de doble tipo.
 
-**Criterio de diseño cumplido:** la matriz completa ya existe versionada en `TYPES.md` y no depende del recuerdo del chat.
+**Criterio de diseño cumplido:** la matriz completa ya existe versionada en `TYPES.md` y el modelo técnico para llevarla a código ya está definido.
 
 ## 3. Mazo inicial de Guatemala
 
@@ -61,7 +64,7 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Asignar rareza, tipos, Vida y movimientos.
 - [ ] Crear más movimientos equipables para probar personalización de mazos.
 
-**Nota:** la creación de nuevas cartas y movimientos se realizará después de cerrar el modelo técnico del combate. El creador del juego define cada carta y movimiento; la implementación técnica debe traducir ese diseño al modelo sin inventar contenido nuevo.
+**Nota:** estas tareas no bloquean el comienzo del núcleo. El creador del juego define cada carta y movimiento; la implementación técnica debe traducir ese diseño al modelo sin inventar contenido nuevo.
 
 ## 5. Movimientos y compatibilidad
 
@@ -81,6 +84,8 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Definir catálogo inicial de movimientos equipables más allá del mazo inicial.
 - [ ] Registrar explícitamente el tipo y la categoría de cada movimiento del contenido inicial en los datos cuando comience la implementación.
 
+El catálogo adicional de movimientos no bloquea el primer núcleo, pero el nombre definitivo de la tercera categoría sí debe cerrarse antes de crear sus identificadores técnicos.
+
 ## 6. Estados y efectos
 
 - [x] Estados base confirmados: Quemadura y Parálisis.
@@ -91,7 +96,8 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Golpe Ceremonial: 15% de probabilidad de Parálisis; al activarse hace perder la próxima acción.
 - [x] Diferenciar entre una fuente capaz de provocar un estado y una carta que actualmente está sufriendo ese estado.
 - [x] Definir conceptualmente que los parámetros variables del efecto pertenecen al movimiento que lo provoca.
-- [ ] Diseñar la entidad técnica `Estado` y la instancia temporal del estado aplicado durante una partida.
+- [x] Diseñar `Estado` como definición general del tipo de condición.
+- [x] Diseñar `EstadoAplicado` como instancia temporal con duración, intensidad, fuente y reglas de reaplicación.
 
 ## 7. Objetos — cerrados para la primera prueba
 
@@ -108,6 +114,8 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Impulso: +2 al daño base del próximo movimiento ofensivo antes de aplicar tipos.
 - [x] Cambio rápido: cambia la carta activa por otra viva consumiendo la acción de la ronda.
 - [x] Documentar el catálogo en `OBJECTS_FIRST_TEST.md`.
+- [x] Diseñar `Objeto` como definición permanente con objetivo, efectos y límite de copias.
+- [x] Diseñar `ObjetoEnPartida` para mantener la cantidad restante durante el combate.
 
 ## 8. Progresión y economía
 
@@ -126,6 +134,8 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Cerrar los valores provisionales del desbloqueo de Maestría.
 - [ ] Definir el modificador de Movimiento Estelar usado por Carta Estelar.
 
+Estas decisiones no bloquean la programación inicial del núcleo de combate.
+
 ## 9. Reputación y antifarmeo
 
 - [x] Detectar patrones beneficiados por abandono/desconexión.
@@ -137,6 +147,8 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Definir duración de sanciones.
 - [ ] Definir recuperación de reputación.
 - [ ] Definir reducción exacta de Oro, estrellas, sobres, misiones y fichas.
+
+Estas decisiones no bloquean la programación inicial del núcleo de combate.
 
 ## 10. Interfaz y tutorial
 
@@ -152,6 +164,8 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Diseñar visualmente las pantallas durante la fase de UI.
 - [ ] Diseñar la distribución responsive concreta del combate en móvil y computadora.
 
+La interfaz visual completa no bloquea la implementación del modelo de combate.
+
 ## 11. Plataforma web — dirección confirmada
 
 - [x] Plataforma inicial: Web.
@@ -164,7 +178,7 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [x] Android nativo deja de ser requisito inicial.
 - [x] Google Play Store deja de ser objetivo inicial de publicación.
 - [x] PWA instalable queda como posibilidad futura, no como requisito.
-- [ ] Elegir tecnología concreta del cliente web.
+- [ ] Elegir tecnología concreta del cliente y núcleo web.
 - [ ] Definir tamaños/criterios mínimos de zonas táctiles.
 - [ ] Definir puntos de adaptación responsive.
 - [ ] Definir compatibilidad mínima de navegadores.
@@ -173,41 +187,42 @@ Esta lista convierte las decisiones abiertas en tareas concretas. No reemplaza l
 - [ ] Elegir alojamiento y dominio cuando corresponda.
 - [ ] Medir la duración real de partidas y fijar un objetivo de sesión después de las primeras pruebas.
 
-La dirección completa está documentada en `PLATAFORMA_WEB.md`.
+La dirección completa está documentada en `PLATAFORMA_WEB.md`. Para comenzar el núcleo solo es bloqueante elegir la tecnología concreta; backend, autenticación, alojamiento y detalles responsive pueden definirse más adelante.
 
 ## 12. Modelo técnico — siguiente objetivo
 
-Con tipos, mazo inicial, estados, objetos y plataforma ya documentados, el siguiente paso es diseñar el modelo técnico del combate:
-
 - [x] Separar la carta permanente `CartaBase` del estado temporal `CartaEnPartida`.
-- [x] Definir que `CartaEnPartida` referencia a `CartaBase` y guarda Vida actual, movimientos activos, estados que la afectan, efectos temporales y estado activa/derrotada.
 - [x] Definir soporte para `HabilidadPasiva` opcional en `CartaBase`.
-- [x] Separar las habilidades o movimientos capaces de causar estados de los estados que actualmente afectan a `CartaEnPartida`.
-- [x] Diseñar `Movimiento` y `MovimientoEnPartida` a nivel conceptual.
-- [x] Diseñar `Mazo` y `MazoEnPartida` a nivel conceptual.
-- [x] Diseñar `JugadorEnPartida` a nivel conceptual, incluyendo nombre de usuario visible.
-- [x] Diseñar el flujo principal de `Partida`: conexión, vista de mazos, carta inicial, dados, selección simultánea, resolución y victoria.
-- [x] Definir la resolución cuando la primera acción derrota la carta activa antes de la segunda acción.
-- [x] Integrar el Poder de Maestría como tercer movimiento especial oculto, con 1 uso por partida por carta y 0 Energía.
-- [ ] Terminar detalles de implementación de las entidades cuando se elija la tecnología del núcleo.
-- [ ] Diseñar entidad `Tipo` y matriz de efectividad.
-- [ ] Diseñar entidad `Objeto`.
-- [ ] Diseñar entidad `Estado` y estado aplicado en combate.
-- [ ] Separar datos de contenido de la lógica de combate.
-- [ ] Mantener el modelo independiente de la interfaz responsive.
-- [ ] Crear la fuente técnica única de tipos compartida por combate y AYUDA/TABLA.
-- [ ] Contemplar persistencia de cuenta y progreso en las fronteras del modelo/servicios.
-- [ ] Definir pruebas mínimas para tipos, daño, Energía, rondas, objetos, estados, mazos y condición de victoria.
+- [x] Diseñar `Movimiento` y `MovimientoEnPartida`.
+- [x] Diseñar `Estado` y `EstadoAplicado`.
+- [x] Diseñar `Objeto` y `ObjetoEnPartida`.
+- [x] Diseñar `Tipo` y la fuente central `TablaTipos`.
+- [x] Diseñar `Mazo` y `MazoEnPartida`.
+- [x] Diseñar `JugadorEnPartida`.
+- [x] Diseñar el flujo principal de `Partida`.
+- [x] Integrar el Poder de Maestría.
+- [x] Mantener conceptualmente separados datos permanentes y estado temporal del combate.
+- [ ] Elegir la tecnología concreta para traducir el modelo a código.
+- [ ] Definir la estructura inicial de carpetas/módulos y la separación entre datos de contenido y lógica de combate.
+- [ ] Definir el conjunto mínimo de pruebas con el que comenzará el núcleo.
 
-Las decisiones técnicas ya cerradas están documentadas en `MODELO_TECNICO.md`.
+## 13. Bloqueadores reales para el primer `Feat:`
+
+Después de cerrar `Estado`, `Objeto` y `Tipo`, quedan **3 decisiones mínimas** antes de comenzar a programar el núcleo:
+
+1. **Cerrar el nombre de la tercera categoría de movimientos**, para no crear un identificador técnico provisional que luego haya que renombrar.
+2. **Elegir la tecnología concreta del cliente/núcleo web**, que determinará lenguaje, herramientas y estructura del proyecto.
+3. **Definir la estructura inicial del código y las primeras pruebas**, incluyendo dónde vivirán entidades, datos de contenido, tabla de tipos y lógica de combate.
+
+Una vez cerrados esos tres puntos, puede comenzar el primer commit `Feat:` del núcleo. La implementación de la tabla de tipos, las pruebas automáticas, el catálogo adicional, backend, cuentas, economía, UI final y demás sistemas se desarrollará de forma incremental después de comenzar a programar.
 
 ## Orden recomendado de cierre
 
 1. ~~Transcribir tabla v0.2.~~ ✅ Completado.
 2. ~~Cerrar objetos de la primera prueba.~~ ✅ Completado.
 3. ~~Definir plataforma y dispositivos objetivo.~~ ✅ Web adaptable para móvil y computadora.
-4. **Diseñar modelo técnico del combate independiente de la interfaz.** ← en progreso.
-5. Crear pruebas del modelo y de las reglas numéricas.
-6. Elegir la estructura técnica del cliente web y comenzar el primer `Feat:` del núcleo.
+4. ~~Diseñar modelo técnico conceptual del combate.~~ ✅ Completado a nivel previo a implementación.
+5. **Cerrar los 3 bloqueadores reales del primer `Feat:`.** ← siguiente paso.
+6. Comenzar a programar el núcleo con pruebas desde el inicio.
 
-Los sistemas de progresión, tienda, Pase y Maestría pueden implementarse después del núcleo de combate, respetando siempre su documentación antes de codificar cada sistema.
+Los sistemas de progresión, tienda, Pase y Maestría avanzada pueden implementarse después del núcleo, respetando siempre su documentación antes de codificar cada sistema.
