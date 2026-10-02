@@ -7,16 +7,16 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 **Rama:** `guatemala-1.0`  
 **Estado:** documentación y diseño técnico previo al desarrollo.  
 **País piloto:** Guatemala.  
-**Plataforma objetivo inicial:** Android.  
-**Orientación principal:** vertical (portrait).  
-**Primera publicación objetivo:** Google Play Store.
+**Plataforma objetivo inicial:** Web.  
+**Dispositivos objetivo:** teléfonos y computadoras mediante navegador.  
+**Diseño móvil principal:** vertical.  
 
 `main` se mantiene como la rama estable. El desarrollo de Guatemala 1.0 se realiza exclusivamente en su rama hasta que la versión esté preparada para integrarse.
 
 ## Documentación
 
 - [`docs/GUATEMALA_1_0.md`](docs/GUATEMALA_1_0.md) — alcance y estado de la versión.
-- [`docs/PLATFORM_ANDROID.md`](docs/PLATFORM_ANDROID.md) — dirección mobile-first, orientación vertical, controles táctiles, rendimiento y publicación Android.
+- [`docs/PLATAFORMA_WEB.md`](docs/PLATAFORMA_WEB.md) — dirección web adaptable, móvil/computadora, interacción y rendimiento.
 - [`docs/GAMEPLAY.md`](docs/GAMEPLAY.md) — reglas de partida, turnos, movimientos, Energía, objetos, estados y desconexiones.
 - [`docs/OBJECTS_FIRST_TEST.md`](docs/OBJECTS_FIRST_TEST.md) — catálogo y valores provisionales de objetos para la primera prueba.
 - [`docs/TYPES.md`](docs/TYPES.md) — tabla final auditada de 18 tipos, multiplicadores y reglas de doble tipo.
@@ -33,18 +33,21 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Guatemala no tiene que quedar “completada” en esta versión; futuras versiones pueden añadir nuevas cartas guatemaltecas junto con otros países.
 - El objetivo de esta rama es validar el núcleo del juego antes de ampliar el contenido.
 - El mazo inicial fijo del tutorial ya está definido; el catálogo completo de Guatemala 1.0 todavía puede crecer durante esta rama.
-- Guatemala 1.0 se diseña **mobile-first para teléfonos Android en orientación vertical**; todas las decisiones técnicas y de interfaz deben tomar el uso táctil, las limitaciones de un teléfono y el espacio vertical como referencia principal.
-- Una versión para PC queda fuera del alcance inicial.
+- Guatemala 1.0 se desarrolla como **juego web adaptable**, con una sola experiencia accesible desde teléfono y computadora.
+- En móvil se mantiene una disposición vertical como referencia; en computadora la interfaz podrá aprovechar mayor anchura sin cambiar las reglas ni crear una versión separada.
+- La interacción esencial debe funcionar tanto mediante toque como mediante clic.
 - La monetización no se priorizará por encima de jugabilidad, balance, estabilidad y rendimiento.
 
 ## Estado previo a programación
 
 ### Confirmado y documentado
 
-- Plataforma objetivo inicial: Android.
-- Primera publicación objetivo: Google Play Store.
-- Orientación principal: vertical (portrait).
-- Interacción principal completamente táctil.
+- Plataforma objetivo inicial: Web.
+- Acceso desde navegador en teléfonos y computadoras.
+- Diseño responsive/adaptable.
+- Disposición móvil principal: vertical.
+- Interacción esencial mediante toque y clic.
+- Una misma cuenta, colección, progreso y reglas para móvil y computadora.
 - Estructura general de combate por rondas y turnos.
 - Mazo de 6 cartas sin copias exactas repetidas y hasta 3 objetos.
 - Máximo 2 unidades del mismo objeto, salvo límites especiales.
@@ -64,7 +67,7 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Tienda, tutorial y menú principal.
 - Temporizador de 20 segundos, desconexiones y derrota por abandono.
 - Reputación/antifarmeo a nivel de reglas, con fórmula detallada pendiente.
-- Convenciones de ramas y commits.
+- Convenciones de ramas y commits en español.
 
 ### Pendiente antes del primer `Feat:` del núcleo
 
@@ -72,15 +75,27 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Definir cómo representarán `Movimiento` y `Estado` los parámetros variables de los efectos.
 - Convertir la tabla final de tipos en una única fuente técnica de datos y añadir validaciones automáticas.
 - Definir pruebas del modelo para daño, Energía, objetos, estados, rondas, mazos y condición de victoria.
-- Definir objetivos técnicos medibles para rendimiento en celulares modestos.
-- Diseñar la distribución concreta de la interfaz vertical de combate y menús.
+- Elegir la tecnología concreta del cliente web.
+- Elegir posteriormente backend, autenticación, almacenamiento, alojamiento y dominio.
+- Definir compatibilidad mínima de navegadores.
+- Definir objetivos técnicos medibles de rendimiento web en teléfonos modestos y computadoras comunes.
+- Diseñar la distribución responsive concreta del combate y menús.
 - Definir el catálogo adicional de cartas de Guatemala 1.0 más allá del mazo inicial.
 - Definir más movimientos equipables.
 - Cerrar la fórmula numérica de reputación/antifarmeo.
 - Cerrar el objetivo final e hitos exactos del desbloqueo de Maestría.
-- Elegir posteriormente la arquitectura concreta para cuenta, backend y progreso persistente.
 
 ## Bitácora — Guatemala 1.0
+
+### 2026-10-01
+
+- Cambiada la plataforma principal de Android nativo a **Web**.
+- Definido que Atlas Rivals será accesible desde navegador tanto en teléfono como en computadora.
+- Establecida una única interfaz responsive/adaptable en lugar de versiones separadas por plataforma.
+- Conservada la disposición vertical como referencia para la experiencia móvil.
+- Añadido soporte conceptual para interacción mediante toque y clic.
+- Google Play Store deja de ser el objetivo inicial de publicación; alojamiento y dominio web quedan pendientes de decisión técnica.
+- Una PWA instalable queda como posibilidad futura, no como requisito inicial.
 
 ### 2026-09-30
 
@@ -94,11 +109,9 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Verificada la simetría y consistencia de todas las relaciones entre tipos distintos.
 - Documentados los casos especiales de Eclipse, Mente, Espectro, Enjambre y Dragón contra sí mismos.
 - Cerradas las combinaciones de multiplicadores para cartas objetivo de dos tipos, incluida la regla especial de doble neutral.
-- Definido Android como plataforma principal de desarrollo y Google Play Store como primera publicación objetivo.
-- Establecido el enfoque mobile-first: controles táctiles, UI para pantallas pequeñas, rendimiento en teléfonos modestos, partidas online relativamente cortas y progreso persistente.
-- Definida la orientación vertical como formato principal de toda la experiencia móvil.
+- Definida inicialmente una dirección Android mobile-first, posteriormente reemplazada por la decisión Web del 2026-10-01.
 - Cerrado el catálogo de objetos de la primera prueba con valores provisionales y límites de copias.
 - Añadidos Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido como objetos iniciales.
 - Definido que los parámetros de los estados pertenecen al movimiento que los aplica y pueden variar entre movimientos.
-- PC queda como posibilidad futura, fuera del alcance inicial.
-- Próximo objetivo: diseñar el modelo técnico del combate (`Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`).
+
+**Próximo objetivo:** diseñar el modelo técnico del combate (`Carta`, `Movimiento`, `Tipo`, `Objeto`, `Estado`, `Mazo`, `Jugador` y `Partida`) con una arquitectura independiente de la interfaz responsive.
