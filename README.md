@@ -69,6 +69,8 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Ambos jugadores eligen su acción antes de ejecutar la ronda.
 - Acciones base: atacar, usar objeto, cambiar carta o abandonar.
 - Las acciones se resuelven según el orden de los dados.
+- Si la primera acción derrota la carta activa del jugador que iba segundo, su acción se cancela.
+- Si todavía le quedan cartas vivas, en la nueva ronda selecciona otra carta activa como reemplazo obligatorio sin gastar su acción.
 - Temporizador de 20 segundos para seleccionar acción.
 - Condición principal de victoria: dejar al rival sin cartas vivas.
 - Mazo inicial fijo del tutorial.
@@ -84,7 +86,6 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 
 ### Pendiente antes del primer `Feat:` del núcleo
 
-- Definir cómo se resuelve una acción seleccionada que quede invalidada o alterada por la acción ejecutada primero.
 - Definir cómo se integra el Poder de Maestría en el nuevo flujo de selección simultánea.
 - Continuar el modelo técnico de `Movimiento`, `Tipo`, `Objeto` y `Estado`.
 - Terminar detalles de implementación de `CartaBase`, `CartaEnPartida` y `HabilidadPasiva` cuando se elija la tecnología del núcleo.
@@ -113,7 +114,8 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Establecido que ambos jugadores eligen su acción antes de comenzar a resolver la ronda.
 - Definidas como acciones base: atacar, usar objeto, cambiar carta y abandonar.
 - Establecida la resolución secuencial según las tiradas, actualizando el combate entre la primera y segunda acción.
-- Marcados como pendientes los casos donde la primera acción invalide la segunda y la integración del Poder de Maestría.
+- Cerrada la regla de derrota durante una ronda: si la primera acción elimina la carta activa del segundo jugador, su acción se cancela; si conserva cartas vivas, comienza una nueva ronda y elige un reemplazo obligatorio sin consumir acción.
+- La integración del Poder de Maestría en este flujo continúa pendiente.
 
 ### 2026-10-01
 
@@ -146,4 +148,4 @@ Juego de estrategia y colección de cartas inspirado en países, su naturaleza, 
 - Añadidos Vendaje, Botiquín, Kit de Emergencias, Protector, Impulso y Cambio rápido como objetos iniciales.
 - Definido que los parámetros de los estados pertenecen al movimiento que los aplica y pueden variar entre movimientos.
 
-**Próximo objetivo:** cerrar los casos especiales de resolución de ronda y continuar el modelo técnico de `Movimiento`, `Tipo`, `Objeto` y `Estado` antes del primer `Feat:` del núcleo.
+**Próximo objetivo:** continuar el modelo técnico de `Movimiento`, `Tipo`, `Objeto` y `Estado` y cerrar la integración del Poder de Maestría antes del primer `Feat:` del núcleo.
