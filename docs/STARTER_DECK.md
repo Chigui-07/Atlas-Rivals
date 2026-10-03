@@ -2,37 +2,45 @@
 
 Este es el mazo inicial definido para el tutorial. Todos los jugadores lo reciben al comenzar y lo conservan después de completar la partida guiada.
 
+> El mazo se está redefiniendo carta por carta. **Kak'ik ya está confirmada con su nueva versión**. Las demás cartas conservan temporalmente sus valores anteriores hasta que sean revisadas.
+
 ## Cartas
 
-| Carta | Rareza | Tipo(s) | Vida |
-|---|---|---|---:|
-| Kak'ik | Común | Brasa | 15 |
-| Lago de Atitlán | Común | Marea | 17 |
-| Ceiba Sagrada | Rara | Raíz / Duna | 18 |
-| Antigua Guatemala | Común | Normal / Roca | 19 |
-| Ciudad de Guatemala | Rara | Chispa / Metal | 15 |
-| Juego de Pelota Maya | Común | Impacto | 16 |
-
-Resultado del mazo: **4 Comunes y 2 Raras**.
+| Carta | Rareza | Tipo(s) | Vida | Estado |
+|---|---|---|---:|---|
+| Kak'ik | Común | Brasa | 20 | Confirmada |
+| Lago de Atitlán | Común | Marea | 17 | Pendiente de revisión |
+| Ceiba Sagrada | Rara | Raíz / Duna | 18 | Pendiente de revisión |
+| Antigua Guatemala | Común | Normal / Roca | 19 | Pendiente de revisión |
+| Ciudad de Guatemala | Rara | Chispa / Metal | 15 | Pendiente de revisión |
+| Juego de Pelota Maya | Común | Impacto | 16 | Pendiente de revisión |
 
 ## Movimientos iniciales
 
-### Kak'ik
+### Kak'ik — confirmada
 
-**Calor del Kak'ik**
+**Recado Ardiente**
 
-- Daño: 4.
-- Energía: 1.
+- Rareza: Común.
+- Tipo: Brasa.
+- Categoría: Ofensivo.
+- Daño: 3.
+- Energía: 2.
 - Usos: ilimitados.
+- Descripción: *Lanza una chispa del hirviente caldo rojo que quema al objetivo al contacto.*
 
-**Hervor Intenso**
+**Sazón Incandescente**
 
-- Daño: 7.
-- Energía: 4.
-- Usos: 3.
-- Aplica Quemadura: 1 de daño adicional al final de los próximos 2 turnos; no se acumula y reaplicarla reinicia la duración.
+- Rareza: Superrara.
+- Tipo: Brasa.
+- Categoría: Ofensivo.
+- Daño: 8.
+- Energía: 6.
+- Usos: 2.
+- Habilidad: garantiza aplicar Quemadura durante 3 rondas, causando 1 de daño adicional en cada aplicación del estado.
+- Descripción: *Un estallido especiado abrasador que envuelve al rival en llamas intensas.*
 
-### Lago de Atitlán
+### Lago de Atitlán — pendiente de revisión
 
 **Oleaje del Lago**
 
@@ -46,7 +54,7 @@ Resultado del mazo: **4 Comunes y 2 Raras**.
 - Energía: 3.
 - Usos: 5.
 
-### Ceiba Sagrada
+### Ceiba Sagrada — pendiente de revisión
 
 **Raíces Ancestrales**
 
@@ -62,7 +70,7 @@ Resultado del mazo: **4 Comunes y 2 Raras**.
 - Usos: 3.
 - No inflige daño.
 
-### Antigua Guatemala
+### Antigua Guatemala — pendiente de revisión
 
 **Herencia Colonial**
 
@@ -76,7 +84,7 @@ Resultado del mazo: **4 Comunes y 2 Raras**.
 - Energía: 4.
 - Usos: 3.
 
-### Ciudad de Guatemala
+### Ciudad de Guatemala — pendiente de revisión
 
 **Pulso Urbano**
 
@@ -90,7 +98,7 @@ Resultado del mazo: **4 Comunes y 2 Raras**.
 - Energía: 3.
 - Usos: 4.
 
-### Juego de Pelota Maya
+### Juego de Pelota Maya — pendiente de revisión
 
 **Golpe Ceremonial**
 
@@ -107,7 +115,8 @@ Resultado del mazo: **4 Comunes y 2 Raras**.
 
 ## Notas de implementación
 
-- Cada carta ya cumple la regla de tener al menos un movimiento ilimitado.
-- Estos son movimientos propios de las cartas: pueden desequiparse de sus espacios activos, pero no transferirse a otras cartas.
-- Los movimientos equipables que el jugador obtenga posteriormente podrán sustituir movimientos activos siempre que la carta sea compatible.
-- Los tipos concretos de cada movimiento deben almacenarse explícitamente en los datos cuando se prepare el modelo técnico; no deben inferirse únicamente por el nombre de la carta.
+- Cada carta debe tener al menos un movimiento ilimitado.
+- Los movimientos propios pueden desequiparse de sus espacios activos, pero no transferirse a otras cartas.
+- Los movimientos equipables obtenidos posteriormente podrán sustituir movimientos activos siempre que la carta sea compatible.
+- El tipo, rareza y descripción de cada movimiento se almacenan explícitamente en los datos del juego.
+- La versión confirmada de Kak'ik ya existe en código como `GUA-001`.

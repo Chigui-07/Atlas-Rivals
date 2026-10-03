@@ -10,6 +10,8 @@ import type { Movimiento } from '../../src/dominio/movimientos/movimiento';
 const movimientoBasico: Movimiento = {
   id: 'mov-basico',
   nombre: 'Movimiento básico',
+  descripcion: 'Movimiento básico usado para pruebas.',
+  rareza: 'COMUN',
   tipo: 'NORMAL',
   categoria: 'OFENSIVO',
   procedencia: 'PROPIO',
@@ -24,6 +26,7 @@ const movimientoLimitado: Movimiento = {
   ...movimientoBasico,
   id: 'mov-limitado',
   nombre: 'Movimiento limitado',
+  descripcion: 'Movimiento limitado usado para pruebas.',
   costeEnergia: 4,
   danioBase: 7,
   usosMaximos: 3,

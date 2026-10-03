@@ -1,19 +1,11 @@
 import type { EstadoAplicado } from '../estados/estado';
 import type { Movimiento, MovimientoEnPartida } from '../movimientos/movimiento';
 import { crearMovimientoEnPartida } from '../movimientos/movimiento';
+import { RAREZAS, type Rareza } from '../rareza/rareza';
 import type { Tipo } from '../tipos/tipo';
 
-export const RAREZAS_CARTA = [
-  'COMUN',
-  'RARA',
-  'SUPERRARA',
-  'EPICA',
-  'MITICA',
-  'LEGENDARIA',
-  'ESTELAR',
-] as const;
-
-export type RarezaCarta = (typeof RAREZAS_CARTA)[number];
+export const RAREZAS_CARTA = RAREZAS;
+export type RarezaCarta = Rareza;
 
 export interface HabilidadPasiva {
   readonly id: string;

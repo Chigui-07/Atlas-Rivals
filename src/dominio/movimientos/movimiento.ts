@@ -1,3 +1,4 @@
+import type { Rareza } from '../rareza/rareza';
 import type { Tipo } from '../tipos/tipo';
 
 export const CATEGORIAS_MOVIMIENTO = ['OFENSIVO', 'CURATIVO', 'INSTANTANEO'] as const;
@@ -28,6 +29,8 @@ export interface AplicacionEstadoMovimiento {
 export interface Movimiento {
   readonly id: string;
   readonly nombre: string;
+  readonly descripcion: string;
+  readonly rareza: Rareza;
   readonly tipo: Tipo;
   readonly categoria: CategoriaMovimiento;
   readonly procedencia: ProcedenciaMovimiento;

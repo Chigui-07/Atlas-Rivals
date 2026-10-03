@@ -9,6 +9,8 @@ import {
 const movimientoLimitado: Movimiento = {
   id: 'prueba-limitado',
   nombre: 'Movimiento limitado',
+  descripcion: 'Movimiento limitado usado para pruebas.',
+  rareza: 'COMUN',
   tipo: 'BRASA',
   categoria: 'OFENSIVO',
   procedencia: 'PROPIO',
@@ -23,6 +25,7 @@ const movimientoIlimitado: Movimiento = {
   ...movimientoLimitado,
   id: 'prueba-ilimitado',
   nombre: 'Movimiento ilimitado',
+  descripcion: 'Movimiento ilimitado usado para pruebas.',
   costeEnergia: 1,
   danioBase: 4,
   usosMaximos: null,
